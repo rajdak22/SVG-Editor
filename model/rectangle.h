@@ -1,0 +1,23 @@
+#ifndef RECTANGLE_H
+#define RECTANGLE_H
+
+#include "graphics_object.h"
+
+class Rectangle : public GraphicsObject {
+public:
+    Rectangle(double x, double y, double width, double height);
+
+    std::string toSVG() const override;
+    void draw(QPainter& painter, bool selected) const override;
+    bool contains(double x, double y) const override;
+    void move(double dx, double dy) override;
+
+
+private:
+    double x_;
+    double y_;
+    double width_;
+    double height_;
+};
+
+#endif

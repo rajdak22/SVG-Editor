@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_cop290_raj_FILE /Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj)
+set(__QT_DEPLOY_TARGET_cop290_raj_TYPE EXECUTABLE)
