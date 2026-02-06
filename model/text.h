@@ -1,9 +1,9 @@
-#ifndef TEXT_H
-#define TEXT_H
-
+#pragma once
 #include "graphics_object.h"
+#include <string>
 
-class Text : public GraphicsObject {
+class Text : public GraphicsObject
+{
 public:
     Text(double x, double y, const std::string& content);
 
@@ -14,8 +14,7 @@ public:
     void move(double dx, double dy) override;
 
 private:
-    double x_, y_;
+    double x_;
+    double y_;
     std::string content_;
 };
-
-#endif

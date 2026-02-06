@@ -50,6 +50,32 @@ set(PROJECT_SOURCES
 
         gui/canvas.h
         gui/canvas.cpp
+
+        gui/tools/tool.h
+
+        gui/tools/select_tool.h
+        gui/tools/select_tool.cpp
+
+        gui/tools/rectangle_tool.h
+        gui/tools/rectangle_tool.cpp
+
+        gui/tools/circle_tool.h
+        gui/tools/circle_tool.cpp
+
+        gui/tools/line_tool.h
+        gui/tools/line_tool.cpp
+
+        gui/tools/rounded_rectangle_tool.h
+        gui/tools/rounded_rectangle_tool.cpp
+
+        gui/tools/hexagon_tool.h
+        gui/tools/hexagon_tool.cpp
+
+        gui/tools/polyline_tool.h
+        gui/tools/polyline_tool.cpp
+
+        gui/tools/text_tool.h
+        gui/tools/text_tool.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

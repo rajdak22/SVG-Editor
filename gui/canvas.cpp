@@ -1,8 +1,9 @@
 #include "canvas.h"
 #include <QPainter>
 #include <QMouseEvent>
-#include "../model/rectangle.h"
 #include <QDebug>
+#include "tools/tool.h"
+
 
 Canvas::Canvas(QWidget *parent)
     : QWidget(parent)
@@ -29,70 +30,49 @@ void Canvas::paintEvent(QPaintEvent *)
     }
 }
 
-
-
-void Canvas::setTool(Tool tool) {
-    current_tool_ = tool;
+void Canvas::setTool(std::unique_ptr<Tool> tool)
+{
+    current_tool_ = std::move(tool);
 }
 
 void Canvas::mousePressEvent(QMouseEvent* event)
 {
-    double x = event->position().x();
-    double y = event->position().y();
-
-    if (current_tool_ == Tool::Select) {
-
-        selected_.reset();  // clear previous selection
-
-        // iterate BACKWARDS so topmost object gets selected first
-        const auto& objects = diagram.getObjects();
-
-        for (auto it = objects.rbegin(); it != objects.rend(); ++it) {
-            if ((*it)->contains(x, y)) {
-                selected_ = *it;
-                break;
-            }
-        }
-    }
-
-    else if (current_tool_ == Tool::Rectangle) {
-        start_point_ = QPointF(x, y);
-        drawing_ = true;
-    }
-
-    update();
-
-    qDebug() << "Tool is:" << static_cast<int>(current_tool_);
+    if (current_tool_)
+        current_tool_->mousePress(this, event);
 }
-
 
 void Canvas::mouseMoveEvent(QMouseEvent* event)
 {
-    if (!drawing_)
-        return;
-
-    double x = event->position().x();
-    double y = event->position().y();
-
-    double width = x - start_point_.x();
-    double height = y - start_point_.y();
-
-    temp_object_ = std::make_shared<Rectangle>(
-        start_point_.x(),
-        start_point_.y(),
-        width,
-        height
-        );
-
-    update();
+    if (current_tool_)
+        current_tool_->mouseMove(this, event);
 }
 
 void Canvas::mouseReleaseEvent(QMouseEvent* event)
 {
-    if (drawing_ && temp_object_) {
-        diagram.addObject(temp_object_);
-        temp_object_.reset();
-        drawing_ = false;
-        update();
-    }
+    if (current_tool_)
+        current_tool_->mouseRelease(this, event);
+}
+
+Diagram& Canvas::getDiagram() {
+    return diagram;
+}
+
+std::shared_ptr<GraphicsObject>& Canvas::getSelected() {
+    return selected_;
+}
+
+std::shared_ptr<GraphicsObject> Canvas::getTempObject() const {
+    return temp_object_;
+}
+
+void Canvas::setSelected(std::shared_ptr<GraphicsObject> obj) {
+    selected_ = obj;
+}
+
+void Canvas::setTempObject(std::shared_ptr<GraphicsObject> obj) {
+    temp_object_ = obj;
+}
+
+void Canvas::clearTempObject() {
+    temp_object_.reset();
 }

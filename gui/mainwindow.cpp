@@ -1,8 +1,18 @@
 #include <QToolBar>
 #include <QAction>
 #include <QActionGroup>
+
 #include "mainwindow.h"
 #include "../parser/svg_parser.h"
+
+#include "tools/select_tool.h"
+#include "tools/rectangle_tool.h"
+#include "tools/circle_tool.h"
+#include "../gui/tools/line_tool.h"
+#include "../gui/tools/hexagon_tool.h"
+#include "../gui/tools/rounded_rectangle_tool.h"
+#include "../gui/tools/polyline_tool.h"
+#include "../gui/tools/text_tool.h"
 
 MainWindow::MainWindow()
 {
@@ -13,24 +23,83 @@ MainWindow::MainWindow()
     canvas->setDiagram(d);
 
     QToolBar* toolbar = addToolBar("Tools");
+    QActionGroup* group = new QActionGroup(this);
+    group->setExclusive(true);
 
-    QAction* selectAction = toolbar->addAction("Select");
-    QAction* rectAction = toolbar->addAction("Rectangle");
+    // ----------------------------------
+    // Create all actions
+    // ----------------------------------
+    QAction* selectAction     = toolbar->addAction("Select");
+    QAction* rectAction       = toolbar->addAction("Rectangle");
+    QAction* circleAction     = toolbar->addAction("Circle");
+    QAction* lineAction       = toolbar->addAction("Line");
+    QAction* hexAction        = toolbar->addAction("Hexagon");
+    QAction* roundRectAction  = toolbar->addAction("RoundedRect");
+    QAction* polylineAction   = toolbar->addAction("Freehand");
+    QAction* textAction       = toolbar->addAction("Text");
 
+    // ----------------------------------
+    // Make them checkable
+    // ----------------------------------
     selectAction->setCheckable(true);
     rectAction->setCheckable(true);
+    circleAction->setCheckable(true);
+    lineAction->setCheckable(true);
+    hexAction->setCheckable(true);
+    roundRectAction->setCheckable(true);
+    polylineAction->setCheckable(true);
+    textAction->setCheckable(true);
 
-    QActionGroup* group = new QActionGroup(this);
+    // ----------------------------------
+    // Add to group
+    // ----------------------------------
     group->addAction(selectAction);
     group->addAction(rectAction);
+    group->addAction(circleAction);
+    group->addAction(lineAction);
+    group->addAction(hexAction);
+    group->addAction(roundRectAction);
+    group->addAction(polylineAction);
+    group->addAction(textAction);
 
-    selectAction->setChecked(true);
-
+    // ----------------------------------
+    // Connect signals
+    // ----------------------------------
     connect(selectAction, &QAction::triggered, this, [=]() {
-        canvas->setTool(Canvas::Tool::Select);
+        canvas->setTool(std::make_unique<SelectTool>());
     });
 
     connect(rectAction, &QAction::triggered, this, [=]() {
-        canvas->setTool(Canvas::Tool::Rectangle);
+        canvas->setTool(std::make_unique<RectangleTool>());
     });
+
+    connect(circleAction, &QAction::triggered, this, [=]() {
+        canvas->setTool(std::make_unique<CircleTool>());
+    });
+
+    connect(lineAction, &QAction::triggered, this, [=]() {
+        canvas->setTool(std::make_unique<LineTool>());
+    });
+
+    connect(hexAction, &QAction::triggered, this, [=]() {
+        canvas->setTool(std::make_unique<HexagonTool>());
+    });
+
+    connect(roundRectAction, &QAction::triggered, this, [=]() {
+        canvas->setTool(std::make_unique<RoundedRectangleTool>());
+    });
+
+    connect(polylineAction, &QAction::triggered, this, [=]() {
+        canvas->setTool(std::make_unique<PolylineTool>());
+    });
+
+    connect(textAction, &QAction::triggered, this, [=]() {
+        canvas->setTool(std::make_unique<TextTool>());
+    });
+
+    // ----------------------------------
+    // Default tool
+    // ----------------------------------
+    selectAction->setChecked(true);
+    canvas->setTool(std::make_unique<SelectTool>());
 }

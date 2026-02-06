@@ -1,9 +1,9 @@
 #pragma once
 #include <QWidget>
+#include <memory>
 #include "../model/diagram.h"
 #include "../model/graphics_object.h"
-#include <memory>
-
+#include "tools/tool.h"
 
 class Canvas : public QWidget
 {
@@ -13,14 +13,15 @@ public:
 
     explicit Canvas(QWidget *parent = nullptr);
 
-    enum class Tool {
-        Select,
-        Rectangle
-    };
-
     void setDiagram(const Diagram& d);
+    void setTool(std::unique_ptr<Tool> tool);
 
-    void setTool(Tool tool);
+    Diagram& getDiagram();
+    std::shared_ptr<GraphicsObject>& getSelected();
+    std::shared_ptr<GraphicsObject> getTempObject() const;
+    void setSelected(std::shared_ptr<GraphicsObject> obj);
+    void setTempObject(std::shared_ptr<GraphicsObject> obj);
+    void clearTempObject();
 
 protected:
 
@@ -33,10 +34,6 @@ private:
 
     Diagram diagram;
     std::shared_ptr<GraphicsObject> selected_;
-
-    Tool current_tool_ = Tool::Select;
-
-    bool drawing_ = false;
-    QPointF start_point_;
     std::shared_ptr<GraphicsObject> temp_object_;
+    std::unique_ptr<Tool> current_tool_;
 };

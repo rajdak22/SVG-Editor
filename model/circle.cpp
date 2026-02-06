@@ -43,12 +43,7 @@ bool Circle::contains(double x, double y) const {
     double dx = x - cx_;
     double dy = y - cy_;
 
-    qDebug() << "Circle center:" << cx_ << cy_;
-    qDebug() << "Click at:" << x << y;
     return (dx * dx + dy * dy) <= (r_ * r_);
-
-
-
 }
 
 void Circle::move(double dx, double dy) {

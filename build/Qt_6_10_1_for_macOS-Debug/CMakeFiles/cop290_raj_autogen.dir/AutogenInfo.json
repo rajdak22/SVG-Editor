@@ -365,6 +365,60 @@
 			null
 		],
 		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/circle_tool.h",
+			"MU",
+			"GKS45WUDP4/moc_circle_tool.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/hexagon_tool.h",
+			"MU",
+			"GKS45WUDP4/moc_hexagon_tool.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/line_tool.h",
+			"MU",
+			"GKS45WUDP4/moc_line_tool.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/polyline_tool.h",
+			"MU",
+			"GKS45WUDP4/moc_polyline_tool.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/rectangle_tool.h",
+			"MU",
+			"GKS45WUDP4/moc_rectangle_tool.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/rounded_rectangle_tool.h",
+			"MU",
+			"GKS45WUDP4/moc_rounded_rectangle_tool.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool.h",
+			"MU",
+			"GKS45WUDP4/moc_select_tool.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/text_tool.h",
+			"MU",
+			"GKS45WUDP4/moc_text_tool.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/tool.h",
+			"MU",
+			"GKS45WUDP4/moc_tool.cpp",
+			null
+		],
+		[
 			"/Users/rajdakshit/Documents/cop290_raj/model/circle.h",
 			"MU",
 			"NLOY5YBGEN/moc_circle.cpp",
@@ -487,6 +541,46 @@
 		[ "/Users/rajdakshit/Documents/cop290_raj/gui/canvas.cpp", "MU", null ],
 		[
 			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/circle_tool.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/hexagon_tool.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/line_tool.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/polyline_tool.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/rectangle_tool.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/rounded_rectangle_tool.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/text_tool.cpp",
 			"MU",
 			null
 		],
