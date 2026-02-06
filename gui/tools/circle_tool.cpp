@@ -1,6 +1,7 @@
 #include "circle_tool.h"
 #include "../canvas.h"
 #include "../../model/circle.h"
+#include "../../model/add_command.h"
 #include <cmath>
 
 void CircleTool::mousePress(Canvas* canvas, QMouseEvent* event)
@@ -38,7 +39,12 @@ void CircleTool::mouseRelease(Canvas* canvas, QMouseEvent*)
 
     auto obj = canvas->getTempObject();
     if (obj)
-        canvas->getDiagram().addObject(obj);
+        canvas->executeCommand(
+            std::make_unique<AddCommand>(
+                canvas->getDiagram(),
+                obj
+                )
+            );
 
     canvas->clearTempObject();
     drawing_ = false;

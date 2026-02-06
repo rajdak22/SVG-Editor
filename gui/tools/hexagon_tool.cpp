@@ -1,6 +1,7 @@
 #include "hexagon_tool.h"
 #include "../canvas.h"
 #include "../../model/hexagon.h"
+#include "../../model/add_command.h"
 #include <cmath>
 
 void HexagonTool::mousePress(Canvas*, QMouseEvent* event)
@@ -36,7 +37,12 @@ void HexagonTool::mouseRelease(Canvas* canvas, QMouseEvent*)
 
     auto obj = canvas->getTempObject();
     if (obj)
-        canvas->getDiagram().addObject(obj);
+        canvas->executeCommand(
+            std::make_unique<AddCommand>(
+                canvas->getDiagram(),
+                obj
+                )
+            );
 
     canvas->clearTempObject();
     drawing_ = false;

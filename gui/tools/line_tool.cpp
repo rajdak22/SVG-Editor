@@ -1,6 +1,7 @@
 #include "line_tool.h"
 #include "../canvas.h"
 #include "../../model/line.h"
+#include "../../model/add_command.h"
 
 void LineTool::mousePress(Canvas*, QMouseEvent* event)
 {
@@ -33,7 +34,12 @@ void LineTool::mouseRelease(Canvas* canvas, QMouseEvent*)
 
     auto obj = canvas->getTempObject();
     if (obj)
-        canvas->getDiagram().addObject(obj);
+        canvas->executeCommand(
+            std::make_unique<AddCommand>(
+                canvas->getDiagram(),
+                obj
+                )
+            );
 
     canvas->clearTempObject();
     drawing_ = false;

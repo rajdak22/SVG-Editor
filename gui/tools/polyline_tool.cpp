@@ -1,6 +1,7 @@
 #include "polyline_tool.h"
 #include "../canvas.h"
 #include "../../model/polyline.h"
+#include "../../model/add_command.h"
 
 void PolylineTool::mousePress(Canvas*, QMouseEvent* event)
 {
@@ -29,7 +30,12 @@ void PolylineTool::mouseRelease(Canvas* canvas, QMouseEvent*)
 
     auto obj = canvas->getTempObject();
     if (obj)
-        canvas->getDiagram().addObject(obj);
+        canvas->executeCommand(
+            std::make_unique<AddCommand>(
+                canvas->getDiagram(),
+                obj
+                )
+            );
 
     canvas->clearTempObject();
     drawing_ = false;

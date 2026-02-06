@@ -37,6 +37,8 @@ MainWindow::MainWindow()
     QAction* roundRectAction  = toolbar->addAction("RoundedRect");
     QAction* polylineAction   = toolbar->addAction("Freehand");
     QAction* textAction       = toolbar->addAction("Text");
+    QAction* undoAction       = toolbar->addAction("Undo");
+    QAction* redoAction       = toolbar->addAction("Redo");
 
     // ----------------------------------
     // Make them checkable
@@ -95,6 +97,14 @@ MainWindow::MainWindow()
 
     connect(textAction, &QAction::triggered, this, [=]() {
         canvas->setTool(std::make_unique<TextTool>());
+    });
+
+    connect(undoAction, &QAction::triggered, this, [=]() {
+        canvas->undo();
+    });
+
+    connect(redoAction, &QAction::triggered, this, [=]() {
+        canvas->redo();
     });
 
     // ----------------------------------

@@ -42,6 +42,11 @@ set(PROJECT_SOURCES
         model/diagram.h
         model/diagram.cpp
 
+        model/command.h
+
+        model/add_command.h
+        model/add_command.cpp
+
         parser/svg_parser.h
         parser/svg_parser.cpp
 

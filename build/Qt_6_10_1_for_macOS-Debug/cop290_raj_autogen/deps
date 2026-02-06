@@ -872,8 +872,11 @@ cop290_raj_autogen/timestamp: \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/text_tool.h \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/tool.h \
 	/Users/rajdakshit/Documents/cop290_raj/main.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/model/add_command.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/model/add_command.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/circle.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/model/circle.h \
+	/Users/rajdakshit/Documents/cop290_raj/model/command.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/diagram.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/model/diagram.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/graphics_object.cpp \

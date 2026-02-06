@@ -22,3 +22,11 @@ std::string Diagram::toSVG() const {
     oss << "</svg>";
     return oss.str();
 }
+
+void Diagram::removeObject(std::shared_ptr<GraphicsObject> obj)
+{
+    objects_.erase(
+        std::remove(objects_.begin(), objects_.end(), obj),
+        objects_.end()
+        );
+}

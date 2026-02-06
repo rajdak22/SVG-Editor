@@ -1,6 +1,7 @@
 #include "text_tool.h"
 #include "../canvas.h"
 #include "../../model/text.h"
+#include "../../model/add_command.h"
 
 #include <QInputDialog>
 
@@ -27,6 +28,11 @@ void TextTool::mousePress(Canvas* canvas, QMouseEvent* event)
         text.toStdString()
         );
 
-    canvas->getDiagram().addObject(textObj);
+    canvas->executeCommand(
+        std::make_unique<AddCommand>(
+            canvas->getDiagram(),
+            textObj
+            )
+        );
     canvas->update();
 }

@@ -1,6 +1,7 @@
 #include "rounded_rectangle_tool.h"
 #include "../canvas.h"
 #include "../../model/rounded_rectangle.h"
+#include "../../model/add_command.h"
 #include <algorithm>
 
 void RoundedRectangleTool::mousePress(Canvas*, QMouseEvent* event)
@@ -42,7 +43,12 @@ void RoundedRectangleTool::mouseRelease(Canvas* canvas, QMouseEvent*)
 
     auto obj = canvas->getTempObject();
     if (obj)
-        canvas->getDiagram().addObject(obj);
+        canvas->executeCommand(
+            std::make_unique<AddCommand>(
+                canvas->getDiagram(),
+                obj
+                )
+            );
 
     canvas->clearTempObject();
     drawing_ = false;

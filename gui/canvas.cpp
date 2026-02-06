@@ -76,3 +76,37 @@ void Canvas::setTempObject(std::shared_ptr<GraphicsObject> obj) {
 void Canvas::clearTempObject() {
     temp_object_.reset();
 }
+
+void Canvas::executeCommand(std::unique_ptr<Command> cmd)
+{
+    cmd->execute();
+    undo_stack_.push_back(std::move(cmd));
+    redo_stack_.clear();
+    update();
+}
+
+void Canvas::undo()
+{
+    if (undo_stack_.empty())
+        return;
+
+    auto cmd = std::move(undo_stack_.back());
+    undo_stack_.pop_back();
+
+    cmd->undo();
+    redo_stack_.push_back(std::move(cmd));
+    update();
+}
+
+void Canvas::redo()
+{
+    if (redo_stack_.empty())
+        return;
+
+    auto cmd = std::move(redo_stack_.back());
+    redo_stack_.pop_back();
+
+    cmd->execute();
+    undo_stack_.push_back(std::move(cmd));
+    update();
+}
