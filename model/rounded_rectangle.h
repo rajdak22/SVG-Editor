@@ -14,6 +14,8 @@ public:
 
     bool contains(double x, double y) const override;
     void move(double dx, double dy) override;
+    QRectF boundingBox() const override;
+    void resize(const QRectF& rect) override;
 
 private:
     double x_, y_, width_, height_;

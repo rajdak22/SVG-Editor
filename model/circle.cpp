@@ -50,3 +50,18 @@ void Circle::move(double dx, double dy) {
     cx_ += dx;
     cy_ += dy;
 }
+
+QRectF Circle::boundingBox() const {
+    return QRectF(cx_ - r_, cy_ - r_, 2*r_, 2*r_);
+}
+
+void Circle::resize(const QRectF& rect)
+{
+    QRectF r = rect.normalized();
+
+    double size = std::min(r.width(), r.height());
+
+    cx_ = r.center().x();
+    cy_ = r.center().y();
+    r_ = size / 2.0;
+}

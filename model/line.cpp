@@ -64,3 +64,19 @@ void Line::move(double dx, double dy) {
     x1_ += dx; y1_ += dy;
     x2_ += dx; y2_ += dy;
 }
+
+QRectF Line::boundingBox() const {
+    double left   = std::min(x1_, x2_);
+    double top    = std::min(y1_, y2_);
+    double width  = std::abs(x2_ - x1_);
+    double height = std::abs(y2_ - y1_);
+
+    return QRectF(left, top, width, height);
+}
+
+void Line::resize(const QRectF& rect) {
+    x1_ = rect.left();
+    y1_ = rect.top();
+    x2_ = rect.right();
+    y2_ = rect.bottom();
+}

@@ -852,6 +852,7 @@
   /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QList \
   /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QObject \
   /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QRect \
+  /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QRectF \
   /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QSize \
   /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QSizeF \
   /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/q17memory.h \

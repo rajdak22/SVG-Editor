@@ -50,3 +50,13 @@ void Rectangle::move(double dx, double dy) {
     y_ += dy;
 }
 
+QRectF Rectangle::boundingBox() const {
+    return QRectF(x_, y_, width_, height_);
+}
+
+void Rectangle::resize(const QRectF& rect) {
+    x_ = rect.x();
+    y_ = rect.y();
+    width_  = rect.width();
+    height_ = rect.height();
+}

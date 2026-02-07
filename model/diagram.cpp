@@ -1,5 +1,6 @@
 #include "diagram.h"
 #include <sstream>
+#include <algorithm>
 
 void Diagram::addObject(std::shared_ptr<GraphicsObject> obj) {
     objects_.push_back(obj);
@@ -29,4 +30,10 @@ void Diagram::removeObject(std::shared_ptr<GraphicsObject> obj)
         std::remove(objects_.begin(), objects_.end(), obj),
         objects_.end()
         );
+}
+
+void Diagram::insertObject(int index,
+                           std::shared_ptr<GraphicsObject> obj)
+{
+    objects_.insert(objects_.begin() + index, obj);
 }

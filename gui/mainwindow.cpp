@@ -1,6 +1,8 @@
 #include <QToolBar>
 #include <QAction>
 #include <QActionGroup>
+#include <QMenuBar>
+#include <QMenu>
 
 #include "mainwindow.h"
 #include "../parser/svg_parser.h"
@@ -18,11 +20,19 @@ MainWindow::MainWindow()
 {
     canvas = new Canvas(this);
     setCentralWidget(canvas);
+    menuBar()->setNativeMenuBar(false);
+
+    QMenuBar* menuBar = this->menuBar();
+    QMenu* fileMenu = menuBar->addMenu("File");
+    QMenu* editMenu = menuBar->addMenu("Edit");
+
+    editMenu->addSeparator();
 
     Diagram d = SVGParser::parseFile("input.svg");
     canvas->setDiagram(d);
 
-    QToolBar* toolbar = addToolBar("Tools");
+    QToolBar* toolbar = new QToolBar("Tools", this);
+    addToolBar(Qt::LeftToolBarArea, toolbar);
     QActionGroup* group = new QActionGroup(this);
     group->setExclusive(true);
 
@@ -37,8 +47,18 @@ MainWindow::MainWindow()
     QAction* roundRectAction  = toolbar->addAction("RoundedRect");
     QAction* polylineAction   = toolbar->addAction("Freehand");
     QAction* textAction       = toolbar->addAction("Text");
-    QAction* undoAction       = toolbar->addAction("Undo");
-    QAction* redoAction       = toolbar->addAction("Redo");
+
+    QAction* newAction     = fileMenu->addAction("New");
+    QAction* openAction    = fileMenu->addAction("Open");
+    QAction* saveAction    = fileMenu->addAction("Save");
+    QAction* saveAsAction  = fileMenu->addAction("Save As");
+    QAction* closeAction   = fileMenu->addAction("Close");
+
+    QAction* cutAction   = editMenu->addAction("Cut");
+    QAction* copyAction  = editMenu->addAction("Copy");
+    QAction* pasteAction = editMenu->addAction("Paste");
+    QAction* undoAction  = editMenu->addAction("Undo");
+    QAction* redoAction  = editMenu->addAction("Redo");
 
     // ----------------------------------
     // Make them checkable
@@ -99,13 +119,11 @@ MainWindow::MainWindow()
         canvas->setTool(std::make_unique<TextTool>());
     });
 
-    connect(undoAction, &QAction::triggered, this, [=]() {
-        canvas->undo();
-    });
+    connect(undoAction, &QAction::triggered,
+            canvas, &Canvas::undo);
 
-    connect(redoAction, &QAction::triggered, this, [=]() {
-        canvas->redo();
-    });
+    connect(redoAction, &QAction::triggered,
+            canvas, &Canvas::redo);
 
     // ----------------------------------
     // Default tool

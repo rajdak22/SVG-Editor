@@ -63,3 +63,29 @@ void Hexagon::move(double dx, double dy) {
     cx_ += dx;
     cy_ += dy;
 }
+
+QRectF Hexagon::boundingBox() const
+{
+    double width  = 2 * radius_;
+    double height = std::sqrt(3) * radius_;
+
+    return QRectF(
+        cx_ - radius_,
+        cy_ - height / 2.0,
+        width,
+        height
+        );
+}
+
+void Hexagon::resize(const QRectF& rect)
+{
+    QRectF r = rect.normalized();
+
+    double r_from_width  = r.width()  / 2.0;
+    double r_from_height = r.height() / std::sqrt(3.0);
+
+    radius_ = std::min(r_from_width, r_from_height);
+
+    cx_ = r.center().x();
+    cy_ = r.center().y();
+}

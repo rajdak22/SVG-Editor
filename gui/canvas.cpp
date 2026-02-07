@@ -2,6 +2,8 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QDebug>
+#include <QKeyEvent>
+#include "../model/delete_command.h"
 #include "tools/tool.h"
 
 
@@ -9,6 +11,7 @@ Canvas::Canvas(QWidget *parent)
     : QWidget(parent)
 {
     setMinimumSize(600, 400);
+    setFocusPolicy(Qt::StrongFocus);
 }
 
 void Canvas::setDiagram(const Diagram &d)
@@ -28,6 +31,56 @@ void Canvas::paintEvent(QPaintEvent *)
     if (temp_object_) {
         temp_object_->draw(painter, false);
     }
+
+    if (selected_) {
+
+        QRectF box = selected_->boundingBox();
+
+        painter.save();
+
+        QPen pen(Qt::blue);
+        pen.setStyle(Qt::DashLine);
+        pen.setWidth(1);
+        painter.setPen(pen);
+        painter.setBrush(Qt::NoBrush);
+
+        painter.drawRect(box);
+
+        // ----------------------------
+        // Draw resize handles
+        // ----------------------------
+        const double handleSize = 6;
+
+        auto drawHandle = [&](QPointF center) {
+            QRectF handle(center.x() - handleSize / 2,
+                          center.y() - handleSize / 2,
+                          handleSize,
+                          handleSize);
+
+            painter.fillRect(handle, Qt::white);
+            painter.drawRect(handle);
+        };
+
+        QPointF tl = box.topLeft();
+        QPointF tr = box.topRight();
+        QPointF bl = box.bottomLeft();
+        QPointF br = box.bottomRight();
+        QPointF tm((box.left() + box.right()) / 2, box.top());
+        QPointF bm((box.left() + box.right()) / 2, box.bottom());
+        QPointF ml(box.left(), (box.top() + box.bottom()) / 2);
+        QPointF mr(box.right(), (box.top() + box.bottom()) / 2);
+
+        drawHandle(tl);
+        drawHandle(tr);
+        drawHandle(bl);
+        drawHandle(br);
+        drawHandle(tm);
+        drawHandle(bm);
+        drawHandle(ml);
+        drawHandle(mr);
+
+        painter.restore();
+    }
 }
 
 void Canvas::setTool(std::unique_ptr<Tool> tool)
@@ -39,18 +92,24 @@ void Canvas::mousePressEvent(QMouseEvent* event)
 {
     if (current_tool_)
         current_tool_->mousePress(this, event);
+
+    update();
 }
 
 void Canvas::mouseMoveEvent(QMouseEvent* event)
 {
     if (current_tool_)
         current_tool_->mouseMove(this, event);
+
+    update();
 }
 
 void Canvas::mouseReleaseEvent(QMouseEvent* event)
 {
     if (current_tool_)
         current_tool_->mouseRelease(this, event);
+
+    update();
 }
 
 Diagram& Canvas::getDiagram() {
@@ -109,4 +168,23 @@ void Canvas::redo()
     cmd->execute();
     undo_stack_.push_back(std::move(cmd));
     update();
+}
+
+void Canvas::keyPressEvent(QKeyEvent* event)
+{
+    if (event->key() == Qt::Key_Delete || event->key() == Qt::Key_Backspace)
+    {
+        if (selected_)
+        {
+            executeCommand(
+                std::make_unique<DeleteCommand>(
+                    diagram,
+                    selected_
+                    )
+                );
+
+            selected_.reset();
+            update();
+        }
+    }
 }

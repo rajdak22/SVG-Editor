@@ -12,5 +12,18 @@ public:
 
 private:
     bool dragging_ = false;
+    bool resizing_ = false;
     QPointF last_mouse_pos_;
+    QPointF start_drag_pos_;
+    QRectF original_box_;
+
+    enum class ResizeHandle {
+        None,
+        TopLeft, Top, TopRight,
+        Right,
+        BottomRight, Bottom, BottomLeft,
+        Left
+    };
+
+    ResizeHandle active_handle_ = ResizeHandle::None;
 };

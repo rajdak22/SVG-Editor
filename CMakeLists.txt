@@ -47,6 +47,14 @@ set(PROJECT_SOURCES
         model/add_command.h
         model/add_command.cpp
 
+        model/move_command.h
+
+        model/delete_command.h
+        model/delete_command.cpp
+
+        model/resize_command.h
+        model/resize_command.cpp
+
         parser/svg_parser.h
         parser/svg_parser.cpp
 

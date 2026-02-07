@@ -2,6 +2,7 @@
 #include <QWidget>
 #include <memory>
 #include <vector>
+#include <QRectF>
 #include "../model/diagram.h"
 #include "../model/graphics_object.h"
 #include "tools/tool.h"
@@ -43,6 +44,9 @@ protected:
     void mouseMoveEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
 
+    // phase 4
+    void keyPressEvent(QKeyEvent* event) override;
+
 private:
 
     // phase 1 (just diagrams)
@@ -56,5 +60,17 @@ private:
     // phase 3 (shifting from canvas and undo/redo)
     std::vector<std::unique_ptr<Command>> undo_stack_;
     std::vector<std::unique_ptr<Command>> redo_stack_;
+
+    enum class ResizeHandle {
+        None,
+        TopLeft, Top, TopRight,
+        Right,
+        BottomRight, Bottom, BottomLeft,
+        Left
+    };
+
+    ResizeHandle active_handle_ = ResizeHandle::None;
+    QRectF original_box_;
+    bool resizing_ = false;
 
 };

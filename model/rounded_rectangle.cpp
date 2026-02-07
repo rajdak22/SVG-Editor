@@ -45,3 +45,16 @@ void RoundedRectangle::move(double dx, double dy) {
     x_ += dx;
     y_ += dy;
 }
+
+QRectF RoundedRectangle::boundingBox() const
+{
+    return QRectF(x_, y_, width_, height_);
+}
+
+void RoundedRectangle::resize(const QRectF& rect)
+{
+    x_ = rect.x();
+    y_ = rect.y();
+    width_  = rect.width();
+    height_ = rect.height();
+}

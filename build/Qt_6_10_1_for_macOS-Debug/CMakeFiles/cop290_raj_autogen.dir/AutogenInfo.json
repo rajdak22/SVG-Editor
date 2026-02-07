@@ -437,6 +437,12 @@
 			null
 		],
 		[
+			"/Users/rajdakshit/Documents/cop290_raj/model/delete_command.h",
+			"MU",
+			"NLOY5YBGEN/moc_delete_command.cpp",
+			null
+		],
+		[
 			"/Users/rajdakshit/Documents/cop290_raj/model/diagram.h",
 			"MU",
 			"NLOY5YBGEN/moc_diagram.cpp",
@@ -461,6 +467,12 @@
 			null
 		],
 		[
+			"/Users/rajdakshit/Documents/cop290_raj/model/move_command.h",
+			"MU",
+			"NLOY5YBGEN/moc_move_command.cpp",
+			null
+		],
+		[
 			"/Users/rajdakshit/Documents/cop290_raj/model/polyline.h",
 			"MU",
 			"NLOY5YBGEN/moc_polyline.cpp",
@@ -470,6 +482,12 @@
 			"/Users/rajdakshit/Documents/cop290_raj/model/rectangle.h",
 			"MU",
 			"NLOY5YBGEN/moc_rectangle.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/model/resize_command.h",
+			"MU",
+			"NLOY5YBGEN/moc_resize_command.cpp",
 			null
 		],
 		[
@@ -604,6 +622,11 @@
 		],
 		[ "/Users/rajdakshit/Documents/cop290_raj/model/circle.cpp", "MU", null ],
 		[
+			"/Users/rajdakshit/Documents/cop290_raj/model/delete_command.cpp",
+			"MU",
+			null
+		],
+		[
 			"/Users/rajdakshit/Documents/cop290_raj/model/diagram.cpp",
 			"MU",
 			null
@@ -626,6 +649,11 @@
 		],
 		[
 			"/Users/rajdakshit/Documents/cop290_raj/model/rectangle.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/model/resize_command.cpp",
 			"MU",
 			null
 		],

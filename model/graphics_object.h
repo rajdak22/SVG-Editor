@@ -14,8 +14,13 @@ public:
     // Rendering
     virtual void draw(QPainter& painter, bool selected) const = 0;
 
+    // Select and Drag
     virtual bool contains(double x, double y) const = 0;
     virtual void move(double dx, double dy) = 0;
+
+    // Resizing
+    virtual QRectF boundingBox() const = 0;
+    virtual void resize(const QRectF& newRect) = 0;
 
     // Setters
     void setStrokeColor(const std::string& color);

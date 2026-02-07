@@ -11,7 +11,8 @@ public:
     void draw(QPainter& painter, bool selected) const override;
     bool contains(double x, double y) const override;
     void move(double dx, double dy) override;
-
+    QRectF boundingBox() const override;
+    void resize(const QRectF& rect) override;
 
 private:
     double x_;

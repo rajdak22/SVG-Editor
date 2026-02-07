@@ -14,6 +14,7 @@ public:
 
     // phase 3
     void removeObject(std::shared_ptr<GraphicsObject> obj);
+    void insertObject(int index, std::shared_ptr<GraphicsObject> obj);
 
 private:
     std::vector<std::shared_ptr<GraphicsObject>> objects_;
