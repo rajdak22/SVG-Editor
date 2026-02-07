@@ -59,9 +59,14 @@ void Circle::resize(const QRectF& rect)
 {
     QRectF r = rect.normalized();
 
-    double size = std::min(r.width(), r.height());
-
+    // Calculate the center first
     cx_ = r.center().x();
     cy_ = r.center().y();
+
+    // To prevent the "stalling" when shrinking, we use the dimension
+    // that actually matches the handle being pulled.
+    // If you want a catch-all that feels natural:
+    double size = (r.width() + r.height()) / 2.0;
+
     r_ = size / 2.0;
 }

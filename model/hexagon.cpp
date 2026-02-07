@@ -81,11 +81,14 @@ void Hexagon::resize(const QRectF& rect)
 {
     QRectF r = rect.normalized();
 
+    // Update center first
+    cx_ = r.center().x();
+    cy_ = r.center().y();
+
+    // Compute radius from both width and height contributions
     double r_from_width  = r.width()  / 2.0;
     double r_from_height = r.height() / std::sqrt(3.0);
 
-    radius_ = std::min(r_from_width, r_from_height);
-
-    cx_ = r.center().x();
-    cy_ = r.center().y();
+    // Smooth average (like circle fix)
+    radius_ = (r_from_width + r_from_height) / 2.0;
 }
