@@ -1,5 +1,5 @@
 #include "select_tool.h"
-#include "../canvas/canvas.h"
+#include "../../canvas/canvas.h"
 
 static constexpr double HANDLE_SIZE = 6.0;
 

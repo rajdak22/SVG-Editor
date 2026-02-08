@@ -1,6 +1,6 @@
 #include "select_tool.h"
-#include "../canvas/canvas.h"
-#include "../../command/resize_command.h"
+#include "../../canvas/canvas.h"
+#include "../../../command/resize_command.h"
 
 void SelectTool::performResize(Canvas* canvas, const QPointF& pos)
 {

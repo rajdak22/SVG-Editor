@@ -1,6 +1,6 @@
 #pragma once
 
-#include "tool.h"
+#include "../tool.h"
 #include <QPointF>
 
 class SelectTool : public Tool

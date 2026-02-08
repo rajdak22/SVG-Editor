@@ -1,5 +1,5 @@
 #include "select_tool.h"
-#include "../canvas/canvas.h"
+#include "../../canvas/canvas.h"
 
 void SelectTool::mousePress(Canvas* canvas, QMouseEvent* event)
 {

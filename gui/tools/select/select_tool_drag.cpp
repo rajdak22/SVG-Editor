@@ -1,6 +1,6 @@
 #include "select_tool.h"
-#include "../canvas/canvas.h"
-#include "../../command/move_command.h"
+#include "../../canvas/canvas.h"
+#include "../../../command/move_command.h"
 #include <cmath>
 
 void SelectTool::startSelectionOrDrag(Canvas* canvas, const QPointF& pos)
