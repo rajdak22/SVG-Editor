@@ -861,10 +861,18 @@ cop290_raj_autogen/timestamp: \
 	/Users/rajdakshit/Documents/cop290_raj/command/set_fill_color_command.h \
 	/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_color_command.h \
 	/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_width_command.h \
-	/Users/rajdakshit/Documents/cop290_raj/gui/canvas.cpp \
-	/Users/rajdakshit/Documents/cop290_raj/gui/canvas.h \
-	/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow.cpp \
-	/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow.h \
+	/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas.h \
+	/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas_commands.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas_input.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas_paint.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow.h \
+	/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_actions.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_color.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_connections.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_file.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_toolbars.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/circle_tool.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/circle_tool.h \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/hexagon_tool.cpp \
@@ -879,6 +887,9 @@ cop290_raj_autogen/timestamp: \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/rounded_rectangle_tool.h \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool.h \
+	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_drag.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_handles.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_resize.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/text_tool.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/text_tool.h \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/tool.h \
@@ -903,6 +914,7 @@ cop290_raj_autogen/timestamp: \
 	/Users/rajdakshit/Documents/cop290_raj/model/text.h \
 	/Users/rajdakshit/Documents/cop290_raj/parser/svg_parser.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/parser/svg_parser.h \
+	/Users/rajdakshit/Documents/cop290_raj/parser/svg_parser_shapes.cpp \
 	/Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QList \
 	/Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QObject \
 	/Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QRect \

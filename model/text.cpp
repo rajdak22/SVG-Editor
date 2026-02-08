@@ -3,7 +3,10 @@
 #include <QFontMetrics>
 
 Text::Text(double x, double y, const std::string& content)
-    : x_(x), y_(y), content_(content) {}
+    : x_(x), y_(y), content_(content)
+{
+    fill_color_ = "black";   // Text should default to visible
+}
 
 std::string Text::toSVG() const
 {

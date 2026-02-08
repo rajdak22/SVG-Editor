@@ -1,5 +1,5 @@
 #include "rectangle_tool.h"
-#include "../canvas.h"
+#include "../canvas/canvas.h"
 #include "../../model/rectangle.h"
 #include "../../command/add_command.h"
 #include <algorithm>

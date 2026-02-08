@@ -64,16 +64,33 @@ set(PROJECT_SOURCES
         parser/svg_parser.h
         parser/svg_parser.cpp
 
-        gui/mainwindow.h
-        gui/mainwindow.cpp
+        parser/svg_parser_shapes.cpp
 
-        gui/canvas.h
-        gui/canvas.cpp
+        gui/mainwindow/mainwindow.h
+        gui/mainwindow/mainwindow.cpp
+
+        gui/mainwindow/mainwindow_file.cpp
+        gui/mainwindow/mainwindow_color.cpp
+
+        gui/mainwindow/mainwindow_actions.cpp
+        gui/mainwindow/mainwindow_toolbars.cpp
+        gui/mainwindow/mainwindow_connections.cpp
+
+        gui/canvas/canvas.h
+        gui/canvas/canvas.cpp
+
+        gui/canvas/canvas_commands.cpp
+        gui/canvas/canvas_input.cpp
+        gui/canvas/canvas_paint.cpp
 
         gui/tools/tool.h
 
         gui/tools/select_tool.h
         gui/tools/select_tool.cpp
+
+        gui/tools/select_tool_resize.cpp
+        gui/tools/select_tool_drag.cpp
+        gui/tools/select_tool_handles.cpp
 
         gui/tools/rectangle_tool.h
         gui/tools/rectangle_tool.cpp

@@ -2,7 +2,7 @@
 #include <QDir>
 #include <QDebug>
 
-#include "gui/mainwindow.h"
+#include "gui/mainwindow/mainwindow.h"
 
 int main(int argc, char *argv[])
 {

@@ -1,5 +1,5 @@
 #include "hexagon_tool.h"
-#include "../canvas.h"
+#include "../canvas/canvas.h"
 #include "../../model/hexagon.h"
 #include "../../command/add_command.h"
 #include <cmath>

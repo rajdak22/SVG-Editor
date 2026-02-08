@@ -3,10 +3,10 @@
 #include <memory>
 #include <vector>
 #include <QRectF>
-#include "../model/diagram.h"
-#include "../model/graphics_object.h"
-#include "tools/tool.h"
-#include "../command/command.h"
+#include "../../model/diagram.h"
+#include "../../model/graphics_object.h"
+#include "../tools/tool.h"
+#include "../../command/command.h"
 
 class Canvas : public QWidget
 {

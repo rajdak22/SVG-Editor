@@ -26,4 +26,14 @@ private:
     };
 
     ResizeHandle active_handle_ = ResizeHandle::None;
+
+    /* -------- Resize -------- */
+    bool tryStartResize(Canvas* canvas, const QPointF& pos);
+    void performResize(Canvas* canvas, const QPointF& pos);
+    void finishResize(Canvas* canvas);
+
+    /* -------- Drag -------- */
+    void startSelectionOrDrag(Canvas* canvas, const QPointF& pos);
+    void handleDragMove(Canvas* canvas, const QPointF& pos);
+    void finishDrag(Canvas* canvas, const QPointF& pos);
 };

@@ -1,5 +1,5 @@
 #include "text_tool.h"
-#include "../canvas.h"
+#include "../canvas/canvas.h"
 #include "../../model/text.h"
 #include "../../command/add_command.h"
 

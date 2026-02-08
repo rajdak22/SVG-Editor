@@ -1,5 +1,5 @@
 #include "line_tool.h"
-#include "../canvas.h"
+#include "../canvas/canvas.h"
 #include "../../model/line.h"
 #include "../../command/add_command.h"
 

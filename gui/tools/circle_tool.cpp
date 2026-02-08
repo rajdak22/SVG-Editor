@@ -1,5 +1,5 @@
 #include "circle_tool.h"
-#include "../canvas.h"
+#include "../canvas/canvas.h"
 #include "../../model/circle.h"
 #include "../../command/add_command.h"
 #include <cmath>

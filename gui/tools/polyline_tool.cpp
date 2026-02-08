@@ -1,5 +1,5 @@
 #include "polyline_tool.h"
-#include "../canvas.h"
+#include "../canvas/canvas.h"
 #include "../../model/polyline.h"
 #include "../../command/add_command.h"
 

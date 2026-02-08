@@ -45,7 +45,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 95,
+				"line" : 118,
 				"parent" : 0
 			},
 			{
@@ -69,13 +69,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 134,
+				"line" : 157,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 117,
+				"line" : 140,
 				"parent" : 0
 			},
 			{
@@ -310,17 +310,29 @@
 				22,
 				25,
 				27,
-				29,
-				31,
+				32,
 				33,
+				35,
 				36,
+				37,
 				38,
+				39,
 				40,
 				42,
+				43,
 				44,
-				46,
+				45,
 				48,
-				50
+				49,
+				50,
+				51,
+				53,
+				55,
+				57,
+				59,
+				61,
+				63,
+				65
 			]
 		}
 	],
@@ -449,17 +461,29 @@
 				22,
 				25,
 				27,
-				29,
-				31,
+				32,
 				33,
+				35,
 				36,
+				37,
 				38,
+				39,
 				40,
 				42,
+				43,
 				44,
-				46,
+				45,
 				48,
-				50
+				49,
+				50,
+				51,
+				53,
+				55,
+				57,
+				59,
+				61,
+				63,
+				65
 			]
 		},
 		{
@@ -481,31 +505,34 @@
 				24,
 				26,
 				28,
+				29,
 				30,
-				32,
+				31,
 				34,
-				35,
-				37,
-				39,
 				41,
-				43,
-				45,
+				46,
 				47,
-				49
+				52,
+				54,
+				56,
+				58,
+				60,
+				62,
+				64
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				51
+				66
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				52
+				67
 			]
 		}
 	],
@@ -668,6 +695,21 @@
 		},
 		{
 			"backtrace" : 4,
+			"path" : "command/set_fill_color_command.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "command/set_stroke_color_command.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "command/set_stroke_width_command.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
 			"path" : "parser/svg_parser.h",
 			"sourceGroupIndex" : 1
 		},
@@ -679,24 +721,78 @@
 		},
 		{
 			"backtrace" : 4,
-			"path" : "gui/mainwindow.h",
-			"sourceGroupIndex" : 1
-		},
-		{
-			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "gui/mainwindow.cpp",
+			"path" : "parser/svg_parser_shapes.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "gui/canvas.h",
+			"path" : "gui/mainwindow/mainwindow.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "gui/canvas.cpp",
+			"path" : "gui/mainwindow/mainwindow.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/mainwindow/mainwindow_file.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/mainwindow/mainwindow_color.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/mainwindow/mainwindow_actions.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/mainwindow/mainwindow_toolbars.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/mainwindow/mainwindow_connections.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "gui/canvas/canvas.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/canvas/canvas.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/canvas/canvas_commands.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/canvas/canvas_input.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/canvas/canvas_paint.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -713,6 +809,24 @@
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "gui/tools/select_tool.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/tools/select_tool_resize.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/tools/select_tool_drag.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "gui/tools/select_tool_handles.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

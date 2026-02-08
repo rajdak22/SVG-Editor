@@ -401,15 +401,15 @@
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas.h",
+			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas.h",
 			"MU",
-			"DMHXEJ42XS/moc_canvas.cpp",
+			"TJFEXQ7ADC/moc_canvas.cpp",
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow.h",
+			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow.h",
 			"MU",
-			"DMHXEJ42XS/moc_mainwindow.cpp",
+			"E7DWLQFKI2/moc_mainwindow.cpp",
 			null
 		],
 		[
@@ -601,9 +601,53 @@
 			"MU",
 			null
 		],
-		[ "/Users/rajdakshit/Documents/cop290_raj/gui/canvas.cpp", "MU", null ],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow.cpp",
+			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas_commands.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas_input.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas_paint.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_actions.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_color.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_connections.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_file.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_toolbars.cpp",
 			"MU",
 			null
 		],
@@ -639,6 +683,21 @@
 		],
 		[
 			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_drag.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_handles.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_resize.cpp",
 			"MU",
 			null
 		],
@@ -683,6 +742,11 @@
 		[ "/Users/rajdakshit/Documents/cop290_raj/model/text.cpp", "MU", null ],
 		[
 			"/Users/rajdakshit/Documents/cop290_raj/parser/svg_parser.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/parser/svg_parser_shapes.cpp",
 			"MU",
 			null
 		]
