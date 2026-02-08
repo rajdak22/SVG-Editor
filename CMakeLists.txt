@@ -42,18 +42,24 @@ set(PROJECT_SOURCES
         model/diagram.h
         model/diagram.cpp
 
-        model/command.h
+        command/command.h
 
-        model/add_command.h
-        model/add_command.cpp
+        command/add_command.h
+        command/add_command.cpp
 
-        model/move_command.h
+        command/move_command.h
 
-        model/delete_command.h
-        model/delete_command.cpp
+        command/delete_command.h
+        command/delete_command.cpp
 
-        model/resize_command.h
-        model/resize_command.cpp
+        command/resize_command.h
+        command/resize_command.cpp
+
+        command/set_fill_color_command.h
+
+        command/set_stroke_color_command.h
+
+        command/set_stroke_width_command.h
 
         parser/svg_parser.h
         parser/svg_parser.cpp

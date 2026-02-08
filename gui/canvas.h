@@ -6,7 +6,7 @@
 #include "../model/diagram.h"
 #include "../model/graphics_object.h"
 #include "tools/tool.h"
-#include "../model/command.h"
+#include "../command/command.h"
 
 class Canvas : public QWidget
 {
@@ -33,6 +33,13 @@ public:
     void executeCommand(std::unique_ptr<Command> cmd);
     void undo();
     void redo();
+    void copy();
+    void cut();
+    void paste();
+
+    // phase 4 (saving, etc.)
+    void clearSelection();
+    void clearHistory();
 
 protected:
 
@@ -60,6 +67,9 @@ private:
     // phase 3 (shifting from canvas and undo/redo)
     std::vector<std::unique_ptr<Command>> undo_stack_;
     std::vector<std::unique_ptr<Command>> redo_stack_;
+
+    // phase 4 (cut copy paste)
+    std::shared_ptr<GraphicsObject> clipboard_;
 
     enum class ResizeHandle {
         None,

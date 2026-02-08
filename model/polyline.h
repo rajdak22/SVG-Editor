@@ -16,6 +16,7 @@ public:
     void move(double dx, double dy) override;
     QRectF boundingBox() const override;
     void resize(const QRectF& rect) override;
+    std::shared_ptr<GraphicsObject> clone() const override;
 
 private:
     std::vector<QPointF> points_;

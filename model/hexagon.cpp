@@ -27,18 +27,34 @@ std::string Hexagon::toSVG() const {
 }
 
 void Hexagon::draw(QPainter& painter, bool selected) const {
+
+    // -------------------------
+    // PEN (stroke)
+    // -------------------------
     if (selected) {
         painter.setPen(QPen(Qt::red, 2, Qt::DashLine));
     } else {
-        painter.setPen(QPen(
-            QColor(QString::fromStdString(stroke_color_)),
-            stroke_width_
-            ));
+        if (stroke_color_ == "none") {
+            painter.setPen(Qt::NoPen);
+        } else {
+            painter.setPen(QPen(
+                QColor(QString::fromStdString(stroke_color_)),
+                stroke_width_
+                ));
+        }
     }
 
-    painter.setBrush(
-        QColor(QString::fromStdString(fill_color_))
-        );
+    // -------------------------
+    // BRUSH (fill)
+    // -------------------------
+    if (fill_color_ == "none") {
+        painter.setBrush(Qt::NoBrush);
+    } else {
+        painter.setBrush(
+            QColor(QString::fromStdString(fill_color_))
+            );
+    }
+
 
     QPolygonF polygon;
 
@@ -91,4 +107,9 @@ void Hexagon::resize(const QRectF& rect)
 
     // Smooth average (like circle fix)
     radius_ = (r_from_width + r_from_height) / 2.0;
+}
+
+std::shared_ptr<GraphicsObject> Hexagon::clone() const
+{
+    return std::make_shared<Hexagon>(*this);
 }

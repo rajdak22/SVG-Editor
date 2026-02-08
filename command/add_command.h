@@ -1,8 +1,8 @@
 #pragma once
 
 #include "command.h"
-#include "diagram.h"
-#include "graphics_object.h"
+#include "../model/diagram.h"
+#include "../model/graphics_object.h"
 #include <memory>
 
 class AddCommand : public Command

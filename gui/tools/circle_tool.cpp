@@ -1,7 +1,7 @@
 #include "circle_tool.h"
 #include "../canvas.h"
 #include "../../model/circle.h"
-#include "../../model/add_command.h"
+#include "../../command/add_command.h"
 #include <cmath>
 
 void CircleTool::mousePress(Canvas* canvas, QMouseEvent* event)

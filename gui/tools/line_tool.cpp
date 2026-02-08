@@ -1,7 +1,7 @@
 #include "line_tool.h"
 #include "../canvas.h"
 #include "../../model/line.h"
-#include "../../model/add_command.h"
+#include "../../command/add_command.h"
 
 void LineTool::mousePress(Canvas*, QMouseEvent* event)
 {

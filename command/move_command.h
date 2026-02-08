@@ -1,6 +1,6 @@
 #pragma once
 #include "command.h"
-#include "graphics_object.h"
+#include "../model/graphics_object.h"
 #include <memory>
 
 class MoveCommand : public Command

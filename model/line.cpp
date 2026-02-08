@@ -18,46 +18,57 @@ std::string Line::toSVG() const {
     return oss.str();
 }
 
-void Line::draw(QPainter& painter, bool selected) const {
+void Line::draw(QPainter& painter, bool selected) const
+{
     if (selected) {
         painter.setPen(QPen(Qt::red, 2, Qt::DashLine));
     } else {
-        painter.setPen(QPen(
-            QColor(QString::fromStdString(stroke_color_)),
-            stroke_width_
-            ));
+        if (stroke_color_ == "none") {
+            painter.setPen(Qt::NoPen);
+        } else {
+            painter.setPen(QPen(
+                QColor(QString::fromStdString(stroke_color_)),
+                stroke_width_
+                ));
+        }
     }
+
     painter.drawLine(x1_, y1_, x2_, y2_);
 }
 
-bool Line::contains(double x, double y) const {
-    // distance from point to line segment
-    double A = x - x1_;
-    double B = y - y1_;
-    double C = x2_ - x1_;
-    double D = y2_ - y1_;
+bool Line::contains(double x, double y) const
+{
+    const double tolerance = 5.0;
 
-    double dot = A * C + B * D;
-    double len_sq = C * C + D * D;
-    double param = len_sq != 0 ? dot / len_sq : -1;
+    QPointF p(x, y);
+    QPointF a(x1_, y1_);
+    QPointF b(x2_, y2_);
 
-    double xx, yy;
+    // Line length squared
+    double lengthSq = std::pow(b.x() - a.x(), 2) +
+                      std::pow(b.y() - a.y(), 2);
 
-    if (param < 0) {
-        xx = x1_;
-        yy = y1_;
-    } else if (param > 1) {
-        xx = x2_;
-        yy = y2_;
-    } else {
-        xx = x1_ + param * C;
-        yy = y1_ + param * D;
-    }
+    if (lengthSq == 0.0)
+        return false;
 
-    double dx = x - xx;
-    double dy = y - yy;
+    // Projection factor
+    double t = ((p.x() - a.x()) * (b.x() - a.x()) +
+                (p.y() - a.y()) * (b.y() - a.y())) / lengthSq;
 
-    return std::sqrt(dx*dx + dy*dy) <= 5.0;
+    t = std::clamp(t, 0.0, 1.0);
+
+    // Closest point on segment
+    QPointF projection(
+        a.x() + t * (b.x() - a.x()),
+        a.y() + t * (b.y() - a.y())
+        );
+
+    double distance = std::hypot(
+        p.x() - projection.x(),
+        p.y() - projection.y()
+        );
+
+    return distance <= tolerance;
 }
 
 void Line::move(double dx, double dy) {
@@ -79,4 +90,9 @@ void Line::resize(const QRectF& rect) {
     y1_ = rect.top();
     x2_ = rect.right();
     y2_ = rect.bottom();
+}
+
+std::shared_ptr<GraphicsObject> Line::clone() const
+{
+    return std::make_shared<Line>(*this);
 }

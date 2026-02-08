@@ -3,7 +3,8 @@
 #include <QMouseEvent>
 #include <QDebug>
 #include <QKeyEvent>
-#include "../model/delete_command.h"
+#include "../command/delete_command.h"
+#include "../command/add_command.h"
 #include "tools/tool.h"
 
 
@@ -187,4 +188,61 @@ void Canvas::keyPressEvent(QKeyEvent* event)
             update();
         }
     }
+}
+
+void Canvas::clearSelection()
+{
+    selected_.reset();
+    update();
+}
+
+void Canvas::clearHistory()
+{
+    undo_stack_.clear();
+    redo_stack_.clear();
+}
+
+void Canvas::copy()
+{
+    if (!selected_)
+        return;
+
+    clipboard_ = selected_->clone();   // IMPORTANT
+}
+
+void Canvas::cut()
+{
+    if (!selected_)
+        return;
+
+    copy();
+
+    executeCommand(
+        std::make_unique<DeleteCommand>(
+            diagram,
+            selected_
+            )
+        );
+
+    selected_.reset();
+}
+
+void Canvas::paste()
+{
+    if (!clipboard_)
+        return;
+
+    auto newObj = clipboard_->clone();
+
+    // Slight offset so pasted object is visible
+    newObj->move(10, 10);
+
+    executeCommand(
+        std::make_unique<AddCommand>(
+            diagram,
+            newObj
+            )
+        );
+
+    selected_ = newObj;
 }

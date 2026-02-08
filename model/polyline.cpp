@@ -22,13 +22,18 @@ std::string Polyline::toSVG() const {
 }
 
 void Polyline::draw(QPainter& painter, bool selected) const {
+
     if (selected) {
         painter.setPen(QPen(Qt::red, 2, Qt::DashLine));
     } else {
-        painter.setPen(QPen(
-            QColor(QString::fromStdString(stroke_color_)),
-            stroke_width_
-            ));
+        if (stroke_color_ == "none") {
+            painter.setPen(Qt::NoPen);
+        } else {
+            painter.setPen(QPen(
+                QColor(QString::fromStdString(stroke_color_)),
+                stroke_width_
+                ));
+        }
     }
 
     QPolygonF poly;
@@ -38,8 +43,43 @@ void Polyline::draw(QPainter& painter, bool selected) const {
     painter.drawPolyline(poly);
 }
 
-bool Polyline::contains(double, double) const {
-    return false; // optional: improve later
+bool Polyline::contains(double x, double y) const
+{
+    const double tolerance = 5.0;
+
+    for (size_t i = 0; i + 1 < points_.size(); ++i)
+    {
+        QPointF a = points_[i];
+        QPointF b = points_[i + 1];
+
+        QPointF p(x, y);
+
+        double lengthSq = std::pow(b.x() - a.x(), 2) +
+                          std::pow(b.y() - a.y(), 2);
+
+        if (lengthSq == 0.0)
+            continue;
+
+        double t = ((p.x() - a.x()) * (b.x() - a.x()) +
+                    (p.y() - a.y()) * (b.y() - a.y())) / lengthSq;
+
+        t = std::clamp(t, 0.0, 1.0);
+
+        QPointF projection(
+            a.x() + t * (b.x() - a.x()),
+            a.y() + t * (b.y() - a.y())
+            );
+
+        double distance = std::hypot(
+            p.x() - projection.x(),
+            p.y() - projection.y()
+            );
+
+        if (distance <= tolerance)
+            return true;
+    }
+
+    return false;
 }
 
 void Polyline::move(double dx, double dy) {
@@ -78,4 +118,9 @@ void Polyline::resize(const QRectF& rect) {
         p.setX(newX);
         p.setY(newY);
     }
+}
+
+std::shared_ptr<GraphicsObject> Polyline::clone() const
+{
+    return std::make_shared<Polyline>(*this);
 }

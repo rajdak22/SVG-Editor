@@ -850,6 +850,17 @@ cop290_raj_autogen/timestamp: \
 	/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
 	/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
 	/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/moc_predefs.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/add_command.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/command/add_command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/delete_command.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/command/delete_command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/move_command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/resize_command.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/command/resize_command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/set_fill_color_command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_color_command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_width_command.h \
 	/Users/rajdakshit/Documents/cop290_raj/gui/canvas.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/gui/canvas.h \
 	/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow.cpp \
@@ -872,13 +883,8 @@ cop290_raj_autogen/timestamp: \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/text_tool.h \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/tool.h \
 	/Users/rajdakshit/Documents/cop290_raj/main.cpp \
-	/Users/rajdakshit/Documents/cop290_raj/model/add_command.cpp \
-	/Users/rajdakshit/Documents/cop290_raj/model/add_command.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/circle.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/model/circle.h \
-	/Users/rajdakshit/Documents/cop290_raj/model/command.h \
-	/Users/rajdakshit/Documents/cop290_raj/model/delete_command.cpp \
-	/Users/rajdakshit/Documents/cop290_raj/model/delete_command.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/diagram.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/model/diagram.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/graphics_object.cpp \
@@ -887,13 +893,10 @@ cop290_raj_autogen/timestamp: \
 	/Users/rajdakshit/Documents/cop290_raj/model/hexagon.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/line.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/model/line.h \
-	/Users/rajdakshit/Documents/cop290_raj/model/move_command.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/polyline.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/model/polyline.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/rectangle.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/model/rectangle.h \
-	/Users/rajdakshit/Documents/cop290_raj/model/resize_command.cpp \
-	/Users/rajdakshit/Documents/cop290_raj/model/resize_command.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/rounded_rectangle.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/model/rounded_rectangle.h \
 	/Users/rajdakshit/Documents/cop290_raj/model/text.cpp \

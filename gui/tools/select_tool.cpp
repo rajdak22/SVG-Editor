@@ -1,7 +1,7 @@
 #include "select_tool.h"
 #include "../canvas.h"
-#include "../../model/move_command.h"
-#include "../../model/resize_command.h"
+#include "../../command/move_command.h"
+#include "../../command/resize_command.h"
 #include <algorithm>
 #include <cmath>
 

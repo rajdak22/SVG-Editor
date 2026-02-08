@@ -1,7 +1,7 @@
 #include "hexagon_tool.h"
 #include "../canvas.h"
 #include "../../model/hexagon.h"
-#include "../../model/add_command.h"
+#include "../../command/add_command.h"
 #include <cmath>
 
 void HexagonTool::mousePress(Canvas*, QMouseEvent* event)

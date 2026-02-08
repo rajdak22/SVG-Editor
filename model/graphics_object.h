@@ -22,10 +22,16 @@ public:
     virtual QRectF boundingBox() const = 0;
     virtual void resize(const QRectF& newRect) = 0;
 
+    // Cut Copy Paste
+    virtual std::shared_ptr<GraphicsObject> clone() const = 0;
+
     // Setters
     void setStrokeColor(const std::string& color);
     void setFillColor(const std::string& color);
     void setStrokeWidth(int width);
+    std::string getFillColor() const { return fill_color_; }
+    std::string getStrokeColor() const { return stroke_color_; }
+    int getStrokeWidth() const { return stroke_width_; }
 
 protected:
     std::string stroke_color_ = "black";

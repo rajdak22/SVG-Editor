@@ -845,9 +845,9 @@
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk/usr/include/xlocale/_time.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
+  /Users/rajdakshit/Documents/cop290_raj/command/command.h \
   /Users/rajdakshit/Documents/cop290_raj/gui/canvas.h \
   /Users/rajdakshit/Documents/cop290_raj/gui/tools/tool.h \
-  /Users/rajdakshit/Documents/cop290_raj/model/command.h \
   /Users/rajdakshit/Documents/cop290_raj/model/diagram.h \
   /Users/rajdakshit/Documents/cop290_raj/model/graphics_object.h \
   /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/Headers/QList \

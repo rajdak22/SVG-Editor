@@ -23,18 +23,34 @@ std::string Circle::toSVG() const {
     return oss.str();
 }
 
-void Circle::draw(QPainter& painter, bool selected) const {
+void Circle::draw(QPainter& painter, bool selected) const
+{
+    // -------------------------
+    // PEN (stroke)
+    // -------------------------
     if (selected) {
         painter.setPen(QPen(Qt::red, 2, Qt::DashLine));
     } else {
-        painter.setPen(QPen(
-            QColor(QString::fromStdString(stroke_color_)),
-            stroke_width_
-            ));
+        if (stroke_color_ == "none") {
+            painter.setPen(Qt::NoPen);
+        } else {
+            painter.setPen(QPen(
+                QColor(QString::fromStdString(stroke_color_)),
+                stroke_width_
+                ));
+        }
     }
-    painter.setBrush(
-        QColor(QString::fromStdString(fill_color_))
-        );
+
+    // -------------------------
+    // BRUSH (fill)
+    // -------------------------
+    if (fill_color_ == "none") {
+        painter.setBrush(Qt::NoBrush);
+    } else {
+        painter.setBrush(
+            QColor(QString::fromStdString(fill_color_))
+            );
+    }
 
     painter.drawEllipse(QPointF(cx_, cy_), r_, r_);
 }
@@ -69,4 +85,9 @@ void Circle::resize(const QRectF& rect)
     double size = (r.width() + r.height()) / 2.0;
 
     r_ = size / 2.0;
+}
+
+std::shared_ptr<GraphicsObject> Circle::clone() const
+{
+    return std::make_shared<Circle>(*this);
 }

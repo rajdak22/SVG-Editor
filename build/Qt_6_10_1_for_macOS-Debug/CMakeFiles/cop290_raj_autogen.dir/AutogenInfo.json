@@ -353,6 +353,54 @@
 	"HEADERS" : 
 	[
 		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/add_command.h",
+			"MU",
+			"LTLVFUOEFO/moc_add_command.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/command.h",
+			"MU",
+			"LTLVFUOEFO/moc_command.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/delete_command.h",
+			"MU",
+			"LTLVFUOEFO/moc_delete_command.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/move_command.h",
+			"MU",
+			"LTLVFUOEFO/moc_move_command.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/resize_command.h",
+			"MU",
+			"LTLVFUOEFO/moc_resize_command.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/set_fill_color_command.h",
+			"MU",
+			"LTLVFUOEFO/moc_set_fill_color_command.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_color_command.h",
+			"MU",
+			"LTLVFUOEFO/moc_set_stroke_color_command.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_width_command.h",
+			"MU",
+			"LTLVFUOEFO/moc_set_stroke_width_command.cpp",
+			null
+		],
+		[
 			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas.h",
 			"MU",
 			"DMHXEJ42XS/moc_canvas.cpp",
@@ -419,27 +467,9 @@
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/model/add_command.h",
-			"MU",
-			"NLOY5YBGEN/moc_add_command.cpp",
-			null
-		],
-		[
 			"/Users/rajdakshit/Documents/cop290_raj/model/circle.h",
 			"MU",
 			"NLOY5YBGEN/moc_circle.cpp",
-			null
-		],
-		[
-			"/Users/rajdakshit/Documents/cop290_raj/model/command.h",
-			"MU",
-			"NLOY5YBGEN/moc_command.cpp",
-			null
-		],
-		[
-			"/Users/rajdakshit/Documents/cop290_raj/model/delete_command.h",
-			"MU",
-			"NLOY5YBGEN/moc_delete_command.cpp",
 			null
 		],
 		[
@@ -467,12 +497,6 @@
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/model/move_command.h",
-			"MU",
-			"NLOY5YBGEN/moc_move_command.cpp",
-			null
-		],
-		[
 			"/Users/rajdakshit/Documents/cop290_raj/model/polyline.h",
 			"MU",
 			"NLOY5YBGEN/moc_polyline.cpp",
@@ -482,12 +506,6 @@
 			"/Users/rajdakshit/Documents/cop290_raj/model/rectangle.h",
 			"MU",
 			"NLOY5YBGEN/moc_rectangle.cpp",
-			null
-		],
-		[
-			"/Users/rajdakshit/Documents/cop290_raj/model/resize_command.h",
-			"MU",
-			"NLOY5YBGEN/moc_resize_command.cpp",
 			null
 		],
 		[
@@ -568,6 +586,21 @@
 	"SETTINGS_FILE" : "/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/CMakeFiles/cop290_raj_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/add_command.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/delete_command.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/resize_command.cpp",
+			"MU",
+			null
+		],
 		[ "/Users/rajdakshit/Documents/cop290_raj/gui/canvas.cpp", "MU", null ],
 		[
 			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow.cpp",
@@ -615,17 +648,7 @@
 			null
 		],
 		[ "/Users/rajdakshit/Documents/cop290_raj/main.cpp", "MU", null ],
-		[
-			"/Users/rajdakshit/Documents/cop290_raj/model/add_command.cpp",
-			"MU",
-			null
-		],
 		[ "/Users/rajdakshit/Documents/cop290_raj/model/circle.cpp", "MU", null ],
-		[
-			"/Users/rajdakshit/Documents/cop290_raj/model/delete_command.cpp",
-			"MU",
-			null
-		],
 		[
 			"/Users/rajdakshit/Documents/cop290_raj/model/diagram.cpp",
 			"MU",
@@ -649,11 +672,6 @@
 		],
 		[
 			"/Users/rajdakshit/Documents/cop290_raj/model/rectangle.cpp",
-			"MU",
-			null
-		],
-		[
-			"/Users/rajdakshit/Documents/cop290_raj/model/resize_command.cpp",
 			"MU",
 			null
 		],

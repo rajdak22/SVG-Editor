@@ -1,7 +1,7 @@
 #include "polyline_tool.h"
 #include "../canvas.h"
 #include "../../model/polyline.h"
-#include "../../model/add_command.h"
+#include "../../command/add_command.h"
 
 void PolylineTool::mousePress(Canvas*, QMouseEvent* event)
 {

@@ -1,7 +1,7 @@
 #include "text_tool.h"
 #include "../canvas.h"
 #include "../../model/text.h"
-#include "../../model/add_command.h"
+#include "../../command/add_command.h"
 
 #include <QInputDialog>
 

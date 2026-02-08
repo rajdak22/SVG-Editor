@@ -22,10 +22,15 @@ std::string Text::toSVG() const
 
 void Text::draw(QPainter& painter, bool selected) const
 {
-    if (selected)
+    if (selected) {
         painter.setPen(QPen(Qt::red, 1, Qt::DashLine));
-    else
-        painter.setPen(QPen(QColor(QString::fromStdString(stroke_color_))));
+    } else {
+        if (fill_color_ == "none") {
+            painter.setPen(Qt::NoPen);
+        } else {
+            painter.setPen(QColor(QString::fromStdString(fill_color_)));
+        }
+    }
 
     painter.drawText(QPointF(x_, y_), QString::fromStdString(content_));
 }
@@ -73,4 +78,9 @@ void Text::resize(const QRectF& rect)
 
     x_ = r.x();
     y_ = r.y() + r.height();   // keep baseline correct
+}
+
+std::shared_ptr<GraphicsObject> Text::clone() const
+{
+    return std::make_shared<Text>(*this);
 }

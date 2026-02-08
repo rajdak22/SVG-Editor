@@ -24,15 +24,34 @@ std::string RoundedRectangle::toSVG() const {
 }
 
 void RoundedRectangle::draw(QPainter& painter, bool selected) const {
+    // -------------------------
+    // PEN (stroke)
+    // -------------------------
     if (selected) {
         painter.setPen(QPen(Qt::red, 2, Qt::DashLine));
     } else {
-        painter.setPen(QPen(
-            QColor(QString::fromStdString(stroke_color_)),
-            stroke_width_
-            ));
+        if (stroke_color_ == "none") {
+            painter.setPen(Qt::NoPen);
+        } else {
+            painter.setPen(QPen(
+                QColor(QString::fromStdString(stroke_color_)),
+                stroke_width_
+                ));
+        }
     }
-    painter.setBrush(QColor(QString::fromStdString(fill_color_)));
+
+    // -------------------------
+    // BRUSH (fill)
+    // -------------------------
+    if (fill_color_ == "none") {
+        painter.setBrush(Qt::NoBrush);
+    } else {
+        painter.setBrush(
+            QColor(QString::fromStdString(fill_color_))
+            );
+    }
+
+
     painter.drawRoundedRect(x_, y_, width_, height_, rx_, ry_);
 }
 
@@ -57,4 +76,9 @@ void RoundedRectangle::resize(const QRectF& rect)
     y_ = rect.y();
     width_  = rect.width();
     height_ = rect.height();
+}
+
+std::shared_ptr<GraphicsObject> RoundedRectangle::clone() const
+{
+    return std::make_shared<RoundedRectangle>(*this);
 }

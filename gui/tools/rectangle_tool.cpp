@@ -1,7 +1,7 @@
 #include "rectangle_tool.h"
 #include "../canvas.h"
 #include "../../model/rectangle.h"
-#include "../../model/add_command.h"
+#include "../../command/add_command.h"
 #include <algorithm>
 
 void RectangleTool::mousePress(Canvas* canvas, QMouseEvent* event)

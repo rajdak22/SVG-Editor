@@ -1,7 +1,7 @@
 #include "rounded_rectangle_tool.h"
 #include "../canvas.h"
 #include "../../model/rounded_rectangle.h"
-#include "../../model/add_command.h"
+#include "../../command/add_command.h"
 #include <algorithm>
 
 void RoundedRectangleTool::mousePress(Canvas*, QMouseEvent* event)

@@ -10,4 +10,12 @@ public:
 
 private:
     Canvas *canvas;
+    QString current_file_path_;
+
+private slots:
+    void newFile();
+    void saveFile();
+    void saveFileAs();
+    void openFile();
+    void closeFile();
 };
