@@ -182,70 +182,14 @@ MainWindow::MainWindow()
     connect(cutAction, &QAction::triggered, canvas, &Canvas::cut);
     connect(pasteAction, &QAction::triggered, canvas, &Canvas::paste);
 
-    connect(fillAction, &QAction::triggered, this, [=]() {
+    connect(fillAction, &QAction::triggered,
+            this, &MainWindow::changeFill);
 
-        auto selected = canvas->getSelected();
-        if (!selected)
-            return;
+    connect(strokeAction, &QAction::triggered,
+            this, &MainWindow::changeStroke);
 
-        QColor color = QColorDialog::getColor(Qt::white, this);
-
-        if (!color.isValid())
-            return;
-
-        canvas->executeCommand(
-            std::make_unique<SetFillColorCommand>(
-                selected,
-                color.name().toStdString()
-                )
-            );
-    });
-
-    connect(strokeAction, &QAction::triggered, this, [=]() {
-
-        auto selected = canvas->getSelected();
-        if (!selected)
-            return;
-
-        QColor color = QColorDialog::getColor(Qt::black, this);
-
-        if (!color.isValid())
-            return;
-
-        canvas->executeCommand(
-            std::make_unique<SetStrokeColorCommand>(
-                selected,
-                color.name().toStdString()
-                )
-            );
-    });
-
-    connect(widthAction, &QAction::triggered, this, [=]() {
-
-        auto selected = canvas->getSelected();
-        if (!selected)
-            return;
-
-        bool ok;
-        int width = QInputDialog::getInt(
-            this,
-            "Stroke Width",
-            "Enter width:",
-            selected->getStrokeWidth(),
-            1, 50, 1,
-            &ok
-            );
-
-        if (!ok)
-            return;
-
-        canvas->executeCommand(
-            std::make_unique<SetStrokeWidthCommand>(
-                selected,
-                width
-                )
-            );
-    });
+    connect(widthAction, &QAction::triggered,
+            this, &MainWindow::changeStrokeWidth);
 
     // ==================================
     // Default Tool
@@ -314,4 +258,67 @@ void MainWindow::newFile()
 void MainWindow::closeFile()
 {
     close();   // This closes the main window
+}
+
+void MainWindow::changeFill()
+{
+    auto selected = canvas->getSelected();
+    if (!selected)
+        return;
+
+    QColor color = QColorDialog::getColor(Qt::white, this);
+    if (!color.isValid())
+        return;
+
+    canvas->executeCommand(
+        std::make_unique<SetFillColorCommand>(
+            selected,
+            color.name().toStdString()
+            )
+        );
+}
+
+void MainWindow::changeStroke()
+{
+    auto selected = canvas->getSelected();
+    if (!selected)
+        return;
+
+    QColor color = QColorDialog::getColor(Qt::black, this);
+    if (!color.isValid())
+        return;
+
+    canvas->executeCommand(
+        std::make_unique<SetStrokeColorCommand>(
+            selected,
+            color.name().toStdString()
+            )
+        );
+}
+
+void MainWindow::changeStrokeWidth()
+{
+    auto selected = canvas->getSelected();
+    if (!selected)
+        return;
+
+    bool ok;
+    int width = QInputDialog::getInt(
+        this,
+        "Stroke Width",
+        "Enter width:",
+        selected->getStrokeWidth(),
+        1, 50, 1,
+        &ok
+        );
+
+    if (!ok)
+        return;
+
+    canvas->executeCommand(
+        std::make_unique<SetStrokeWidthCommand>(
+            selected,
+            width
+            )
+        );
 }
