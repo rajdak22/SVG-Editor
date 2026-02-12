@@ -85,12 +85,12 @@ set(PROJECT_SOURCES
 
         gui/tools/tool.h
 
-        gui/tools/select_tool.h
-        gui/tools/select_tool.cpp
+        gui/tools/select/select_tool.h
+        gui/tools/select/select_tool.cpp
 
-        gui/tools/select_tool_resize.cpp
-        gui/tools/select_tool_drag.cpp
-        gui/tools/select_tool_handles.cpp
+        gui/tools/select/select_tool_resize.cpp
+        gui/tools/select/select_tool_drag.cpp
+        gui/tools/select/select_tool_handles.cpp
 
         gui/tools/rectangle_tool.h
         gui/tools/rectangle_tool.cpp

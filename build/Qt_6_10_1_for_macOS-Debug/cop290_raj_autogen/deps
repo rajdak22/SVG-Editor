@@ -885,11 +885,11 @@ cop290_raj_autogen/timestamp: \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/rectangle_tool.h \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/rounded_rectangle_tool.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/rounded_rectangle_tool.h \
-	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool.cpp \
-	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool.h \
-	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_drag.cpp \
-	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_handles.cpp \
-	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_resize.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool.h \
+	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool_drag.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool_handles.cpp \
+	/Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool_resize.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/text_tool.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/text_tool.h \
 	/Users/rajdakshit/Documents/cop290_raj/gui/tools/tool.h \

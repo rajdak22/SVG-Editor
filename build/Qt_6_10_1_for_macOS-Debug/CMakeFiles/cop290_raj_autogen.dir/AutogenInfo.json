@@ -449,9 +449,9 @@
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool.h",
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool.h",
 			"MU",
-			"GKS45WUDP4/moc_select_tool.cpp",
+			"DI3DHMSH32/moc_select_tool.cpp",
 			null
 		],
 		[
@@ -682,22 +682,22 @@
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool.cpp",
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_drag.cpp",
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool_drag.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_handles.cpp",
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool_handles.cpp",
 			"MU",
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select_tool_resize.cpp",
+			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool_resize.cpp",
 			"MU",
 			null
 		],

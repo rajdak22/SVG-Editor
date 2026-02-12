@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "../tools/select_tool.h"
+#include "../tools/select/select_tool.h"
 #include "../tools/rectangle_tool.h"
 #include "../tools/circle_tool.h"
 #include "../tools/line_tool.h"
