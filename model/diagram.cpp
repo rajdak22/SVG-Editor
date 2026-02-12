@@ -6,6 +6,19 @@ void Diagram::addObject(std::shared_ptr<GraphicsObject> obj) {
     objects_.push_back(obj);
 }
 
+void Diagram::removeObject(std::shared_ptr<GraphicsObject> obj)
+{
+    auto it = std::find(objects_.begin(), objects_.end(), obj);
+    if(it != objects_.end()) {
+        objects_.erase(it);
+    }
+}
+
+void Diagram::insertObject(int index, std::shared_ptr<GraphicsObject> obj)
+{
+    objects_.insert(objects_.begin() + index, obj);
+}
+
 const std::vector<std::shared_ptr<GraphicsObject>>& Diagram::getObjects() const {
     return objects_;
 }
@@ -22,18 +35,4 @@ std::string Diagram::toSVG() const {
 
     oss << "</svg>";
     return oss.str();
-}
-
-void Diagram::removeObject(std::shared_ptr<GraphicsObject> obj)
-{
-    objects_.erase(
-        std::remove(objects_.begin(), objects_.end(), obj),
-        objects_.end()
-        );
-}
-
-void Diagram::insertObject(int index,
-                           std::shared_ptr<GraphicsObject> obj)
-{
-    objects_.insert(objects_.begin() + index, obj);
 }

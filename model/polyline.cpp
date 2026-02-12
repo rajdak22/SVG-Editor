@@ -2,6 +2,7 @@
 #include <sstream>
 #include <QColor>
 #include <QPen>
+#include <QBrush>
 
 Polyline::Polyline(const std::vector<QPointF>& points)
 {

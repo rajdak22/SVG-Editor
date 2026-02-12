@@ -2,6 +2,7 @@
 #include <sstream>
 #include <QColor>
 #include <QPen>
+#include <QBrush>
 #include <cmath> // for cos and sin
 
 Hexagon::Hexagon(double cx, double cy, double r)

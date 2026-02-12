@@ -6,6 +6,11 @@
 #include "graphics_object.h"
 
 class Diagram {
+
+private:
+
+    std::vector<std::shared_ptr<GraphicsObject>> objects_;
+
 public:
 
     void addObject(std::shared_ptr<GraphicsObject> obj);
@@ -15,9 +20,6 @@ public:
     // phase 3
     void removeObject(std::shared_ptr<GraphicsObject> obj);
     void insertObject(int index, std::shared_ptr<GraphicsObject> obj);
-
-private:
-    std::vector<std::shared_ptr<GraphicsObject>> objects_;
 };
 
 #endif

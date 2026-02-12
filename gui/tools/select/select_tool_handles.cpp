@@ -23,10 +23,6 @@ bool SelectTool::tryStartResize(Canvas* canvas, const QPointF& pos)
     QPointF tr = box.topRight();
     QPointF bl = box.bottomLeft();
     QPointF br = box.bottomRight();
-    QPointF tm((box.left()+box.right())/2, box.top());
-    QPointF bm((box.left()+box.right())/2, box.bottom());
-    QPointF ml(box.left(), (box.top()+box.bottom())/2);
-    QPointF mr(box.right(), (box.top()+box.bottom())/2);
 
     if (handleRect(tl).contains(pos)) active_handle_ = ResizeHandle::TopLeft;
     else if (handleRect(tr).contains(pos)) active_handle_ = ResizeHandle::TopRight;

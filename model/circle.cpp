@@ -2,6 +2,7 @@
 #include <sstream>
 #include <QColor>
 #include <QPen>
+#include <QBrush>
 
 Circle::Circle(double cx, double cy, double r)
 {

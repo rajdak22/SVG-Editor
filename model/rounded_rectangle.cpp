@@ -2,6 +2,7 @@
 #include <sstream>
 #include <QColor>
 #include <QPen>
+#include <QBrush>
 
 RoundedRectangle::RoundedRectangle(double x, double y, double width, double height, double rx, double ry)
 {

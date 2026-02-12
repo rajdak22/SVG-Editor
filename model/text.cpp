@@ -2,6 +2,7 @@
 #include <sstream>
 #include <QColor>
 #include <QPen>
+#include <QBrush>
 #include <QFontMetrics>         // for finding pixel size of text (for bounding box)
 
 Text::Text(double x, double y, const std::string& content)

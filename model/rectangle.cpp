@@ -2,6 +2,7 @@
 #include <sstream>
 #include <QColor>
 #include <QPen>
+#include <QBrush>
 
 Rectangle::Rectangle(double x, double y, double width, double height)
 {
