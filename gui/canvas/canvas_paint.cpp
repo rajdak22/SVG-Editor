@@ -6,11 +6,11 @@ void Canvas::paintEvent(QPaintEvent *)
     QPainter painter(this);
 
     for (const auto& obj : diagram.getObjects()) {
-        obj->draw(painter, obj == selected_);
+        obj->draw(painter);
     }
 
     if (temp_object_) {
-        temp_object_->draw(painter, false);
+        temp_object_->draw(painter);
     }
 
     if (selected_) {
@@ -46,19 +46,11 @@ void Canvas::paintEvent(QPaintEvent *)
         QPointF tr = box.topRight();
         QPointF bl = box.bottomLeft();
         QPointF br = box.bottomRight();
-        QPointF tm((box.left() + box.right()) / 2, box.top());
-        QPointF bm((box.left() + box.right()) / 2, box.bottom());
-        QPointF ml(box.left(), (box.top() + box.bottom()) / 2);
-        QPointF mr(box.right(), (box.top() + box.bottom()) / 2);
 
         drawHandle(tl);
         drawHandle(tr);
         drawHandle(bl);
         drawHandle(br);
-        drawHandle(tm);
-        drawHandle(bm);
-        drawHandle(ml);
-        drawHandle(mr);
 
         painter.restore();
     }

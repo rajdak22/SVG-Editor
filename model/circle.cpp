@@ -2,87 +2,77 @@
 #include <sstream>
 #include <QColor>
 #include <QPen>
-#include <QBrush>
-#include <QDebug>
 
 Circle::Circle(double cx, double cy, double r)
-    : cx_(cx), cy_(cy), r_(r) {}
+{
+    cx_ = cx;
+    cy_ = cy;
+    r_ = r;
+}
 
-std::string Circle::toSVG() const {
+std::string Circle::toSVG() const
+{
+
+    // using ostringstream to avoid tostring operation repeatedly
+    // easier string construction in general
     std::ostringstream oss;
 
     oss << "<circle "
-        << "cx=\"" << cx_ << "\" "
-        << "cy=\"" << cy_ << "\" "
-        << "r=\"" << r_ << "\" "
-        << "stroke=\"" << stroke_color_ << "\" "
-        << "stroke-width=\"" << stroke_width_ << "\" "
-        << "fill=\"" << fill_color_ << "\" "
+        << "cx = \"" << cx_ << "\" "
+        << "cy = \"" << cy_ << "\" "
+        << "r = \"" << r_ << "\" "
+        << "stroke = \"" << stroke_color_ << "\" "
+        << "stroke-width = \"" << stroke_width_ << "\" "
+        << "fill = \"" << fill_color_ << "\" "
         << "/>";
 
     return oss.str();
 }
 
-void Circle::draw(QPainter& painter, bool selected) const
+void Circle::draw(QPainter& painter) const
 {
-    // -------------------------
-    // PEN (stroke)
-    // -------------------------
-    if (selected) {
-        painter.setPen(QPen(Qt::red, 2, Qt::DashLine));
-    } else {
-        if (stroke_color_ == "none") {
-            painter.setPen(Qt::NoPen);
-        } else {
-            painter.setPen(QPen(
-                QColor(QString::fromStdString(stroke_color_)),
-                stroke_width_
-                ));
-        }
-    }
 
-    // -------------------------
-    // BRUSH (fill)
-    // -------------------------
-    if (fill_color_ == "none") {
-        painter.setBrush(Qt::NoBrush);
-    } else {
-        painter.setBrush(
-            QColor(QString::fromStdString(fill_color_))
-            );
-    }
+    auto stroke_color_qt = QColor(QString::fromStdString(stroke_color_));
+    auto pen_attributes = QPen(stroke_color_qt, stroke_width_);
+    painter.setPen(pen_attributes);
 
-    painter.drawEllipse(QPointF(cx_, cy_), r_, r_);
+    auto fill_color_qt = QColor(QString::fromStdString(fill_color_));
+    painter.setBrush(fill_color_qt);
+
+    auto centre = QPointF(cx_, cy_);        // this format helps in drawing, ensures centre is fixed while drawing
+    painter.drawEllipse(centre, r_, r_);
 }
 
-bool Circle::contains(double x, double y) const {
+bool Circle::contains(double x, double y) const
+{
+
     double dx = x - cx_;
     double dy = y - cy_;
 
     return (dx * dx + dy * dy) <= (r_ * r_);
 }
 
-void Circle::move(double dx, double dy) {
+void Circle::move(double dx, double dy)
+{
     cx_ += dx;
     cy_ += dy;
 }
 
-QRectF Circle::boundingBox() const {
+QRectF Circle::boundingBox() const
+{
     return QRectF(cx_ - r_, cy_ - r_, 2*r_, 2*r_);
 }
 
 void Circle::resize(const QRectF& rect)
 {
-    QRectF r = rect.normalized();
-
     // Calculate the center first
-    cx_ = r.center().x();
-    cy_ = r.center().y();
+    cx_ = rect.center().x();
+    cy_ = rect.center().y();
 
     // To prevent the "stalling" when shrinking, we use the dimension
     // that actually matches the handle being pulled.
     // If you want a catch-all that feels natural:
-    double size = (r.width() + r.height()) / 2.0;
+    double size = (rect.width() + rect.height()) / 2.0;
 
     r_ = size / 2.0;
 }

@@ -19,10 +19,10 @@ private:
 
     enum class ResizeHandle {
         None,
-        TopLeft, Top, TopRight,
-        Right,
-        BottomRight, Bottom, BottomLeft,
-        Left
+        TopLeft,
+        TopRight,
+        BottomLeft,
+        BottomRight
     };
 
     ResizeHandle active_handle_ = ResizeHandle::None;

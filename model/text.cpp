@@ -1,11 +1,14 @@
 #include "text.h"
 #include <sstream>
-#include <QFontMetrics>
+#include <QColor>
+#include <QPen>
+#include <QFontMetrics>         // for finding pixel size of text (for bounding box)
 
 Text::Text(double x, double y, const std::string& content)
-    : x_(x), y_(y), content_(content)
 {
-    fill_color_ = "black";   // Text should default to visible
+    x_ = x;
+    y_ = y;
+    content_ = content;
 }
 
 std::string Text::toSVG() const
@@ -13,9 +16,9 @@ std::string Text::toSVG() const
     std::ostringstream oss;
 
     oss << "<text "
-        << "x=\"" << x_ << "\" "
-        << "y=\"" << y_ << "\" "
-        << "fill=\"" << fill_color_ << "\""
+        << "x = \"" << x_ << "\" "
+        << "y = \"" << y_ << "\" "
+        << "fill = \"" << stroke_color_ << "\" "
         << ">"
         << content_
         << "</text>";
@@ -23,39 +26,21 @@ std::string Text::toSVG() const
     return oss.str();
 }
 
-void Text::draw(QPainter& painter, bool selected) const
+void Text::draw(QPainter& painter) const
 {
-    if (selected) {
-        painter.setPen(QPen(Qt::red, 1, Qt::DashLine));
-    } else {
-        if (fill_color_ == "none") {
-            painter.setPen(Qt::NoPen);
-        } else {
-            painter.setPen(QColor(QString::fromStdString(fill_color_)));
-        }
-    }
+    auto stroke_color_qt = QColor(QString::fromStdString(stroke_color_));
+    auto pen_attributes = QPen(stroke_color_qt);
+    painter.setPen(pen_attributes);
 
-    painter.drawText(QPointF(x_, y_), QString::fromStdString(content_));
+    auto coordinates = QPointF(x_, y_);
+    auto content_qt = QString::fromStdString(content_);
+    painter.drawText(coordinates, content_qt);
 }
-
-// bool Text::contains(double x, double y) const
-// {
-//     // Rough bounding box check
-//     QFont font;
-//     QFontMetrics fm(font);
-
-//     QRect rect = fm.boundingRect(QString::fromStdString(content_));
-
-//     QRectF textRect(x_, y_ - rect.height(),
-//                     rect.width(),
-//                     rect.height());
-
-//     return textRect.contains(QPointF(x, y));
-// }
 
 bool Text::contains(double x, double y) const
 {
-    return boundingBox().contains(QPointF(x, y));
+    QRectF box = boundingBox();
+    return box.contains(x, y);
 }
 
 void Text::move(double dx, double dy)
@@ -66,21 +51,18 @@ void Text::move(double dx, double dy)
 
 QRectF Text::boundingBox() const
 {
-    QFont font;                    // default font
-    QFontMetricsF metrics(font);
+    QFont font; // same default font used in draw()
+    QFontMetrics metrics(font);
 
-    double width  = metrics.horizontalAdvance(QString::fromStdString(content_));
-    double height = metrics.height();
+    QRect rect = metrics.boundingRect(QString::fromStdString(content_));
+    double y_actual = y_ - rect.height();                                   // y_ is baseline, Qt draws text from baseline
 
-    return QRectF(x_, y_ - height, width, height);
+    return QRectF(x_, y_actual, rect.width(), rect.height());
 }
 
+// useless for now, since text is not being resized
 void Text::resize(const QRectF& rect)
 {
-    QRectF r = rect.normalized();
-
-    x_ = r.x();
-    y_ = r.y() + r.height();   // keep baseline correct
 }
 
 std::shared_ptr<GraphicsObject> Text::clone() const

@@ -8,7 +8,7 @@ public:
     Line(double x1, double y1, double x2, double y2);
 
     std::string toSVG() const override;
-    void draw(QPainter& painter, bool selected) const override;
+    void draw(QPainter& painter) const override;
 
     bool contains(double x, double y) const override;
     void move(double dx, double dy) override;

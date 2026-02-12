@@ -8,7 +8,7 @@ public:
     Hexagon(double cx, double cy, double radius);
 
     std::string toSVG() const override;
-    void draw(QPainter& painter, bool selected) const override;
+    void draw(QPainter& painter) const override;
 
     bool contains(double x, double y) const override;
     void move(double dx, double dy) override;
@@ -19,7 +19,7 @@ public:
 private:
     double cx_;
     double cy_;
-    double radius_;
+    double r_;
 };
 
 #endif

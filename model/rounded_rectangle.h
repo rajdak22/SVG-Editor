@@ -5,12 +5,10 @@
 
 class RoundedRectangle : public GraphicsObject {
 public:
-    RoundedRectangle(double x, double y,
-                     double width, double height,
-                     double rx, double ry);
+    RoundedRectangle(double x, double y, double width, double height, double rx, double ry);
 
     std::string toSVG() const override;
-    void draw(QPainter& painter, bool selected) const override;
+    void draw(QPainter& painter) const override;
 
     bool contains(double x, double y) const override;
     void move(double dx, double dy) override;

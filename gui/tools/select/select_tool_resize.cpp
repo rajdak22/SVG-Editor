@@ -16,10 +16,6 @@ void SelectTool::performResize(Canvas* canvas, const QPointF& pos)
     case ResizeHandle::TopRight:    newBox.setTopRight(pos); break;
     case ResizeHandle::BottomLeft:  newBox.setBottomLeft(pos); break;
     case ResizeHandle::BottomRight: newBox.setBottomRight(pos); break;
-    case ResizeHandle::Top:         newBox.setTop(pos.y()); break;
-    case ResizeHandle::Bottom:      newBox.setBottom(pos.y()); break;
-    case ResizeHandle::Left:        newBox.setLeft(pos.x()); break;
-    case ResizeHandle::Right:       newBox.setRight(pos.x()); break;
     default: return;
     }
 

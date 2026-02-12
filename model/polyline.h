@@ -10,7 +10,7 @@ public:
     Polyline(const std::vector<QPointF>& points);
 
     std::string toSVG() const override;
-    void draw(QPainter& painter, bool selected) const override;
+    void draw(QPainter& painter) const override;
 
     bool contains(double x, double y) const override;
     void move(double dx, double dy) override;
