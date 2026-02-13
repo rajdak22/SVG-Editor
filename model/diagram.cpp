@@ -6,6 +6,10 @@ void Diagram::addObject(std::shared_ptr<GraphicsObject> obj) {
     objects_.push_back(obj);
 }
 
+void Diagram::unAddObject() {
+    objects_.pop_back();
+}
+
 void Diagram::removeObject(std::shared_ptr<GraphicsObject> obj)
 {
     auto it = std::find(objects_.begin(), objects_.end(), obj);

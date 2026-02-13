@@ -48,6 +48,7 @@ set(PROJECT_SOURCES
         command/add_command.cpp
 
         command/move_command.h
+        command/move_command.cpp
 
         command/delete_command.h
         command/delete_command.cpp
@@ -56,10 +57,13 @@ set(PROJECT_SOURCES
         command/resize_command.cpp
 
         command/set_fill_color_command.h
+        command/set_fill_color_command.cpp
 
         command/set_stroke_color_command.h
+        command/set_stroke_color_command.cpp
 
         command/set_stroke_width_command.h
+        command/set_stroke_width_command.cpp
 
         parser/svg_parser.h
         parser/svg_parser.cpp

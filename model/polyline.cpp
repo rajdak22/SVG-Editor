@@ -34,7 +34,7 @@ void Polyline::draw(QPainter& painter) const
     auto stroke_color_qt = QColor(QString::fromStdString(stroke_color_));
     auto pen_attributes = QPen(stroke_color_qt, stroke_width_);
     painter.setPen(pen_attributes);
-    painter.drawPolyline(points_.data(), points_.size());
+    painter.drawPolyline(points_.data(), points_.size());       // points_.data() returns pointer to first element; nullptr if empty
 }
 
 bool Polyline::contains(double x, double y) const

@@ -1,5 +1,4 @@
-#ifndef LINE_H
-#define LINE_H
+#pragma once
 
 #include "graphics_object.h"
 
@@ -19,5 +18,3 @@ public:
 private:
     double x1_, y1_, x2_, y2_;
 };
-
-#endif

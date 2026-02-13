@@ -1,5 +1,4 @@
-#ifndef CIRCLE_H
-#define CIRCLE_H
+#pragma once
 
 #include "graphics_object.h"
 
@@ -22,5 +21,3 @@ class Circle : public GraphicsObject {
         std::shared_ptr<GraphicsObject> clone() const override;
 
 };
-
-#endif

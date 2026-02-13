@@ -1,5 +1,4 @@
-#ifndef HEXAGON_H
-#define HEXAGON_H
+
 
 #include "graphics_object.h"
 
@@ -21,5 +20,3 @@ private:
     double cy_;
     double r_;
 };
-
-#endif

@@ -1,5 +1,4 @@
-#ifndef SVG_PARSER_H
-#define SVG_PARSER_H
+#pragma once
 
 #include <string>
 #include "../model/diagram.h"
@@ -16,6 +15,7 @@ public:
 private:
 
     static std::string getAttribute(const std::string& line, const std::string& key);
+    static void setPaintAttributes(const std::string& line, const std::shared_ptr<GraphicsObject>& obj);
 
     static std::shared_ptr<GraphicsObject> parseCircle(const std::string& line);
     static std::shared_ptr<GraphicsObject> parseRectangle(const std::string& line);
@@ -25,5 +25,3 @@ private:
     static std::shared_ptr<GraphicsObject> parsePolyline(const std::string& line);
     static std::shared_ptr<GraphicsObject> parseText(const std::string& line);
 };
-
-#endif

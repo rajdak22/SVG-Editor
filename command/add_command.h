@@ -7,15 +7,14 @@
 
 class AddCommand : public Command
 {
-public:
-    AddCommand(Diagram& diagram,
-               std::shared_ptr<GraphicsObject> obj)
-        : diagram_(diagram), object_(obj) {}
-
-    void execute() override;
-    void undo() override;
-
 private:
     Diagram& diagram_;
     std::shared_ptr<GraphicsObject> object_;
+
+public:
+
+    AddCommand(Diagram& diagram, std::shared_ptr<GraphicsObject> obj);
+
+    void execute() override;
+    void undo() override;
 };

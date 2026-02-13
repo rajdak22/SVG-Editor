@@ -1,5 +1,4 @@
-#ifndef DIAGRAM_H
-#define DIAGRAM_H
+#pragma once
 
 #include <vector>
 #include <memory>
@@ -14,6 +13,7 @@ private:
 public:
 
     void addObject(std::shared_ptr<GraphicsObject> obj);
+    void unAddObject();
     const std::vector<std::shared_ptr<GraphicsObject>>& getObjects() const;
     std::string toSVG() const;
 
@@ -21,5 +21,3 @@ public:
     void removeObject(std::shared_ptr<GraphicsObject> obj);
     void insertObject(int index, std::shared_ptr<GraphicsObject> obj);
 };
-
-#endif

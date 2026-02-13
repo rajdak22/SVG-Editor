@@ -6,25 +6,16 @@
 
 class SetStrokeColorCommand : public Command
 {
-public:
-    SetStrokeColorCommand(std::shared_ptr<GraphicsObject> obj,
-                          const std::string& newColor)
-        : object_(obj),
-        oldColor_(obj->getStrokeColor()),
-        newColor_(newColor) {}
-
-    void execute() override
-    {
-        object_->setStrokeColor(newColor_);
-    }
-
-    void undo() override
-    {
-        object_->setStrokeColor(oldColor_);
-    }
-
 private:
+
     std::shared_ptr<GraphicsObject> object_;
     std::string oldColor_;
     std::string newColor_;
+
+public:
+
+    SetStrokeColorCommand(std::shared_ptr<GraphicsObject> obj, const std::string& newColor);
+
+    void execute() override;
+    void undo() override;
 };

@@ -1,5 +1,4 @@
-#ifndef ROUNDED_RECTANGLE_H
-#define ROUNDED_RECTANGLE_H
+#pragma once
 
 #include "graphics_object.h"
 
@@ -20,5 +19,3 @@ private:
     double x_, y_, width_, height_;
     double rx_, ry_;
 };
-
-#endif

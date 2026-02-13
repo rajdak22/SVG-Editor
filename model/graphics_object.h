@@ -1,5 +1,4 @@
-#ifndef GRAPHICS_OBJECT_H
-#define GRAPHICS_OBJECT_H
+#pragma once
 
 #include <string>
 #include <QPainter>
@@ -44,5 +43,3 @@ public:
 
 
 };
-
-#endif

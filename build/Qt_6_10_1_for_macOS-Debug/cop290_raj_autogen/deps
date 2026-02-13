@@ -855,11 +855,15 @@ cop290_raj_autogen/timestamp: \
 	/Users/rajdakshit/Documents/cop290_raj/command/command.h \
 	/Users/rajdakshit/Documents/cop290_raj/command/delete_command.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/command/delete_command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/move_command.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/command/move_command.h \
 	/Users/rajdakshit/Documents/cop290_raj/command/resize_command.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/command/resize_command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/set_fill_color_command.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/command/set_fill_color_command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_color_command.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_color_command.h \
+	/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_width_command.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_width_command.h \
 	/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas.cpp \
 	/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas.h \

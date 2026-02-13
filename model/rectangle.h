@@ -1,5 +1,4 @@
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#pragma once
 
 #include "graphics_object.h"
 
@@ -21,5 +20,3 @@ private:
     double width_;
     double height_;
 };
-
-#endif

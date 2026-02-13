@@ -597,7 +597,27 @@
 			null
 		],
 		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/move_command.cpp",
+			"MU",
+			null
+		],
+		[
 			"/Users/rajdakshit/Documents/cop290_raj/command/resize_command.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/set_fill_color_command.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_color_command.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/command/set_stroke_width_command.cpp",
 			"MU",
 			null
 		],

@@ -12,62 +12,48 @@
 #include "../model/text.h"
 #include "../model/polyline.h"
 
-std::shared_ptr<GraphicsObject>
-SVGParser::parseCircle(const std::string& line)
+std::shared_ptr<GraphicsObject> SVGParser::parseCircle(const std::string& line)
 {
     double cx = std::stod(getAttribute(line, "cx"));
     double cy = std::stod(getAttribute(line, "cy"));
     double r  = std::stod(getAttribute(line, "r"));
 
-    auto circle = std::make_shared<Circle>(cx, cy, r);
+    auto circleObj = std::make_shared<Circle>(cx, cy, r);
 
-    std::string fill = getAttribute(line, "fill");
-    std::string stroke = getAttribute(line, "stroke");
-    std::string strokeWidth = getAttribute(line, "stroke-width");
+    setPaintAttributes(line, circleObj);
 
-    if (!fill.empty()) circle->setFillColor(fill);
-    if (!stroke.empty()) circle->setStrokeColor(stroke);
-    if (!strokeWidth.empty())
-        circle->setStrokeWidth(std::stoi(strokeWidth));
-
-    return circle;
+    return circleObj;
 }
 
-std::shared_ptr<GraphicsObject>
-SVGParser::parseRectangle(const std::string& line)
+std::shared_ptr<GraphicsObject> SVGParser::parseRectangle(const std::string& line)
 {
     double x = std::stod(getAttribute(line, "x"));
     double y = std::stod(getAttribute(line, "y"));
     double width = std::stod(getAttribute(line, "width"));
     double height = std::stod(getAttribute(line, "height"));
 
-    std::string rxStr = getAttribute(line, "rx");
-    std::string ryStr = getAttribute(line, "ry");
+    std::string rxString = getAttribute(line, "rx");
+    std::string ryString = getAttribute(line, "ry");
 
-    std::shared_ptr<GraphicsObject> obj;
+    std::shared_ptr<GraphicsObject> rectObj;
 
-    if (!rxStr.empty() || !ryStr.empty()) {
-        double rx = rxStr.empty() ? 0 : std::stod(rxStr);
-        double ry = ryStr.empty() ? 0 : std::stod(ryStr);
-        obj = std::make_shared<RoundedRectangle>(x, y, width, height, rx, ry);
-    } else {
-        obj = std::make_shared<Rectangle>(x, y, width, height);
+    if (!rxString.empty() || !ryString.empty())
+    {
+        double rx = rxString.empty() ? 0 : std::stod(rxString);
+        double ry = ryString.empty() ? 0 : std::stod(ryString);
+        rectObj = std::make_shared<RoundedRectangle>(x, y, width, height, rx, ry);
+    }
+    else
+    {
+        rectObj = std::make_shared<Rectangle>(x, y, width, height);
     }
 
-    std::string fill = getAttribute(line, "fill");
-    std::string stroke = getAttribute(line, "stroke");
-    std::string strokeWidth = getAttribute(line, "stroke-width");
+    setPaintAttributes(line, rectObj);
 
-    if (!fill.empty()) obj->setFillColor(fill);
-    if (!stroke.empty()) obj->setStrokeColor(stroke);
-    if (!strokeWidth.empty())
-        obj->setStrokeWidth(std::stoi(strokeWidth));
-
-    return obj;
+    return rectObj;
 }
 
-std::shared_ptr<GraphicsObject>
-SVGParser::parseLine(const std::string& line)
+std::shared_ptr<GraphicsObject> SVGParser::parseLine(const std::string& line)
 {
     double x1 = std::stod(getAttribute(line, "x1"));
     double y1 = std::stod(getAttribute(line, "y1"));
@@ -76,93 +62,63 @@ SVGParser::parseLine(const std::string& line)
 
     auto lineObj = std::make_shared<Line>(x1, y1, x2, y2);
 
-    std::string stroke = getAttribute(line, "stroke");
-    std::string strokeWidth = getAttribute(line, "stroke-width");
-
-    if (!stroke.empty())
-        lineObj->setStrokeColor(stroke);
-
-    if (!strokeWidth.empty())
-        lineObj->setStrokeWidth(std::stoi(strokeWidth));
+    setPaintAttributes(line, lineObj);
 
     return lineObj;
 }
 
-std::shared_ptr<GraphicsObject>
-SVGParser::parseHexagon(const std::string& line)
+std::shared_ptr<GraphicsObject> SVGParser::parseHexagon(const std::string& line)
 {
     double cx = std::stod(getAttribute(line, "cx"));
     double cy = std::stod(getAttribute(line, "cy"));
     double r  = std::stod(getAttribute(line, "r"));
 
-    auto hex = std::make_shared<Hexagon>(cx, cy, r);
+    auto hexObj = std::make_shared<Hexagon>(cx, cy, r);
 
-    std::string fill = getAttribute(line, "fill");
-    std::string stroke = getAttribute(line, "stroke");
-    std::string strokeWidth = getAttribute(line, "stroke-width");
+    setPaintAttributes(line, hexObj);
 
-    if (!fill.empty())
-        hex->setFillColor(fill);
-
-    if (!stroke.empty())
-        hex->setStrokeColor(stroke);
-
-    if (!strokeWidth.empty())
-        hex->setStrokeWidth(std::stoi(strokeWidth));
-
-    return hex;
+    return hexObj;
 }
 
-std::shared_ptr<GraphicsObject>
-SVGParser::parsePolyline(const std::string& line)
+std::shared_ptr<GraphicsObject> SVGParser::parsePolyline(const std::string& line)
 {
-    std::string pointsStr = getAttribute(line, "points");
+    std::string pointsList = getAttribute(line, "points");
 
     std::vector<QPointF> points;
-    std::stringstream ss(pointsStr);
-    std::string token;
+    std::stringstream ss(pointsList);
+    std::string coordinate;
 
-    while (ss >> token) {
-        size_t comma = token.find(",");
-        double x = std::stod(token.substr(0, comma));
-        double y = std::stod(token.substr(comma + 1));
-        points.emplace_back(x, y);
+    while (ss >> coordinate) {
+        size_t comma = coordinate.find(",");
+        double x = std::stod(coordinate.substr(0, comma));
+        double y = std::stod(coordinate.substr(comma + 1));
+        points.push_back(QPointF(x, y));
     }
 
-    auto poly = std::make_shared<Polyline>(points);
+    auto polyObj = std::make_shared<Polyline>(points);
 
-    std::string stroke = getAttribute(line, "stroke");
-    std::string strokeWidth = getAttribute(line, "stroke-width");
+    setPaintAttributes(line, polyObj);
 
-    if (!stroke.empty())
-        poly->setStrokeColor(stroke);
-
-    if (!strokeWidth.empty())
-        poly->setStrokeWidth(std::stoi(strokeWidth));
-
-    return poly;
+    return polyObj;
 }
 
-std::shared_ptr<GraphicsObject>
-SVGParser::parseText(const std::string& line)
+std::shared_ptr<GraphicsObject> SVGParser::parseText(const std::string& line)
 {
     double x = std::stod(getAttribute(line, "x"));
     double y = std::stod(getAttribute(line, "y"));
 
+    // example: <text x="2" y="1">Hello</text>
+    // getAttribute not used since content isn't between ""
     size_t start = line.find(">");
+    if (start == std::string::npos) return nullptr;
     size_t end = line.find("</text>");
-
-    if (start == std::string::npos || end == std::string::npos)
-        return nullptr;
+    if (end == std::string::npos) return nullptr;
 
     std::string content = line.substr(start + 1, end - start - 1);
 
     auto textObj = std::make_shared<Text>(x, y, content);
 
-    std::string fill = getAttribute(line, "fill");
-
-    if (!fill.empty())
-        textObj->setFillColor(fill);
+    setPaintAttributes(line, textObj);
 
     return textObj;
 }

@@ -4,14 +4,8 @@ void DeleteCommand::execute()
 {
     const auto& objects = diagram_.getObjects();
 
-    for (int i = 0; i < objects.size(); ++i)
-    {
-        if (objects[i] == object_)
-        {
-            index_ = i;
-            break;
-        }
-    }
+    auto it = find(objects.begin(), objects.end(), object_);
+    if(it != objects.end()) index_ = it - objects.begin();
 
     if (index_ != -1)
         diagram_.removeObject(object_);

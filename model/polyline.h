@@ -1,5 +1,4 @@
-#ifndef POLYLINE_H
-#define POLYLINE_H
+#pragma once
 
 #include "graphics_object.h"
 #include <vector>
@@ -21,5 +20,3 @@ public:
 private:
     std::vector<QPointF> points_;
 };
-
-#endif

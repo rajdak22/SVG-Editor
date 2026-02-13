@@ -47,3 +47,14 @@ std::string SVGParser::getAttribute(const std::string& line, const std::string& 
 
     return line.substr(start_quote + 1, end_quote - start_quote - 1);   // final value of token
 }
+
+void SVGParser::setPaintAttributes(const std::string& line, const std::shared_ptr<GraphicsObject>& obj)
+{
+    std::string fill = getAttribute(line, "fill");
+    std::string stroke = getAttribute(line, "stroke");
+    std::string strokeWidth = getAttribute(line, "stroke-width");
+
+    if (!fill.empty()) obj->setFillColor(fill);                                 // checking if empty, to apply default value
+    if (!stroke.empty()) obj->setStrokeColor(stroke);                           // checking if empty, to apply default value
+    if (!strokeWidth.empty()) obj->setStrokeWidth(std::stoi(strokeWidth));      // checking if empty, to apply default value
+}
