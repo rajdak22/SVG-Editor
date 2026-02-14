@@ -6,9 +6,9 @@
 class PolylineTool : public Tool
 {
 public:
-    void mousePress(Canvas*, QMouseEvent*) override;
-    void mouseMove(Canvas*, QMouseEvent*) override;
-    void mouseRelease(Canvas*, QMouseEvent*) override;
+    void mousePress(Whiteboard*, QMouseEvent*) override;
+    void mouseMove(Whiteboard*, QMouseEvent*) override;
+    void mouseRelease(Whiteboard*, QMouseEvent*) override;
 
 private:
     std::vector<QPointF> points_;

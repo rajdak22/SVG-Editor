@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "../canvas/canvas.h"
+#include "../whiteboard/whiteboard.h"
 #include "../../parser/svg_parser.h"
 
 #include <QFileDialog>
@@ -13,7 +13,7 @@ void MainWindow::saveFile()
     }
 
     std::ofstream file(current_file_path_.toStdString());
-    file << canvas->getDiagram().toSVG();
+    file << whiteboard->getDiagram().toSVG();
 }
 
 void MainWindow::saveFileAs()
@@ -31,7 +31,7 @@ void MainWindow::saveFileAs()
     current_file_path_ = fileName;
 
     std::ofstream file(fileName.toStdString());
-    file << canvas->getDiagram().toSVG();
+    file << whiteboard->getDiagram().toSVG();
 }
 
 void MainWindow::openFile()
@@ -49,14 +49,14 @@ void MainWindow::openFile()
     current_file_path_ = fileName;
 
     Diagram d = SVGParser::parseFile(fileName.toStdString());
-    canvas->setDiagram(d);
+    whiteboard->setDiagram(d);
 }
 
 void MainWindow::newFile()
 {
-    canvas->setDiagram(Diagram{});
-    canvas->clearSelection();
-    canvas->clearHistory();
+    whiteboard->setDiagram(Diagram{});
+    whiteboard->clearSelection();
+    whiteboard->clearHistory();
     current_file_path_.clear();
 }
 

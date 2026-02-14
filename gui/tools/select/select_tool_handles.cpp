@@ -1,5 +1,5 @@
 #include "select_tool.h"
-#include "../../canvas/canvas.h"
+#include "../../whiteboard/whiteboard.h"
 
 static constexpr double HANDLE_SIZE = 6.0;
 
@@ -11,9 +11,9 @@ static QRectF handleRect(const QPointF& center)
                   HANDLE_SIZE);
 }
 
-bool SelectTool::tryStartResize(Canvas* canvas, const QPointF& pos)
+bool SelectTool::tryStartResize(Whiteboard* whiteboard, const QPointF& pos)
 {
-    auto selected = canvas->getSelected();
+    auto selected = whiteboard->getSelected();
     if (!selected)
         return false;
 

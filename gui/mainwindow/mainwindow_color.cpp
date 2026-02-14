@@ -1,5 +1,5 @@
 #include "mainwindow.h"
-#include "../canvas/canvas.h"
+#include "../whiteboard/whiteboard.h"
 #include "../../command/set_fill_color_command.h"
 #include "../../command/set_stroke_color_command.h"
 #include "../../command/set_stroke_width_command.h"
@@ -9,7 +9,7 @@
 
 void MainWindow::changeFill()
 {
-    auto selected = canvas->getSelected();
+    auto selected = whiteboard->getSelected();
     if (!selected)
         return;
 
@@ -17,7 +17,7 @@ void MainWindow::changeFill()
     if (!color.isValid())
         return;
 
-    canvas->executeCommand(
+    whiteboard->executeCommand(
         std::make_unique<SetFillColorCommand>(
             selected,
             color.name().toStdString()
@@ -27,7 +27,7 @@ void MainWindow::changeFill()
 
 void MainWindow::changeStroke()
 {
-    auto selected = canvas->getSelected();
+    auto selected = whiteboard->getSelected();
     if (!selected)
         return;
 
@@ -35,7 +35,7 @@ void MainWindow::changeStroke()
     if (!color.isValid())
         return;
 
-    canvas->executeCommand(
+    whiteboard->executeCommand(
         std::make_unique<SetStrokeColorCommand>(
             selected,
             color.name().toStdString()
@@ -45,7 +45,7 @@ void MainWindow::changeStroke()
 
 void MainWindow::changeStrokeWidth()
 {
-    auto selected = canvas->getSelected();
+    auto selected = whiteboard->getSelected();
     if (!selected)
         return;
 
@@ -62,7 +62,7 @@ void MainWindow::changeStrokeWidth()
     if (!ok)
         return;
 
-    canvas->executeCommand(
+    whiteboard->executeCommand(
         std::make_unique<SetStrokeWidthCommand>(
             selected,
             width

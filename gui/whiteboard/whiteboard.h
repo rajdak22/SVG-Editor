@@ -8,20 +8,48 @@
 #include "../tools/tool.h"
 #include "../../command/command.h"
 
-class Canvas : public QWidget
+class Whiteboard : public QWidget
 {
-    Q_OBJECT
+
+private:
+
+    // phase 1 (just diagrams)
+    Diagram diagram;
+
+    // phase 2 (selection and dragging and drawing)
+    std::shared_ptr<GraphicsObject> selected_;
+    std::shared_ptr<GraphicsObject> temp_object_;
+    std::unique_ptr<Tool> current_tool_;
+
+    // phase 3 (shifting from whiteboard and undo/redo)
+    std::vector<std::unique_ptr<Command>> undo_stack_;
+    std::vector<std::unique_ptr<Command>> redo_stack_;
+
+    // phase 4 (cut copy paste)
+    std::shared_ptr<GraphicsObject> clipboard_;
+
+    enum class ResizeHandle {
+        None,
+        TopLeft,
+        TopRight,
+        BottomRight,
+        BottomLeft
+    };
+
+    ResizeHandle active_handle_ = ResizeHandle::None;
+    QRectF original_box_;
+    bool resizing_ = false;
 
 public:
 
-    explicit Canvas(QWidget *parent = nullptr);
+    explicit Whiteboard(QWidget *parent = nullptr);
 
     // phase 1 (just diagrams)
     void setDiagram(const Diagram& d);
     void setTool(std::unique_ptr<Tool> tool);
 
     Diagram& getDiagram();
-    std::shared_ptr<GraphicsObject>& getSelected();
+    std::shared_ptr<GraphicsObject> getSelected() const;
     std::shared_ptr<GraphicsObject> getTempObject() const;
 
     // phase 2 (selection and dragging and drawing)
@@ -29,7 +57,7 @@ public:
     void setTempObject(std::shared_ptr<GraphicsObject> obj);
     void clearTempObject();
 
-    // phase 3 (shifting from canvas and undo/redo)
+    // phase 3 (shifting from whiteboard and undo/redo)
     void executeCommand(std::unique_ptr<Command> cmd);
     void undo();
     void redo();
@@ -43,6 +71,7 @@ public:
 
 protected:
 
+    // overriding virtual functions from QWidget
     // phase 1 (just diagrams)
     void paintEvent(QPaintEvent *event) override;
 
@@ -50,37 +79,5 @@ protected:
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
-
-    // phase 4
-    void keyPressEvent(QKeyEvent* event) override;
-
-private:
-
-    // phase 1 (just diagrams)
-    Diagram diagram;
-
-    // phase 2 (selection and dragging and drawing)
-    std::shared_ptr<GraphicsObject> selected_;
-    std::shared_ptr<GraphicsObject> temp_object_;
-    std::unique_ptr<Tool> current_tool_;
-
-    // phase 3 (shifting from canvas and undo/redo)
-    std::vector<std::unique_ptr<Command>> undo_stack_;
-    std::vector<std::unique_ptr<Command>> redo_stack_;
-
-    // phase 4 (cut copy paste)
-    std::shared_ptr<GraphicsObject> clipboard_;
-
-    enum class ResizeHandle {
-        None,
-        TopLeft, Top, TopRight,
-        Right,
-        BottomRight, Bottom, BottomLeft,
-        Left
-    };
-
-    ResizeHandle active_handle_ = ResizeHandle::None;
-    QRectF original_box_;
-    bool resizing_ = false;
 
 };

@@ -1,16 +1,16 @@
 #include "hexagon_tool.h"
-#include "../canvas/canvas.h"
+#include "../whiteboard/whiteboard.h"
 #include "../../model/hexagon.h"
 #include "../../command/add_command.h"
 #include <cmath>
 
-void HexagonTool::mousePress(Canvas*, QMouseEvent* event)
+void HexagonTool::mousePress(Whiteboard*, QMouseEvent* event)
 {
     center_ = event->position();
     drawing_ = true;
 }
 
-void HexagonTool::mouseMove(Canvas* canvas, QMouseEvent* event)
+void HexagonTool::mouseMove(Whiteboard* whiteboard, QMouseEvent* event)
 {
     if (!drawing_)
         return;
@@ -26,25 +26,25 @@ void HexagonTool::mouseMove(Canvas* canvas, QMouseEvent* event)
         radius
         );
 
-    canvas->setTempObject(hex);
-    canvas->update();
+    whiteboard->setTempObject(hex);
+    whiteboard->update();
 }
 
-void HexagonTool::mouseRelease(Canvas* canvas, QMouseEvent*)
+void HexagonTool::mouseRelease(Whiteboard* whiteboard, QMouseEvent*)
 {
     if (!drawing_)
         return;
 
-    auto obj = canvas->getTempObject();
+    auto obj = whiteboard->getTempObject();
     if (obj)
-        canvas->executeCommand(
+        whiteboard->executeCommand(
             std::make_unique<AddCommand>(
-                canvas->getDiagram(),
+                whiteboard->getDiagram(),
                 obj
                 )
             );
 
-    canvas->clearTempObject();
+    whiteboard->clearTempObject();
     drawing_ = false;
-    canvas->update();
+    whiteboard->update();
 }

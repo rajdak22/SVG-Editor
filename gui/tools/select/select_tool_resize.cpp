@@ -1,10 +1,10 @@
 #include "select_tool.h"
-#include "../../canvas/canvas.h"
+#include "../../whiteboard/whiteboard.h"
 #include "../../../command/resize_command.h"
 
-void SelectTool::performResize(Canvas* canvas, const QPointF& pos)
+void SelectTool::performResize(Whiteboard* whiteboard, const QPointF& pos)
 {
-    auto selected = canvas->getSelected();
+    auto selected = whiteboard->getSelected();
     if (!selected)
         return;
 
@@ -22,9 +22,9 @@ void SelectTool::performResize(Canvas* canvas, const QPointF& pos)
     selected->resize(newBox.normalized());
 }
 
-void SelectTool::finishResize(Canvas* canvas)
+void SelectTool::finishResize(Whiteboard* whiteboard)
 {
-    auto selected = canvas->getSelected();
+    auto selected = whiteboard->getSelected();
     if (!selected)
         return;
 
@@ -34,7 +34,7 @@ void SelectTool::finishResize(Canvas* canvas)
     {
         selected->resize(original_box_);
 
-        canvas->executeCommand(
+        whiteboard->executeCommand(
             std::make_unique<ResizeCommand>(
                 selected,
                 original_box_,

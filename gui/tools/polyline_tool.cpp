@@ -1,16 +1,16 @@
 #include "polyline_tool.h"
-#include "../canvas/canvas.h"
+#include "../whiteboard/whiteboard.h"
 #include "../../model/polyline.h"
 #include "../../command/add_command.h"
 
-void PolylineTool::mousePress(Canvas*, QMouseEvent* event)
+void PolylineTool::mousePress(Whiteboard*, QMouseEvent* event)
 {
     points_.clear();
     points_.push_back(event->position());
     drawing_ = true;
 }
 
-void PolylineTool::mouseMove(Canvas* canvas, QMouseEvent* event)
+void PolylineTool::mouseMove(Whiteboard* whiteboard, QMouseEvent* event)
 {
     if (!drawing_)
         return;
@@ -19,25 +19,25 @@ void PolylineTool::mouseMove(Canvas* canvas, QMouseEvent* event)
 
     auto poly = std::make_shared<Polyline>(points_);
 
-    canvas->setTempObject(poly);
-    canvas->update();
+    whiteboard->setTempObject(poly);
+    whiteboard->update();
 }
 
-void PolylineTool::mouseRelease(Canvas* canvas, QMouseEvent*)
+void PolylineTool::mouseRelease(Whiteboard* whiteboard, QMouseEvent*)
 {
     if (!drawing_)
         return;
 
-    auto obj = canvas->getTempObject();
+    auto obj = whiteboard->getTempObject();
     if (obj)
-        canvas->executeCommand(
+        whiteboard->executeCommand(
             std::make_unique<AddCommand>(
-                canvas->getDiagram(),
+                whiteboard->getDiagram(),
                 obj
                 )
             );
 
-    canvas->clearTempObject();
+    whiteboard->clearTempObject();
     drawing_ = false;
-    canvas->update();
+    whiteboard->update();
 }

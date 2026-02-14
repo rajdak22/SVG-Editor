@@ -401,12 +401,6 @@
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas.h",
-			"MU",
-			"TJFEXQ7ADC/moc_canvas.cpp",
-			null
-		],
-		[
 			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow.h",
 			"MU",
 			"E7DWLQFKI2/moc_mainwindow.cpp",
@@ -464,6 +458,12 @@
 			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/tool.h",
 			"MU",
 			"GKS45WUDP4/moc_tool.cpp",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/whiteboard/whiteboard.h",
+			"MU",
+			"NGNSU6HLUE/moc_whiteboard.cpp",
 			null
 		],
 		[
@@ -622,26 +622,6 @@
 			null
 		],
 		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas.cpp",
-			"MU",
-			null
-		],
-		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas_commands.cpp",
-			"MU",
-			null
-		],
-		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas_input.cpp",
-			"MU",
-			null
-		],
-		[
-			"/Users/rajdakshit/Documents/cop290_raj/gui/canvas/canvas_paint.cpp",
-			"MU",
-			null
-		],
-		[
 			"/Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow.cpp",
 			"MU",
 			null
@@ -723,6 +703,26 @@
 		],
 		[
 			"/Users/rajdakshit/Documents/cop290_raj/gui/tools/text_tool.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/whiteboard/whiteboard.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/whiteboard/whiteboard_commands.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/whiteboard/whiteboard_input.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/rajdakshit/Documents/cop290_raj/gui/whiteboard/whiteboard_paint.cpp",
 			"MU",
 			null
 		],

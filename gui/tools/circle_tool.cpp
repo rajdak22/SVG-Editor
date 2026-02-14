@@ -1,16 +1,16 @@
 #include "circle_tool.h"
-#include "../canvas/canvas.h"
+#include "../whiteboard/whiteboard.h"
 #include "../../model/circle.h"
 #include "../../command/add_command.h"
 #include <cmath>
 
-void CircleTool::mousePress(Canvas* canvas, QMouseEvent* event)
+void CircleTool::mousePress(Whiteboard* whiteboard, QMouseEvent* event)
 {
     start_point_ = event->position();
     drawing_ = true;
 }
 
-void CircleTool::mouseMove(Canvas* canvas, QMouseEvent* event)
+void CircleTool::mouseMove(Whiteboard* whiteboard, QMouseEvent* event)
 {
     if (!drawing_)
         return;
@@ -28,26 +28,26 @@ void CircleTool::mouseMove(Canvas* canvas, QMouseEvent* event)
 
     auto circle = std::make_shared<Circle>(x0, y0, radius);
 
-    canvas->setTempObject(circle);
-    canvas->update();
+    whiteboard->setTempObject(circle);
+    whiteboard->update();
 }
 
-void CircleTool::mouseRelease(Canvas* canvas, QMouseEvent*)
+void CircleTool::mouseRelease(Whiteboard* whiteboard, QMouseEvent*)
 {
     if (!drawing_)
         return;
 
-    auto obj = canvas->getTempObject();
+    auto obj = whiteboard->getTempObject();
     if (obj)
-        canvas->executeCommand(
+        whiteboard->executeCommand(
             std::make_unique<AddCommand>(
-                canvas->getDiagram(),
+                whiteboard->getDiagram(),
                 obj
                 )
             );
 
-    canvas->clearTempObject();
+    whiteboard->clearTempObject();
     drawing_ = false;
 
-    canvas->update();
+    whiteboard->update();
 }

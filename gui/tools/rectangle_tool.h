@@ -8,7 +8,7 @@ private:
     bool drawing_ = false;
 
 public:
-    void mousePress(Canvas* canvas, QMouseEvent* event) override;
-    void mouseMove(Canvas* canvas, QMouseEvent* event) override;
-    void mouseRelease(Canvas* canvas, QMouseEvent* event) override;
+    void mousePress(Whiteboard* whiteboard, QMouseEvent* event) override;
+    void mouseMove(Whiteboard* whiteboard, QMouseEvent* event) override;
+    void mouseRelease(Whiteboard* whiteboard, QMouseEvent* event) override;
 };

@@ -1,17 +1,17 @@
 #include "text_tool.h"
-#include "../canvas/canvas.h"
+#include "../whiteboard/whiteboard.h"
 #include "../../model/text.h"
 #include "../../command/add_command.h"
 
 #include <QInputDialog>
 
-void TextTool::mousePress(Canvas* canvas, QMouseEvent* event)
+void TextTool::mousePress(Whiteboard* whiteboard, QMouseEvent* event)
 {
     QPointF pos = event->position();
 
     bool ok;
     QString text = QInputDialog::getText(
-        canvas,
+        whiteboard,
         "Enter Text",
         "Text:",
         QLineEdit::Normal,
@@ -28,11 +28,11 @@ void TextTool::mousePress(Canvas* canvas, QMouseEvent* event)
         text.toStdString()
         );
 
-    canvas->executeCommand(
+    whiteboard->executeCommand(
         std::make_unique<AddCommand>(
-            canvas->getDiagram(),
+            whiteboard->getDiagram(),
             textObj
             )
         );
-    canvas->update();
+    whiteboard->update();
 }

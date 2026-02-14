@@ -2,10 +2,10 @@
 
 MainWindow::MainWindow()
 {
-    canvas = new Canvas(this);
-    setCentralWidget(canvas);
+    whiteboard = new Whiteboard(this);
+    setCentralWidget(whiteboard);
 
-    canvas->setDiagram(Diagram{});
+    whiteboard->setDiagram(Diagram{});
 
     createActions();
     createToolbars();

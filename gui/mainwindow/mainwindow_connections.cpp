@@ -12,32 +12,32 @@ void MainWindow::connectActions()
 {
     // ----- Tool switching -----
     connect(selectAction, &QAction::triggered,
-            this, [=]() { canvas->setTool(std::make_unique<SelectTool>()); });
+            this, [=]() { whiteboard->setTool(std::make_unique<SelectTool>()); });
 
     connect(rectAction, &QAction::triggered,
-            this, [=]() { canvas->setTool(std::make_unique<RectangleTool>()); });
+            this, [=]() { whiteboard->setTool(std::make_unique<RectangleTool>()); });
 
     connect(circleAction, &QAction::triggered,
-            this, [=]() { canvas->setTool(std::make_unique<CircleTool>()); });
+            this, [=]() { whiteboard->setTool(std::make_unique<CircleTool>()); });
 
     connect(lineAction, &QAction::triggered,
-            this, [=]() { canvas->setTool(std::make_unique<LineTool>()); });
+            this, [=]() { whiteboard->setTool(std::make_unique<LineTool>()); });
 
     connect(hexAction, &QAction::triggered,
-            this, [=]() { canvas->setTool(std::make_unique<HexagonTool>()); });
+            this, [=]() { whiteboard->setTool(std::make_unique<HexagonTool>()); });
 
     connect(roundRectAction, &QAction::triggered,
-            this, [=]() { canvas->setTool(std::make_unique<RoundedRectangleTool>()); });
+            this, [=]() { whiteboard->setTool(std::make_unique<RoundedRectangleTool>()); });
 
     connect(polylineAction, &QAction::triggered,
-            this, [=]() { canvas->setTool(std::make_unique<PolylineTool>()); });
+            this, [=]() { whiteboard->setTool(std::make_unique<PolylineTool>()); });
 
     connect(textAction, &QAction::triggered,
-            this, [=]() { canvas->setTool(std::make_unique<TextTool>()); });
+            this, [=]() { whiteboard->setTool(std::make_unique<TextTool>()); });
 
     // ----- Undo/Redo -----
-    connect(undoAction, &QAction::triggered, canvas, &Canvas::undo);
-    connect(redoAction, &QAction::triggered, canvas, &Canvas::redo);
+    connect(undoAction, &QAction::triggered, whiteboard, &Whiteboard::undo);
+    connect(redoAction, &QAction::triggered, whiteboard, &Whiteboard::redo);
 
     // ----- File -----
     connect(saveAction,   &QAction::triggered, this, &MainWindow::saveFile);
@@ -47,9 +47,9 @@ void MainWindow::connectActions()
     connect(closeAction,   &QAction::triggered, this, &MainWindow::closeFile);
 
     // ----- Clipboard -----
-    connect(copyAction,  &QAction::triggered, canvas, &Canvas::copy);
-    connect(cutAction,   &QAction::triggered, canvas, &Canvas::cut);
-    connect(pasteAction, &QAction::triggered, canvas, &Canvas::paste);
+    connect(copyAction,  &QAction::triggered, whiteboard, &Whiteboard::copy);
+    connect(cutAction,   &QAction::triggered, whiteboard, &Whiteboard::cut);
+    connect(pasteAction, &QAction::triggered, whiteboard, &Whiteboard::paste);
 
     // ----- Color / Style -----
     connect(fillAction, &QAction::triggered,
@@ -63,5 +63,5 @@ void MainWindow::connectActions()
 
     // ----- Default tool -----
     selectAction->setChecked(true);
-    canvas->setTool(std::make_unique<SelectTool>());
+    whiteboard->setTool(std::make_unique<SelectTool>());
 }

@@ -45,7 +45,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 118,
+				"line" : 122,
 				"parent" : 0
 			},
 			{
@@ -69,13 +69,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 157,
+				"line" : 161,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 140,
+				"line" : 144,
 				"parent" : 0
 			},
 			{
@@ -308,42 +308,46 @@
 				17,
 				19,
 				22,
-				25,
-				27,
+				24,
+				26,
+				28,
+				30,
 				32,
-				33,
-				35,
+				34,
 				36,
 				37,
-				38,
 				39,
 				40,
+				41,
 				42,
 				43,
 				44,
-				45,
+				46,
+				47,
 				48,
 				49,
-				50,
-				51,
+				52,
 				53,
+				54,
 				55,
 				57,
 				59,
 				61,
 				63,
-				65
+				65,
+				67,
+				69
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "cop290_raj_autogen::@6890427a1f51a3e7e1df"
+			"id" : "cop290_raj_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "cop290_raj_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "cop290_raj_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "cop290_raj::@6890427a1f51a3e7e1df",
@@ -459,31 +463,35 @@
 				17,
 				19,
 				22,
-				25,
-				27,
+				24,
+				26,
+				28,
+				30,
 				32,
-				33,
-				35,
+				34,
 				36,
 				37,
-				38,
 				39,
 				40,
+				41,
 				42,
 				43,
 				44,
-				45,
+				46,
+				47,
 				48,
 				49,
-				50,
-				51,
+				52,
 				53,
+				54,
 				55,
 				57,
 				59,
 				61,
 				63,
-				65
+				65,
+				67,
+				69
 			]
 		},
 		{
@@ -502,37 +510,37 @@
 				20,
 				21,
 				23,
-				24,
-				26,
-				28,
+				25,
+				27,
 				29,
-				30,
 				31,
-				34,
-				41,
-				46,
-				47,
-				52,
-				54,
+				33,
+				35,
+				38,
+				45,
+				50,
+				51,
 				56,
 				58,
 				60,
 				62,
-				64
+				64,
+				66,
+				68
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				66
+				70
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				67
+				71
 			]
 		}
 	],
@@ -673,6 +681,12 @@
 		},
 		{
 			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "command/move_command.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
 			"path" : "command/delete_command.h",
 			"sourceGroupIndex" : 1
 		},
@@ -700,13 +714,31 @@
 		},
 		{
 			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "command/set_fill_color_command.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
 			"path" : "command/set_stroke_color_command.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "command/set_stroke_color_command.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
 			"path" : "command/set_stroke_width_command.h",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "command/set_stroke_width_command.cpp",
+			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
@@ -768,31 +800,31 @@
 		},
 		{
 			"backtrace" : 4,
-			"path" : "gui/canvas/canvas.h",
+			"path" : "gui/whiteboard/whiteboard.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "gui/canvas/canvas.cpp",
+			"path" : "gui/whiteboard/whiteboard.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "gui/canvas/canvas_commands.cpp",
+			"path" : "gui/whiteboard/whiteboard_commands.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "gui/canvas/canvas_input.cpp",
+			"path" : "gui/whiteboard/whiteboard_input.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "gui/canvas/canvas_paint.cpp",
+			"path" : "gui/whiteboard/whiteboard_paint.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

@@ -1,16 +1,16 @@
 #include "rectangle_tool.h"
-#include "../canvas/canvas.h"
+#include "../whiteboard/whiteboard.h"
 #include "../../model/rectangle.h"
 #include "../../command/add_command.h"
 #include <algorithm>
 
-void RectangleTool::mousePress(Canvas* canvas, QMouseEvent* event)
+void RectangleTool::mousePress(Whiteboard* whiteboard, QMouseEvent* event)
 {
     start_point_ = event->position();
     drawing_ = true;
 }
 
-void RectangleTool::mouseMove(Canvas* canvas, QMouseEvent* event)
+void RectangleTool::mouseMove(Whiteboard* whiteboard, QMouseEvent* event)
 {
     if (!drawing_)
         return;
@@ -28,26 +28,26 @@ void RectangleTool::mouseMove(Canvas* canvas, QMouseEvent* event)
 
     auto rect = std::make_shared<Rectangle>(left, top, width, height);
 
-    canvas->setTempObject(rect);
-    canvas->update();
+    whiteboard->setTempObject(rect);
+    whiteboard->update();
 }
 
-void RectangleTool::mouseRelease(Canvas* canvas, QMouseEvent*)
+void RectangleTool::mouseRelease(Whiteboard* whiteboard, QMouseEvent*)
 {
     if (!drawing_)
         return;
 
-    auto obj = canvas->getTempObject();
+    auto obj = whiteboard->getTempObject();
     if (obj)
-        canvas->executeCommand(
+        whiteboard->executeCommand(
             std::make_unique<AddCommand>(
-                canvas->getDiagram(),
+                whiteboard->getDiagram(),
                 obj
                 )
             );
 
-    canvas->clearTempObject();
+    whiteboard->clearTempObject();
     drawing_ = false;
 
-    canvas->update();
+    whiteboard->update();
 }

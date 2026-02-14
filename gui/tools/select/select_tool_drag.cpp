@@ -1,21 +1,21 @@
 #include "select_tool.h"
-#include "../../canvas/canvas.h"
+#include "../../whiteboard/whiteboard.h"
 #include "../../../command/move_command.h"
 #include <cmath>
 
-void SelectTool::startSelectionOrDrag(Canvas* canvas, const QPointF& pos)
+void SelectTool::startSelectionOrDrag(Whiteboard* whiteboard, const QPointF& pos)
 {
-    auto& diagram = canvas->getDiagram();
+    auto& diagram = whiteboard->getDiagram();
     auto& objects = diagram.getObjects();
 
-    canvas->setSelected(nullptr);
+    whiteboard->setSelected(nullptr);
     dragging_ = false;
 
     for (auto it = objects.rbegin(); it != objects.rend(); ++it)
     {
         if ((*it)->contains(pos.x(), pos.y()))
         {
-            canvas->setSelected(*it);
+            whiteboard->setSelected(*it);
             dragging_ = true;
             last_mouse_pos_ = pos;
             start_drag_pos_ = pos;
@@ -23,15 +23,15 @@ void SelectTool::startSelectionOrDrag(Canvas* canvas, const QPointF& pos)
         }
     }
 
-    canvas->update();
+    whiteboard->update();
 }
 
-void SelectTool::handleDragMove(Canvas* canvas, const QPointF& pos)
+void SelectTool::handleDragMove(Whiteboard* whiteboard, const QPointF& pos)
 {
     if (!dragging_)
         return;
 
-    auto selected = canvas->getSelected();
+    auto selected = whiteboard->getSelected();
     if (!selected)
         return;
 
@@ -41,15 +41,15 @@ void SelectTool::handleDragMove(Canvas* canvas, const QPointF& pos)
     selected->move(dx, dy);
     last_mouse_pos_ = pos;
 
-    canvas->update();
+    whiteboard->update();
 }
 
-void SelectTool::finishDrag(Canvas* canvas, const QPointF& pos)
+void SelectTool::finishDrag(Whiteboard* whiteboard, const QPointF& pos)
 {
     if (!dragging_)
         return;
 
-    auto selected = canvas->getSelected();
+    auto selected = whiteboard->getSelected();
     if (!selected)
         return;
 
@@ -60,7 +60,7 @@ void SelectTool::finishDrag(Canvas* canvas, const QPointF& pos)
     {
         selected->move(-total_dx, -total_dy);
 
-        canvas->executeCommand(
+        whiteboard->executeCommand(
             std::make_unique<MoveCommand>(
                 selected,
                 total_dx,

@@ -1,9 +1,9 @@
-#include "canvas.h"
+#include "whiteboard.h"
 #include "../../command/command.h"
 #include "../../command/add_command.h"
 #include "../../command/delete_command.h"
 
-void Canvas::executeCommand(std::unique_ptr<Command> cmd)
+void Whiteboard::executeCommand(std::unique_ptr<Command> cmd)
 {
     cmd->execute();
     undo_stack_.push_back(std::move(cmd));
@@ -11,7 +11,7 @@ void Canvas::executeCommand(std::unique_ptr<Command> cmd)
     update();
 }
 
-void Canvas::undo()
+void Whiteboard::undo()
 {
     if (undo_stack_.empty())
         return;
@@ -24,7 +24,7 @@ void Canvas::undo()
     update();
 }
 
-void Canvas::redo()
+void Whiteboard::redo()
 {
     if (redo_stack_.empty())
         return;
@@ -37,13 +37,13 @@ void Canvas::redo()
     update();
 }
 
-void Canvas::clearHistory()
+void Whiteboard::clearHistory()
 {
     undo_stack_.clear();
     redo_stack_.clear();
 }
 
-void Canvas::copy()
+void Whiteboard::copy()
 {
     if (!selected_)
         return;
@@ -51,7 +51,7 @@ void Canvas::copy()
     clipboard_ = selected_->clone();   // IMPORTANT
 }
 
-void Canvas::cut()
+void Whiteboard::cut()
 {
     if (!selected_)
         return;
@@ -68,7 +68,7 @@ void Canvas::cut()
     selected_.reset();
 }
 
-void Canvas::paste()
+void Whiteboard::paste()
 {
     if (!clipboard_)
         return;

@@ -1,39 +1,39 @@
 #include "select_tool.h"
-#include "../../canvas/canvas.h"
+#include "../../whiteboard/whiteboard.h"
 
-void SelectTool::mousePress(Canvas* canvas, QMouseEvent* event)
+void SelectTool::mousePress(Whiteboard* whiteboard, QMouseEvent* event)
 {
     QPointF pos = event->position();
 
-    if (tryStartResize(canvas, pos))
+    if (tryStartResize(whiteboard, pos))
         return;
 
-    startSelectionOrDrag(canvas, pos);
+    startSelectionOrDrag(whiteboard, pos);
 }
 
-void SelectTool::mouseMove(Canvas* canvas, QMouseEvent* event)
+void SelectTool::mouseMove(Whiteboard* whiteboard, QMouseEvent* event)
 {
     QPointF pos = event->position();
 
     if (resizing_)
     {
-        performResize(canvas, pos);
-        canvas->update();
+        performResize(whiteboard, pos);
+        whiteboard->update();
         return;
     }
 
-    handleDragMove(canvas, pos);
+    handleDragMove(whiteboard, pos);
 }
 
-void SelectTool::mouseRelease(Canvas* canvas, QMouseEvent* event)
+void SelectTool::mouseRelease(Whiteboard* whiteboard, QMouseEvent* event)
 {
     QPointF pos = event->position();
 
     if (resizing_)
     {
-        finishResize(canvas);
+        finishResize(whiteboard);
         return;
     }
 
-    finishDrag(canvas, pos);
+    finishDrag(whiteboard, pos);
 }

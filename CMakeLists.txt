@@ -80,12 +80,12 @@ set(PROJECT_SOURCES
         gui/mainwindow/mainwindow_toolbars.cpp
         gui/mainwindow/mainwindow_connections.cpp
 
-        gui/canvas/canvas.h
-        gui/canvas/canvas.cpp
+        gui/whiteboard/whiteboard.h
+        gui/whiteboard/whiteboard.cpp
 
-        gui/canvas/canvas_commands.cpp
-        gui/canvas/canvas_input.cpp
-        gui/canvas/canvas_paint.cpp
+        gui/whiteboard/whiteboard_commands.cpp
+        gui/whiteboard/whiteboard_input.cpp
+        gui/whiteboard/whiteboard_paint.cpp
 
         gui/tools/tool.h
 

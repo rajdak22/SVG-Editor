@@ -4,15 +4,15 @@
 #pragma once
 #include <QMouseEvent>
 
-class Canvas;
+class Whiteboard;
 
 class Tool {
 public:
     virtual ~Tool() = default;
 
-    virtual void mousePress(Canvas* canvas, QMouseEvent* event) {}
-    virtual void mouseMove(Canvas* canvas, QMouseEvent* event) {}
-    virtual void mouseRelease(Canvas* canvas, QMouseEvent* event) {}
+    virtual void mousePress(Whiteboard* whiteboard, QMouseEvent* event) {}
+    virtual void mouseMove(Whiteboard* whiteboard, QMouseEvent* event) {}
+    virtual void mouseRelease(Whiteboard* whiteboard, QMouseEvent* event) {}
 };
 
 #endif

@@ -2,7 +2,7 @@
 
 #include <QMainWindow>
 #include <QString>
-#include "../canvas/canvas.h"
+#include "../whiteboard/whiteboard.h"
 
 class MainWindow : public QMainWindow
 {
@@ -12,7 +12,7 @@ public:
     MainWindow();
 
 private:
-    Canvas* canvas;
+    Whiteboard* whiteboard;
     QString current_file_path_;
     QActionGroup* toolGroup;
 

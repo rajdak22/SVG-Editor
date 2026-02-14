@@ -1,7 +1,7 @@
-#include "canvas.h"
+#include "whiteboard.h"
 #include <QPainter>
 
-void Canvas::paintEvent(QPaintEvent *)
+void Whiteboard::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 

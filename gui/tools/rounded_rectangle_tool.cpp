@@ -1,16 +1,16 @@
 #include "rounded_rectangle_tool.h"
-#include "../canvas/canvas.h"
+#include "../whiteboard/whiteboard.h"
 #include "../../model/rounded_rectangle.h"
 #include "../../command/add_command.h"
 #include <algorithm>
 
-void RoundedRectangleTool::mousePress(Canvas*, QMouseEvent* event)
+void RoundedRectangleTool::mousePress(Whiteboard*, QMouseEvent* event)
 {
     start_point_ = event->position();
     drawing_ = true;
 }
 
-void RoundedRectangleTool::mouseMove(Canvas* canvas, QMouseEvent* event)
+void RoundedRectangleTool::mouseMove(Whiteboard* whiteboard, QMouseEvent* event)
 {
     if (!drawing_)
         return;
@@ -32,25 +32,25 @@ void RoundedRectangleTool::mouseMove(Canvas* canvas, QMouseEvent* event)
         left, top, width, height, rx, ry
         );
 
-    canvas->setTempObject(rect);
-    canvas->update();
+    whiteboard->setTempObject(rect);
+    whiteboard->update();
 }
 
-void RoundedRectangleTool::mouseRelease(Canvas* canvas, QMouseEvent*)
+void RoundedRectangleTool::mouseRelease(Whiteboard* whiteboard, QMouseEvent*)
 {
     if (!drawing_)
         return;
 
-    auto obj = canvas->getTempObject();
+    auto obj = whiteboard->getTempObject();
     if (obj)
-        canvas->executeCommand(
+        whiteboard->executeCommand(
             std::make_unique<AddCommand>(
-                canvas->getDiagram(),
+                whiteboard->getDiagram(),
                 obj
                 )
             );
 
-    canvas->clearTempObject();
+    whiteboard->clearTempObject();
     drawing_ = false;
-    canvas->update();
+    whiteboard->update();
 }
