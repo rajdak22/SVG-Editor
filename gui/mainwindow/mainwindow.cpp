@@ -5,7 +5,7 @@ MainWindow::MainWindow()
     whiteboard = new Whiteboard(this);
     setCentralWidget(whiteboard);
 
-    whiteboard->setDiagram(Diagram{});
+    whiteboard -> setDiagram(Diagram{});
 
     createActions();
     createToolbars();

@@ -1,7 +1,5 @@
-#ifndef TOOL_H
-#define TOOL_H
-
 #pragma once
+
 #include <QMouseEvent>
 
 class Whiteboard;
@@ -14,5 +12,3 @@ public:
     virtual void mouseMove(Whiteboard* whiteboard, QMouseEvent* event) {}
     virtual void mouseRelease(Whiteboard* whiteboard, QMouseEvent* event) {}
 };
-
-#endif

@@ -7,7 +7,7 @@ class GraphicsObject {
 
 protected:
     std::string stroke_color_ = "black";
-    std::string fill_color_ = "black";
+    std::string fill_color_ = "white";
     int stroke_width_ = 1;
 
 

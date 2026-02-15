@@ -12,8 +12,7 @@ private:
     int index_ = -1;
 
 public:
-    DeleteCommand(Diagram& diagram, std::shared_ptr<GraphicsObject> obj)
-        : diagram_(diagram), object_(obj) {}
+    DeleteCommand(Diagram& diagram, std::shared_ptr<GraphicsObject> obj);
 
     void execute() override;
     void undo() override;

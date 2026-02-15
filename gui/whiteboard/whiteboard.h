@@ -17,31 +17,20 @@ private:
     Diagram diagram;
 
     // phase 2 (selection and dragging and drawing)
-    std::shared_ptr<GraphicsObject> selected_;
-    std::shared_ptr<GraphicsObject> temp_object_;
-    std::unique_ptr<Tool> current_tool_;
+    std::shared_ptr<GraphicsObject> selected_ = nullptr;
+    std::shared_ptr<GraphicsObject> temp_object_ = nullptr;
+    std::unique_ptr<Tool> current_tool_ = nullptr;
 
     // phase 3 (shifting from whiteboard and undo/redo)
     std::vector<std::unique_ptr<Command>> undo_stack_;
     std::vector<std::unique_ptr<Command>> redo_stack_;
 
     // phase 4 (cut copy paste)
-    std::shared_ptr<GraphicsObject> clipboard_;
-
-    enum class ResizeHandle {
-        None,
-        TopLeft,
-        TopRight,
-        BottomRight,
-        BottomLeft
-    };
-
-    ResizeHandle active_handle_ = ResizeHandle::None;
-    QRectF original_box_;
-    bool resizing_ = false;
+    std::shared_ptr<GraphicsObject> clipboard_ = nullptr;
 
 public:
 
+    // why explicit?
     explicit Whiteboard(QWidget *parent = nullptr);
 
     // phase 1 (just diagrams)
@@ -65,7 +54,12 @@ public:
     void cut();
     void paste();
 
-    // phase 4 (saving, etc.)
+    // Color/Style Attributes
+    void changeFillColor();
+    void changeStrokeColor();
+    void changeStrokeWidth();
+
+    // phase 4 (new)
     void clearSelection();
     void clearHistory();
 

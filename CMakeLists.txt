@@ -70,11 +70,12 @@ set(PROJECT_SOURCES
 
         parser/svg_parser_shapes.cpp
 
+        gui/common_constants.h
+
         gui/mainwindow/mainwindow.h
         gui/mainwindow/mainwindow.cpp
 
         gui/mainwindow/mainwindow_file.cpp
-        gui/mainwindow/mainwindow_color.cpp
 
         gui/mainwindow/mainwindow_actions.cpp
         gui/mainwindow/mainwindow_toolbars.cpp
@@ -83,7 +84,8 @@ set(PROJECT_SOURCES
         gui/whiteboard/whiteboard.h
         gui/whiteboard/whiteboard.cpp
 
-        gui/whiteboard/whiteboard_commands.cpp
+        gui/whiteboard/whiteboard_edit.cpp
+        gui/whiteboard/whiteboard_style.cpp
         gui/whiteboard/whiteboard_input.cpp
         gui/whiteboard/whiteboard_paint.cpp
 
@@ -94,28 +96,30 @@ set(PROJECT_SOURCES
 
         gui/tools/select/select_tool_resize.cpp
         gui/tools/select/select_tool_drag.cpp
-        gui/tools/select/select_tool_handles.cpp
 
-        gui/tools/rectangle_tool.h
-        gui/tools/rectangle_tool.cpp
+        gui/tools/shape/shape_tool.h
+        gui/tools/shape/shape_tool.cpp
 
-        gui/tools/circle_tool.h
-        gui/tools/circle_tool.cpp
+        gui/tools/shape/rectangle_tool.h
+        gui/tools/shape/rectangle_tool.cpp
 
-        gui/tools/line_tool.h
-        gui/tools/line_tool.cpp
+        gui/tools/shape/circle_tool.h
+        gui/tools/shape/circle_tool.cpp
 
-        gui/tools/rounded_rectangle_tool.h
-        gui/tools/rounded_rectangle_tool.cpp
+        gui/tools/shape/line_tool.h
+        gui/tools/shape/line_tool.cpp
 
-        gui/tools/hexagon_tool.h
-        gui/tools/hexagon_tool.cpp
+        gui/tools/shape/rounded_rectangle_tool.h
+        gui/tools/shape/rounded_rectangle_tool.cpp
 
-        gui/tools/polyline_tool.h
-        gui/tools/polyline_tool.cpp
+        gui/tools/shape/hexagon_tool.h
+        gui/tools/shape/hexagon_tool.cpp
 
-        gui/tools/text_tool.h
-        gui/tools/text_tool.cpp
+        gui/tools/shape/polyline_tool.h
+        gui/tools/shape/polyline_tool.cpp
+
+        gui/tools/shape/text_tool.h
+        gui/tools/shape/text_tool.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

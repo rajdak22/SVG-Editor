@@ -6,17 +6,17 @@
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
 
 public:
+
     MainWindow();
 
 private:
     Whiteboard* whiteboard;
-    QString current_file_path_;
+    QString file_path_;
     QActionGroup* toolGroup;
 
-    // ---- Drawing tool actions ----
+    // Drawing tool actions
     QAction* selectAction;
     QAction* rectAction;
     QAction* circleAction;
@@ -26,38 +26,33 @@ private:
     QAction* polylineAction;
     QAction* textAction;
 
-    // ---- File actions ----
+    // File actions
     QAction* newAction;
     QAction* openAction;
     QAction* saveAction;
     QAction* saveAsAction;
     QAction* closeAction;
 
-    // ---- Edit actions ----
+    // Edit actions
     QAction* undoAction;
     QAction* redoAction;
     QAction* cutAction;
     QAction* copyAction;
     QAction* pasteAction;
 
-    // ---- Style actions ----
+    // Style actions
     QAction* fillAction;
     QAction* strokeAction;
     QAction* widthAction;
 
-    // ---- File operations ----
+    // File operations
     void newFile();
     void openFile();
     void saveFile();
     void saveFileAs();
     void closeFile();
 
-    // ---- Edit operations ----
-    void cut();
-    void copy();
-    void paste();
-
-    // ---- Color operations ----
+    // Color operations
     void changeFill();
     void changeStroke();
     void changeStrokeWidth();

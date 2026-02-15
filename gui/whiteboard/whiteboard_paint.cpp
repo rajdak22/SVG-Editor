@@ -1,45 +1,44 @@
 #include "whiteboard.h"
+#include "../common_constants.h"
 #include <QPainter>
 
 void Whiteboard::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
 
-    for (const auto& obj : diagram.getObjects()) {
-        obj->draw(painter);
+    // paints in order so that recent objects on top
+    for (const auto& obj : diagram.getObjects())
+    {
+        obj -> draw(painter);
     }
 
-    if (temp_object_) {
-        temp_object_->draw(painter);
-    }
+    if (temp_object_) temp_object_ -> draw(painter);
 
-    if (selected_) {
-
-        QRectF box = selected_->boundingBox();
-
+    if (selected_)
+    {
+        // saves painter state before any selection related process
         painter.save();
 
-        QPen pen(Qt::blue);
-        pen.setStyle(Qt::DashLine);
-        pen.setWidth(1);
+        QRectF box = selected_ -> boundingBox();
+
+        QPen pen(Qt::red);
         painter.setPen(pen);
         painter.setBrush(Qt::NoBrush);
 
+        // Drwing bounding box
         painter.drawRect(box);
 
-        // ----------------------------
-        // Draw resize handles
-        // ----------------------------
-        const double handleSize = 6;
+        // Drawing resize Handles
+        const double handleSize = ComConstants::HANDLE_SIZE;
 
-        auto drawHandle = [&](QPointF center) {
-            QRectF handle(center.x() - handleSize / 2,
-                          center.y() - handleSize / 2,
-                          handleSize,
-                          handleSize);
-
-            painter.fillRect(handle, Qt::white);
-            painter.drawRect(handle);
+        // local function for drawing the handles (uses lambda)
+        // better encapsulation achieved through this
+        auto drawHandle = [&painter, handleSize](QPointF center)
+        {
+            double cornerX = center.x() - handleSize / 2;
+            double cornerY = center.y() - handleSize / 2;
+            painter.setBrush(Qt::white);
+            painter.drawRect(cornerX, cornerY, handleSize, handleSize);
         };
 
         QPointF tl = box.topLeft();
@@ -52,6 +51,7 @@ void Whiteboard::paintEvent(QPaintEvent *)
         drawHandle(bl);
         drawHandle(br);
 
+        // restores painter state to what it was before selection
         painter.restore();
     }
 }

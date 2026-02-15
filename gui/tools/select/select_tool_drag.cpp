@@ -3,19 +3,24 @@
 #include "../../../command/move_command.h"
 #include <cmath>
 
+
 void SelectTool::startSelectionOrDrag(Whiteboard* whiteboard, const QPointF& pos)
 {
-    auto& diagram = whiteboard->getDiagram();
+    auto& diagram = whiteboard -> getDiagram();
     auto& objects = diagram.getObjects();
 
     whiteboard->setSelected(nullptr);
     dragging_ = false;
 
-    for (auto it = objects.rbegin(); it != objects.rend(); ++it)
+    // traversing in reverse order because latest added object should get highest priority
+    // this is the Z
+    int obj_size = objects.size();
+    for (int i = obj_size - 1; i >= 0; i--)
     {
-        if ((*it)->contains(pos.x(), pos.y()))
+        auto obj = objects[i];
+        if (obj -> contains(pos.x(), pos.y()))
         {
-            whiteboard->setSelected(*it);
+            whiteboard -> setSelected(obj);
             dragging_ = true;
             last_mouse_pos_ = pos;
             start_drag_pos_ = pos;
@@ -23,22 +28,22 @@ void SelectTool::startSelectionOrDrag(Whiteboard* whiteboard, const QPointF& pos
         }
     }
 
-    whiteboard->update();
+    whiteboard -> update();
 }
 
 void SelectTool::handleDragMove(Whiteboard* whiteboard, const QPointF& pos)
 {
-    if (!dragging_)
-        return;
+    if (dragging_ == false) return;
 
-    auto selected = whiteboard->getSelected();
-    if (!selected)
-        return;
+    auto selected = whiteboard -> getSelected();
+    if (selected == nullptr) return;
 
+    // calculating change in position
     double dx = pos.x() - last_mouse_pos_.x();
     double dy = pos.y() - last_mouse_pos_.y();
 
-    selected->move(dx, dy);
+    // implementing the actual movement of the object and updating position
+    selected -> move(dx, dy);
     last_mouse_pos_ = pos;
 
     whiteboard->update();
@@ -46,27 +51,20 @@ void SelectTool::handleDragMove(Whiteboard* whiteboard, const QPointF& pos)
 
 void SelectTool::finishDrag(Whiteboard* whiteboard, const QPointF& pos)
 {
-    if (!dragging_)
-        return;
+    if (dragging_ == false) return;
 
-    auto selected = whiteboard->getSelected();
-    if (!selected)
-        return;
+    auto selected = whiteboard -> getSelected();
+    if (selected == nullptr) return;
 
-    double total_dx = pos.x() - start_drag_pos_.x();
-    double total_dy = pos.y() - start_drag_pos_.y();
+    double delta_x = pos.x() - start_drag_pos_.x();
+    double delta_y = pos.y() - start_drag_pos_.y();
 
-    if (std::abs(total_dx) > 0.001 || std::abs(total_dy) > 0.001)
+    // if condition to ensure 0 movement is not counted as drag
+    if (std::abs(delta_x) > 0.001 || std::abs(delta_y) > 0.001)
     {
-        selected->move(-total_dx, -total_dy);
-
-        whiteboard->executeCommand(
-            std::make_unique<MoveCommand>(
-                selected,
-                total_dx,
-                total_dy
-                )
-            );
+        selected->move(-delta_x, -delta_y);
+        auto cmd = std::make_unique<MoveCommand>(selected, delta_x, delta_y);
+        whiteboard->executeCommand(std::move(cmd));
     }
 
     dragging_ = false;

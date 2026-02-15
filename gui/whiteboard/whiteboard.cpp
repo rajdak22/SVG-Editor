@@ -6,7 +6,14 @@
 #include "../tools/tool.h"
 
 
-Whiteboard::Whiteboard(QWidget *parent) {}
+Whiteboard::Whiteboard(QWidget *parent)
+{
+    setAutoFillBackground(true);
+
+    QPalette palette = this->palette();
+    palette.setColor(QPalette::Window, Qt::white);
+    setPalette(palette);
+}
 
 void Whiteboard::setDiagram(const Diagram& d)
 {

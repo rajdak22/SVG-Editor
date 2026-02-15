@@ -106,6 +106,8 @@ std::shared_ptr<GraphicsObject> SVGParser::parseText(const std::string& line)
 {
     double x = std::stod(getAttribute(line, "x"));
     double y = std::stod(getAttribute(line, "y"));
+    std::string fontSizeString = getAttribute(line, "font-size");
+    int fontSize = fontSizeString.empty() ? 14 : std::stoi(fontSizeString);
 
     // example: <text x="2" y="1">Hello</text>
     // getAttribute not used since content isn't between ""
@@ -116,7 +118,7 @@ std::shared_ptr<GraphicsObject> SVGParser::parseText(const std::string& line)
 
     std::string content = line.substr(start + 1, end - start - 1);
 
-    auto textObj = std::make_shared<Text>(x, y, content);
+    auto textObj = std::make_shared<Text>(x, y, content, fontSize);
 
     setPaintAttributes(line, textObj);
 

@@ -4,12 +4,14 @@
 #include <QPen>
 #include <QBrush>
 #include <QFontMetrics>         // for finding pixel size of text (for bounding box)
+#include <QFont>
 
-Text::Text(double x, double y, const std::string& content)
+Text::Text(double x, double y, const std::string& content, int fontSize)
 {
     x_ = x;
     y_ = y;
     content_ = content;
+    font_size_ = fontSize;
 }
 
 std::string Text::toSVG() const
@@ -19,6 +21,7 @@ std::string Text::toSVG() const
     oss << "<text "
         << "x = \"" << x_ << "\" "
         << "y = \"" << y_ << "\" "
+        << "font-size = \"" << font_size_ << "\" "
         << "fill = \"" << stroke_color_ << "\" "
         << ">"
         << content_
@@ -29,6 +32,10 @@ std::string Text::toSVG() const
 
 void Text::draw(QPainter& painter) const
 {
+    QFont font;
+    font.setPointSize(font_size_);
+    painter.setFont(font);
+
     auto stroke_color_qt = QColor(QString::fromStdString(stroke_color_));
     auto pen_attributes = QPen(stroke_color_qt);
     painter.setPen(pen_attributes);
@@ -52,18 +59,33 @@ void Text::move(double dx, double dy)
 
 QRectF Text::boundingBox() const
 {
-    QFont font; // same default font used in draw()
+    QFont font;
+    font.setPointSize(font_size_);
+
     QFontMetrics metrics(font);
 
-    QRect rect = metrics.boundingRect(QString::fromStdString(content_));
+    QString q_text = QString::fromStdString(content_);
+    QRect rect = metrics.boundingRect(q_text);
+
     double y_actual = y_ - rect.height();                                   // y_ is baseline, Qt draws text from baseline
 
     return QRectF(x_, y_actual, rect.width(), rect.height());
 }
 
-// useless for now, since text is not being resized
 void Text::resize(const QRectF& rect)
 {
+    QFont font;
+    font.setPointSize(font_size_);
+
+    QFontMetrics metrics(font);
+    int oldHeight = metrics.height();
+
+    // failsafe in case in case text box was collapsed
+    if (oldHeight > 0)
+    {
+        double scale = rect.height() / oldHeight;
+        font_size_ = std::max(1, static_cast<int>(font_size_ * scale));
+    }
 }
 
 std::shared_ptr<GraphicsObject> Text::clone() const

@@ -1,6 +1,5 @@
 #include "whiteboard.h"
-#include <QKeyEvent>
-#include "../../command/delete_command.h"
+#include <QMouseEvent>
 
 
 void Whiteboard::mousePressEvent(QMouseEvent* event)

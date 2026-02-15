@@ -32,26 +32,13 @@ void MainWindow::createActions()
     strokeAction = new QAction("Stroke", this);
     widthAction  = new QAction("Stroke Width", this);
 
-    // ----- Shortcuts -----
-    newAction->setShortcut(QKeySequence::New);
-    openAction->setShortcut(QKeySequence::Open);
-    saveAction->setShortcut(QKeySequence::Save);
-    saveAsAction->setShortcut(QKeySequence::SaveAs);
-
-    undoAction->setShortcut(QKeySequence::Undo);
-    redoAction->setShortcut(QKeySequence::Redo);
-
-    cutAction->setShortcut(QKeySequence::Cut);
-    copyAction->setShortcut(QKeySequence::Copy);
-    pasteAction->setShortcut(QKeySequence::Paste);
-
     // ----- Checkable tools -----
-    selectAction->setCheckable(true);
-    rectAction->setCheckable(true);
-    circleAction->setCheckable(true);
-    lineAction->setCheckable(true);
-    hexAction->setCheckable(true);
-    roundRectAction->setCheckable(true);
-    polylineAction->setCheckable(true);
-    textAction->setCheckable(true);
+    selectAction -> setCheckable(true);
+    rectAction -> setCheckable(true);
+    circleAction -> setCheckable(true);
+    lineAction -> setCheckable(true);
+    hexAction -> setCheckable(true);
+    roundRectAction -> setCheckable(true);
+    polylineAction -> setCheckable(true);
+    textAction -> setCheckable(true);
 }

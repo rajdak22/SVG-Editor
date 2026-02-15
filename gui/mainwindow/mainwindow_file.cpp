@@ -7,60 +7,51 @@
 
 void MainWindow::saveFile()
 {
-    if (current_file_path_.isEmpty()) {
-        saveFileAs();
-        return;
+    if (file_path_.isEmpty()) saveFileAs();                 // if file_path does not exist, saveAs (first time)
+    else
+    {
+        std::ofstream file(file_path_.toStdString());       // Opening file stream using the file_path_
+        file << whiteboard -> getDiagram().toSVG();         // Writing Diagram to file
     }
-
-    std::ofstream file(current_file_path_.toStdString());
-    file << whiteboard->getDiagram().toSVG();
 }
 
 void MainWindow::saveFileAs()
 {
-    QString fileName = QFileDialog::getSaveFileName(
-        this,
-        "Save SVG",
-        "",
-        "SVG Files (*.svg)"
-        );
+    QString header = "Save SVG";
+    QString defaultDir = "";
+    QString fileType = "SVG Files (*.svg)";
+    QString fileName = QFileDialog::getSaveFileName(this, header, defaultDir, fileType);
+    if (fileName.isEmpty()) return;
 
-    if (fileName.isEmpty())
-        return;
-
-    current_file_path_ = fileName;
+    file_path_ = fileName;
 
     std::ofstream file(fileName.toStdString());
-    file << whiteboard->getDiagram().toSVG();
+    file << whiteboard -> getDiagram().toSVG();
 }
 
 void MainWindow::openFile()
 {
-    QString fileName = QFileDialog::getOpenFileName(
-        this,
-        "Open SVG",
-        "",
-        "SVG Files (*.svg)"
-        );
+    QString header = "Open SVG";
+    QString defaultDir = "";
+    QString fileType = "SVG Files (*.svg)";
+    QString fileName = QFileDialog::getOpenFileName(this, header, defaultDir, fileType);
+    if (fileName.isEmpty()) return;
 
-    if (fileName.isEmpty())
-        return;
-
-    current_file_path_ = fileName;
+    file_path_ = fileName;
 
     Diagram d = SVGParser::parseFile(fileName.toStdString());
-    whiteboard->setDiagram(d);
+    whiteboard -> setDiagram(d);
 }
 
 void MainWindow::newFile()
 {
-    whiteboard->setDiagram(Diagram{});
-    whiteboard->clearSelection();
-    whiteboard->clearHistory();
-    current_file_path_.clear();
+    whiteboard -> setDiagram(Diagram{});
+    whiteboard -> clearSelection();
+    whiteboard -> clearHistory();
+    file_path_.clear();
 }
 
 void MainWindow::closeFile()
 {
-    close();
+    close();        // QT function, handles all memory deletions automatically
 }

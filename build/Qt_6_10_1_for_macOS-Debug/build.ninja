@@ -225,14 +225,6 @@ build CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_file.cpp.o: CXX_COMPIL
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
   OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/mainwindow
 
-build CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_color.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_color.cpp || cmake_object_order_depends_target_cop290_raj
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_color.cpp.o.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
-  OBJECT_DIR = CMakeFiles/cop290_raj.dir
-  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/mainwindow
-
 build CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_actions.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/mainwindow/mainwindow_actions.cpp || cmake_object_order_depends_target_cop290_raj
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
   DEP_FILE = CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_actions.cpp.o.d
@@ -265,9 +257,17 @@ build CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard.cpp.o: CXX_COMPILER__c
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
   OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/whiteboard
 
-build CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_commands.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/whiteboard/whiteboard_commands.cpp || cmake_object_order_depends_target_cop290_raj
+build CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_edit.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/whiteboard/whiteboard_edit.cpp || cmake_object_order_depends_target_cop290_raj
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_commands.cpp.o.d
+  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_edit.cpp.o.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
+  OBJECT_DIR = CMakeFiles/cop290_raj.dir
+  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/whiteboard
+
+build CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_style.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/whiteboard/whiteboard_style.cpp || cmake_object_order_depends_target_cop290_raj
+  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
+  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_style.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
@@ -313,69 +313,69 @@ build CMakeFiles/cop290_raj.dir/gui/tools/select/select_tool_drag.cpp.o: CXX_COM
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
   OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools/select
 
-build CMakeFiles/cop290_raj.dir/gui/tools/select/select_tool_handles.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/select/select_tool_handles.cpp || cmake_object_order_depends_target_cop290_raj
+build CMakeFiles/cop290_raj.dir/gui/tools/shape/shape_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/shape/shape_tool.cpp || cmake_object_order_depends_target_cop290_raj
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/select/select_tool_handles.cpp.o.d
+  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/shape/shape_tool.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
-  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools/select
+  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools/shape
 
-build CMakeFiles/cop290_raj.dir/gui/tools/rectangle_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/rectangle_tool.cpp || cmake_object_order_depends_target_cop290_raj
+build CMakeFiles/cop290_raj.dir/gui/tools/shape/rectangle_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/shape/rectangle_tool.cpp || cmake_object_order_depends_target_cop290_raj
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/rectangle_tool.cpp.o.d
+  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/shape/rectangle_tool.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
-  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools
+  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools/shape
 
-build CMakeFiles/cop290_raj.dir/gui/tools/circle_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/circle_tool.cpp || cmake_object_order_depends_target_cop290_raj
+build CMakeFiles/cop290_raj.dir/gui/tools/shape/circle_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/shape/circle_tool.cpp || cmake_object_order_depends_target_cop290_raj
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/circle_tool.cpp.o.d
+  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/shape/circle_tool.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
-  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools
+  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools/shape
 
-build CMakeFiles/cop290_raj.dir/gui/tools/line_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/line_tool.cpp || cmake_object_order_depends_target_cop290_raj
+build CMakeFiles/cop290_raj.dir/gui/tools/shape/line_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/shape/line_tool.cpp || cmake_object_order_depends_target_cop290_raj
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/line_tool.cpp.o.d
+  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/shape/line_tool.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
-  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools
+  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools/shape
 
-build CMakeFiles/cop290_raj.dir/gui/tools/rounded_rectangle_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/rounded_rectangle_tool.cpp || cmake_object_order_depends_target_cop290_raj
+build CMakeFiles/cop290_raj.dir/gui/tools/shape/rounded_rectangle_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/shape/rounded_rectangle_tool.cpp || cmake_object_order_depends_target_cop290_raj
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/rounded_rectangle_tool.cpp.o.d
+  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/shape/rounded_rectangle_tool.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
-  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools
+  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools/shape
 
-build CMakeFiles/cop290_raj.dir/gui/tools/hexagon_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/hexagon_tool.cpp || cmake_object_order_depends_target_cop290_raj
+build CMakeFiles/cop290_raj.dir/gui/tools/shape/hexagon_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/shape/hexagon_tool.cpp || cmake_object_order_depends_target_cop290_raj
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/hexagon_tool.cpp.o.d
+  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/shape/hexagon_tool.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
-  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools
+  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools/shape
 
-build CMakeFiles/cop290_raj.dir/gui/tools/polyline_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/polyline_tool.cpp || cmake_object_order_depends_target_cop290_raj
+build CMakeFiles/cop290_raj.dir/gui/tools/shape/polyline_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/shape/polyline_tool.cpp || cmake_object_order_depends_target_cop290_raj
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/polyline_tool.cpp.o.d
+  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/shape/polyline_tool.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
-  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools
+  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools/shape
 
-build CMakeFiles/cop290_raj.dir/gui/tools/text_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/text_tool.cpp || cmake_object_order_depends_target_cop290_raj
+build CMakeFiles/cop290_raj.dir/gui/tools/shape/text_tool.cpp.o: CXX_COMPILER__cop290_raj_unscanned_Debug /Users/rajdakshit/Documents/cop290_raj/gui/tools/shape/text_tool.cpp || cmake_object_order_depends_target_cop290_raj
   DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/text_tool.cpp.o.d
+  DEP_FILE = CMakeFiles/cop290_raj.dir/gui/tools/shape/text_tool.cpp.o.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/rajdakshit/Documents/cop290_raj/build/Qt_6_10_1_for_macOS-Debug/cop290_raj_autogen/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Headers -iframework /Users/rajdakshit/Qt/6.10.1/macos/lib -isystem /Users/rajdakshit/Qt/6.10.1/macos/mkspecs/macx-clang -isystem /Users/rajdakshit/Qt/6.10.1/macos/include -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Headers -isystem /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Headers
   OBJECT_DIR = CMakeFiles/cop290_raj.dir
-  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools
+  OBJECT_FILE_DIR = CMakeFiles/cop290_raj.dir/gui/tools/shape
 
 
 # =============================================================================
@@ -385,7 +385,7 @@ build CMakeFiles/cop290_raj.dir/gui/tools/text_tool.cpp.o: CXX_COMPILER__cop290_
 #############################################
 # Link the executable cop290_raj
 
-build cop290_raj: CXX_EXECUTABLE_LINKER__cop290_raj_Debug CMakeFiles/cop290_raj.dir/cop290_raj_autogen/mocs_compilation.cpp.o CMakeFiles/cop290_raj.dir/main.cpp.o CMakeFiles/cop290_raj.dir/model/graphics_object.cpp.o CMakeFiles/cop290_raj.dir/model/line.cpp.o CMakeFiles/cop290_raj.dir/model/circle.cpp.o CMakeFiles/cop290_raj.dir/model/rectangle.cpp.o CMakeFiles/cop290_raj.dir/model/rounded_rectangle.cpp.o CMakeFiles/cop290_raj.dir/model/hexagon.cpp.o CMakeFiles/cop290_raj.dir/model/text.cpp.o CMakeFiles/cop290_raj.dir/model/polyline.cpp.o CMakeFiles/cop290_raj.dir/model/diagram.cpp.o CMakeFiles/cop290_raj.dir/command/add_command.cpp.o CMakeFiles/cop290_raj.dir/command/move_command.cpp.o CMakeFiles/cop290_raj.dir/command/delete_command.cpp.o CMakeFiles/cop290_raj.dir/command/resize_command.cpp.o CMakeFiles/cop290_raj.dir/command/set_fill_color_command.cpp.o CMakeFiles/cop290_raj.dir/command/set_stroke_color_command.cpp.o CMakeFiles/cop290_raj.dir/command/set_stroke_width_command.cpp.o CMakeFiles/cop290_raj.dir/parser/svg_parser.cpp.o CMakeFiles/cop290_raj.dir/parser/svg_parser_shapes.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_file.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_color.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_actions.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_toolbars.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_connections.cpp.o CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard.cpp.o CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_commands.cpp.o CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_input.cpp.o CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_paint.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/select/select_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/select/select_tool_resize.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/select/select_tool_drag.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/select/select_tool_handles.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/rectangle_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/circle_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/line_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/rounded_rectangle_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/hexagon_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/polyline_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/text_tool.cpp.o | /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore || cop290_raj_autogen cop290_raj_autogen_timestamp_deps
+build cop290_raj: CXX_EXECUTABLE_LINKER__cop290_raj_Debug CMakeFiles/cop290_raj.dir/cop290_raj_autogen/mocs_compilation.cpp.o CMakeFiles/cop290_raj.dir/main.cpp.o CMakeFiles/cop290_raj.dir/model/graphics_object.cpp.o CMakeFiles/cop290_raj.dir/model/line.cpp.o CMakeFiles/cop290_raj.dir/model/circle.cpp.o CMakeFiles/cop290_raj.dir/model/rectangle.cpp.o CMakeFiles/cop290_raj.dir/model/rounded_rectangle.cpp.o CMakeFiles/cop290_raj.dir/model/hexagon.cpp.o CMakeFiles/cop290_raj.dir/model/text.cpp.o CMakeFiles/cop290_raj.dir/model/polyline.cpp.o CMakeFiles/cop290_raj.dir/model/diagram.cpp.o CMakeFiles/cop290_raj.dir/command/add_command.cpp.o CMakeFiles/cop290_raj.dir/command/move_command.cpp.o CMakeFiles/cop290_raj.dir/command/delete_command.cpp.o CMakeFiles/cop290_raj.dir/command/resize_command.cpp.o CMakeFiles/cop290_raj.dir/command/set_fill_color_command.cpp.o CMakeFiles/cop290_raj.dir/command/set_stroke_color_command.cpp.o CMakeFiles/cop290_raj.dir/command/set_stroke_width_command.cpp.o CMakeFiles/cop290_raj.dir/parser/svg_parser.cpp.o CMakeFiles/cop290_raj.dir/parser/svg_parser_shapes.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_file.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_actions.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_toolbars.cpp.o CMakeFiles/cop290_raj.dir/gui/mainwindow/mainwindow_connections.cpp.o CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard.cpp.o CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_edit.cpp.o CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_style.cpp.o CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_input.cpp.o CMakeFiles/cop290_raj.dir/gui/whiteboard/whiteboard_paint.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/select/select_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/select/select_tool_resize.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/select/select_tool_drag.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/shape/shape_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/shape/rectangle_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/shape/circle_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/shape/line_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/shape/rounded_rectangle_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/shape/hexagon_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/shape/polyline_tool.cpp.o CMakeFiles/cop290_raj.dir/gui/tools/shape/text_tool.cpp.o | /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore || cop290_raj_autogen cop290_raj_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX14.4.sdk
   LINK_LIBRARIES = -Wl,-rpath,/Users/rajdakshit/Qt/6.10.1/macos/lib  /Users/rajdakshit/Qt/6.10.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets  /Users/rajdakshit/Qt/6.10.1/macos/lib/QtGui.framework/Versions/A/QtGui  -framework AppKit  -framework OpenGL  -framework ImageIO  -framework Metal  /Users/rajdakshit/Qt/6.10.1/macos/lib/QtCore.framework/Versions/A/QtCore  -framework IOKit  -framework DiskArbitration  -framework UniformTypeIdentifiers
   LINK_PATH = -F/Users/rajdakshit/Qt/6.10.1/macos/lib
