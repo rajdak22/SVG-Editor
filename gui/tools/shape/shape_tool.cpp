@@ -1,34 +1,32 @@
 #include "shape_tool.h"
-#include "../../whiteboard/whiteboard.h"
+
 #include "../../../command/add_command.h"
+#include "../../whiteboard/whiteboard.h"
 
-void ShapeTool::mousePress(Whiteboard* whiteboard, QMouseEvent* event)
-{
-    start_point_ = event -> position();
-    drawing_ = true;
+void ShapeTool::mousePress(Whiteboard* whiteboard, QMouseEvent* event) {
+  start_point_ = event->position();
+  drawing_ = true;
 }
 
-void ShapeTool::mouseMove(Whiteboard* whiteboard, QMouseEvent* event)
-{
-    if (drawing_ == false) return;
+void ShapeTool::mouseMove(Whiteboard* whiteboard, QMouseEvent* event) {
+  if (drawing_ == false) return;
 
-    auto shape = createShape(start_point_, event->position());
-    whiteboard -> setTempObject(shape);
-    whiteboard -> update();
+  auto shape = createShape(start_point_, event->position());
+  whiteboard->setTempObject(shape);
+  whiteboard->update();
 }
 
-void ShapeTool::mouseRelease(Whiteboard* whiteboard, QMouseEvent*)
-{
-    if (drawing_ == false) return;
+void ShapeTool::mouseRelease(Whiteboard* whiteboard, QMouseEvent*) {
+  if (drawing_ == false) return;
 
-    auto obj = whiteboard -> getTempObject();
-    if(obj == nullptr) return;
+  auto obj = whiteboard->getTempObject();
+  if (obj == nullptr) return;
 
-    auto cmd = std::make_unique<AddCommand>(whiteboard->getDiagram(), obj);
-    whiteboard -> executeCommand(std::move(cmd));
+  auto cmd = std::make_unique<AddCommand>(whiteboard->getDiagram(), obj);
+  whiteboard->executeCommand(std::move(cmd));
 
-    whiteboard -> clearTempObject();
-    drawing_ = false;
+  whiteboard->clearTempObject();
+  drawing_ = false;
 
-    whiteboard->update();
+  whiteboard->update();
 }

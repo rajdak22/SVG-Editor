@@ -14,8 +14,8 @@ Circle::Circle(double cx, double cy, double r)
 std::string Circle::toSVG() const
 {
 
-    // using ostringstream to avoid tostring operation repeatedly
-    // easier string construction in general
+    // using ostringstream to avoid usage of toString operation repeatedly
+    // provides easier and more intuitive string construction
     std::ostringstream oss;
 
     oss << "<circle "
