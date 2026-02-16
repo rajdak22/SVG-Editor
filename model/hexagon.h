@@ -4,32 +4,29 @@
 #include "graphics_object.h"
 
 class Hexagon : public GraphicsObject {
+ private:
+  // coordinates of centre
+  double cx_;
+  double cy_;
 
-private:
+  // radius of circumcircle of hexagon
+  double r_;
 
-    // coordinates of centre
-    double cx_;
-    double cy_;
+ public:
+  Hexagon(double cx, double cy, double radius);
 
-    // radius of circumcircle of hexagon
-    double r_;
+  std::string toSVG() const override;
 
-public:
+  void draw(QPainter& painter) const override;
 
-    Hexagon(double cx, double cy, double radius);
+  // Return true if point (x,y) lies in the bounding box
+  bool contains(double x, double y) const override;
 
-    std::string toSVG() const override;
+  void move(double dx, double dy) override;
 
-    void draw(QPainter& painter) const override;
+  QRectF boundingBox() const override;
 
-    // Return true if point (x,y) lies in the bounding box
-    bool contains(double x, double y) const override;
+  void resize(const QRectF& rect) override;
 
-    void move(double dx, double dy) override;
-
-    QRectF boundingBox() const override;
-
-    void resize(const QRectF& rect) override;
-
-    std::shared_ptr<GraphicsObject> clone() const override;
+  std::shared_ptr<GraphicsObject> clone() const override;
 };

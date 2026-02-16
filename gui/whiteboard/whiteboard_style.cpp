@@ -4,74 +4,67 @@
 // Each function validates selection, prompts the user for input,
 // and applies the change via a Command so it participates in undo/redo.
 
-#include "whiteboard.h"
-#include "../../command/set_fill_color_command.h"
-#include "../../command/set_stroke_color_command.h"
-#include "../../command/set_stroke_width_command.h"
-
 #include <QColorDialog>
 #include <QInputDialog>
 
-void Whiteboard::changeFillColor()
-{
-    auto selected = getSelected();
-    if (selected == nullptr) return;
+#include "../../command/set_fill_color_command.h"
+#include "../../command/set_stroke_color_command.h"
+#include "../../command/set_stroke_width_command.h"
+#include "whiteboard.h"
 
-    // Use current fill color as the initial dialog value.
-    auto fill_color = QColor(QString::fromStdString(selected->getFillColor()));
-    QColor color = QColorDialog::getColor(fill_color, this);
+void Whiteboard::changeFillColor() {
+  auto selected = getSelected();
+  if (selected == nullptr) return;
 
-    // Dialog returns invalid color if user cancels.
-    if (!color.isValid()) return;
+  // Use current fill color as the initial dialog value.
+  auto fill_color = QColor(QString::fromStdString(selected->getFillColor()));
+  QColor color = QColorDialog::getColor(fill_color, this);
 
-    auto cmd = std::make_unique<SetFillColorCommand>(
-        selected,
-        color.name().toStdString()   // Convert QColor to SVG-style string.
-        );
+  // Dialog returns invalid color if user cancels.
+  if (!color.isValid()) return;
 
-    executeCommand(std::move(cmd));
+  auto cmd = std::make_unique<SetFillColorCommand>(
+      selected,
+      color.name().toStdString()  // Convert QColor to SVG-style string.
+  );
+
+  executeCommand(std::move(cmd));
 }
 
-void Whiteboard::changeStrokeColor()
-{
-    auto selected = getSelected();
-    if (selected == nullptr) return;
+void Whiteboard::changeStrokeColor() {
+  auto selected = getSelected();
+  if (selected == nullptr) return;
 
-    // Preload dialog with current stroke color.
-    auto stroke_color = QColor(QString::fromStdString(selected->getStrokeColor()));
-    QColor color = QColorDialog::getColor(stroke_color, this);
+  // Preload dialog with current stroke color.
+  auto stroke_color =
+      QColor(QString::fromStdString(selected->getStrokeColor()));
+  QColor color = QColorDialog::getColor(stroke_color, this);
 
-    if (!color.isValid()) return;
+  if (!color.isValid()) return;
 
-    auto cmd = std::make_unique<SetStrokeColorCommand>(
-        selected,
-        color.name().toStdString()
-        );
+  auto cmd = std::make_unique<SetStrokeColorCommand>(
+      selected, color.name().toStdString());
 
-    executeCommand(std::move(cmd));
+  executeCommand(std::move(cmd));
 }
 
-void Whiteboard::changeStrokeWidth()
-{
-    auto selected = getSelected();
-    if (selected == nullptr) return;
+void Whiteboard::changeStrokeWidth() {
+  auto selected = getSelected();
+  if (selected == nullptr) return;
 
-    bool ok;
+  bool ok;
 
-    // Prompt user for integer width with bounded range.
-    int width = QInputDialog::getInt(
-        this,
-        "Stroke Width",
-        "Enter width:",
-        selected->getStrokeWidth(),  // Initial value.
-        1,                           // Minimum allowed.
-        50,                          // Maximum allowed.
-        1,                           // Step increment.
-        &ok
-        );
+  // Prompt user for integer width with bounded range.
+  int width =
+      QInputDialog::getInt(this, "Stroke Width", "Enter width:",
+                           selected->getStrokeWidth(),  // Initial value.
+                           1,                           // Minimum allowed.
+                           50,                          // Maximum allowed.
+                           1,                           // Step increment.
+                           &ok);
 
-    if (!ok) return;
+  if (!ok) return;
 
-    auto cmd = std::make_unique<SetStrokeWidthCommand>(selected, width);
-    executeCommand(std::move(cmd));
+  auto cmd = std::make_unique<SetStrokeWidthCommand>(selected, width);
+  executeCommand(std::move(cmd));
 }

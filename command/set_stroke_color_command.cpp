@@ -6,21 +6,15 @@
 #include "set_stroke_color_command.h"
 
 // Construct command capturing previous stroke color and desired new color.
-SetStrokeColorCommand::SetStrokeColorCommand(std::shared_ptr<GraphicsObject> obj, const std::string& newColor)
-{
-    object_ = obj;
-    oldColor_ = obj -> getStrokeColor();
-    newColor_ = newColor;
+SetStrokeColorCommand::SetStrokeColorCommand(
+    std::shared_ptr<GraphicsObject> obj, const std::string& newColor) {
+  object_ = obj;
+  oldColor_ = obj->getStrokeColor();
+  newColor_ = newColor;
 }
 
 // Apply the new stroke color.
-void SetStrokeColorCommand::execute()
-{
-    object_->setStrokeColor(newColor_);
-}
+void SetStrokeColorCommand::execute() { object_->setStrokeColor(newColor_); }
 
 // Restore the previous stroke color.
-void SetStrokeColorCommand::undo()
-{
-    object_->setStrokeColor(oldColor_);
-}
+void SetStrokeColorCommand::undo() { object_->setStrokeColor(oldColor_); }

@@ -4,58 +4,54 @@
 // Draws all diagram objects, an optional preview object, and
 // selection feedback including bounding box and resize handles.
 
-#include "whiteboard.h"
-#include "../common_constants.h"
 #include <QPainter>
 
-void Whiteboard::paintEvent(QPaintEvent *)
-{
-    QPainter painter(this);
+#include "../common_constants.h"
+#include "whiteboard.h"
 
-    // Draw persistent objects in insertion order.
-    // Later objects naturally appear on top.
-    for (const auto& obj : diagram.getObjects())
-    {
-        obj->draw(painter);
-    }
+void Whiteboard::paintEvent(QPaintEvent*) {
+  QPainter painter(this);
 
-    // Draw temporary preview object used by shape tools.
-    if (temp_object_)
-        temp_object_->draw(painter);
+  // Draw persistent objects in insertion order.
+  // Later objects naturally appear on top.
+  for (const auto& obj : diagram.getObjects()) {
+    obj->draw(painter);
+  }
 
-    if (selected_)
-    {
-        // Preserve painter state so selection styling
-        // does not affect subsequent drawing.
-        painter.save();
+  // Draw temporary preview object used by shape tools.
+  if (temp_object_) temp_object_->draw(painter);
 
-        QRectF box = selected_->boundingBox();
+  if (selected_) {
+    // Preserve painter state so selection styling
+    // does not affect subsequent drawing.
+    painter.save();
 
-        // Draw selection bounding box.
-        QPen pen(Qt::red);
-        painter.setPen(pen);
-        painter.setBrush(Qt::NoBrush);
-        painter.drawRect(box);
+    QRectF box = selected_->boundingBox();
 
-        // Draw resize handles at the four corners.
-        const double handleSize = ComConstants::HANDLE_SIZE;
+    // Draw selection bounding box.
+    QPen pen(Qt::red);
+    painter.setPen(pen);
+    painter.setBrush(Qt::NoBrush);
+    painter.drawRect(box);
 
-        // Helper lambda to draw a centered square handle.
-        auto drawHandle = [&painter, handleSize](QPointF center)
-        {
-            double cornerX = center.x() - handleSize / 2;
-            double cornerY = center.y() - handleSize / 2;
+    // Draw resize handles at the four corners.
+    const double handleSize = ComConstants::HANDLE_SIZE;
 
-            painter.setBrush(Qt::white);
-            painter.drawRect(cornerX, cornerY, handleSize, handleSize);
-        };
+    // Helper lambda to draw a centered square handle.
+    auto drawHandle = [&painter, handleSize](QPointF center) {
+      double cornerX = center.x() - handleSize / 2;
+      double cornerY = center.y() - handleSize / 2;
 
-        drawHandle(box.topLeft());
-        drawHandle(box.topRight());
-        drawHandle(box.bottomLeft());
-        drawHandle(box.bottomRight());
+      painter.setBrush(Qt::white);
+      painter.drawRect(cornerX, cornerY, handleSize, handleSize);
+    };
 
-        // Restore original painter state.
-        painter.restore();
-    }
+    drawHandle(box.topLeft());
+    drawHandle(box.topRight());
+    drawHandle(box.bottomLeft());
+    drawHandle(box.bottomRight());
+
+    // Restore original painter state.
+    painter.restore();
+  }
 }

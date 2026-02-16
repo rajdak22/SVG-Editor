@@ -6,32 +6,28 @@
 #include "graphics_object.h"
 
 class Circle : public GraphicsObject {
+ private:
+  // Circle center coordinates
+  double cx_;
+  double cy_;
 
-    private:
+  // Circle radius (non-negative)
+  double r_;
 
-        // Circle center coordinates
-        double cx_;
-        double cy_;
+ public:
+  Circle(double cx, double cy, double r);
 
-        // Circle radius (non-negative)
-        double r_;
+  std::string toSVG() const override;
 
-    public:
+  void draw(QPainter& painter) const override;
 
-    Circle(double cx, double cy, double r);
+  bool contains(double x, double y) const override;
 
-    std::string toSVG() const override;
+  void move(double dx, double dy) override;
 
-    void draw(QPainter& painter) const override;
+  QRectF boundingBox() const override;
 
-    bool contains(double x, double y) const override;
+  void resize(const QRectF& rect) override;
 
-    void move(double dx, double dy) override;
-
-    QRectF boundingBox() const override;
-
-    void resize(const QRectF& rect) override;
-
-    std::shared_ptr<GraphicsObject> clone() const override;
-
+  std::shared_ptr<GraphicsObject> clone() const override;
 };

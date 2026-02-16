@@ -6,17 +6,16 @@
 #include "mainwindow.h"
 
 // Initialize MainWindow and configure core UI components.
-MainWindow::MainWindow()
-{
-    // Create the drawing canvas and set it as the central widget
-    whiteboard = new Whiteboard(this);
-    setCentralWidget(whiteboard);
+MainWindow::MainWindow() {
+  // Create the drawing canvas and set it as the central widget
+  whiteboard = new Whiteboard(this);
+  setCentralWidget(whiteboard);
 
-    // Start with an empty diagram model
-    whiteboard -> setDiagram(Diagram{});
+  // Start with an empty diagram model
+  whiteboard->setDiagram(Diagram{});
 
-    // Initialize UI structure
-    createActions();
-    createToolbars();
-    connectActions();
+  // Initialize UI structure
+  createActions();
+  createToolbars();
+  connectActions();
 }

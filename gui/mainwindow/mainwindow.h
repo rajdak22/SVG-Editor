@@ -7,80 +7,78 @@
 
 #include <QMainWindow>
 #include <QString>
+
 #include "../whiteboard/whiteboard.h"
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
+ public:
+  MainWindow();
 
-public:
+ private:
+  Whiteboard* whiteboard;   // Central drawing canvas widget
+  QString file_path_;       // Current file path (empty if unsaved)
+  QActionGroup* toolGroup;  // Groups tool actions for exclusive selection
 
-    MainWindow();
+  // Drawing tool actions
+  QAction* selectAction;
+  QAction* rectAction;
+  QAction* circleAction;
+  QAction* lineAction;
+  QAction* hexAction;
+  QAction* roundRectAction;
+  QAction* polylineAction;
+  QAction* textAction;
 
-private:
-    Whiteboard* whiteboard;        // Central drawing canvas widget
-    QString file_path_;            // Current file path (empty if unsaved)
-    QActionGroup* toolGroup;       // Groups tool actions for exclusive selection
+  // File actions
+  QAction* newAction;
+  QAction* openAction;
+  QAction* saveAction;
+  QAction* saveAsAction;
+  QAction* closeAction;
 
-    // Drawing tool actions
-    QAction* selectAction;
-    QAction* rectAction;
-    QAction* circleAction;
-    QAction* lineAction;
-    QAction* hexAction;
-    QAction* roundRectAction;
-    QAction* polylineAction;
-    QAction* textAction;
+  // Edit actions
+  QAction* undoAction;
+  QAction* redoAction;
+  QAction* cutAction;
+  QAction* copyAction;
+  QAction* pasteAction;
 
-    // File actions
-    QAction* newAction;
-    QAction* openAction;
-    QAction* saveAction;
-    QAction* saveAsAction;
-    QAction* closeAction;
+  // Style actions
+  QAction* fillAction;
+  QAction* strokeAction;
+  QAction* widthAction;
 
-    // Edit actions
-    QAction* undoAction;
-    QAction* redoAction;
-    QAction* cutAction;
-    QAction* copyAction;
-    QAction* pasteAction;
+  // Create a new empty document and reset whiteboard state.
+  void newFile();
 
-    // Style actions
-    QAction* fillAction;
-    QAction* strokeAction;
-    QAction* widthAction;
+  // Prompt for a file and load its diagram into the whiteboard.
+  void openFile();
 
-    // Create a new empty document and reset whiteboard state.
-    void newFile();
+  // Save the current diagram to `file_path_`.
+  void saveFile();
 
-    // Prompt for a file and load its diagram into the whiteboard.
-    void openFile();
+  // Prompt for a file path and save the diagram there.
+  void saveFileAs();
 
-    // Save the current diagram to `file_path_`.
-    void saveFile();
+  // Close the main window.
+  void closeFile();
 
-    // Prompt for a file path and save the diagram there.
-    void saveFileAs();
+  // Style operations triggered by UI actions.
+  // Open fill color dialog and apply selection via Whiteboard.
+  void changeFill();
 
-    // Close the main window.
-    void closeFile();
+  // Open stroke color dialog and apply selection via Whiteboard.
+  void changeStroke();
 
-    // Style operations triggered by UI actions.
-    // Open fill color dialog and apply selection via Whiteboard.
-    void changeFill();
+  // Prompt for stroke width and apply to the selection.
+  void changeStrokeWidth();
 
-    // Open stroke color dialog and apply selection via Whiteboard.
-    void changeStroke();
+  // Create and populate toolbars.
+  void createToolbars();
 
-    // Prompt for stroke width and apply to the selection.
-    void changeStrokeWidth();
+  // Instantiate actions and configure icons/shortcuts.
+  void createActions();
 
-    // Create and populate toolbars.
-    void createToolbars();
-
-    // Instantiate actions and configure icons/shortcuts.
-    void createActions();
-
-    // Connect actions to their corresponding slots.
-    void connectActions();
+  // Connect actions to their corresponding slots.
+  void connectActions();
 };

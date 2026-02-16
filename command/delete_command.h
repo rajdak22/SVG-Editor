@@ -4,32 +4,32 @@
 // On undo(), the object is reinserted at the same position to preserve
 // stacking order (z-order) within the diagram.
 #pragma once
-#include "command.h"
-#include "../model/diagram.h"
-#include "../model/graphics_object.h"
 #include <memory>
 
-class DeleteCommand : public Command
-{
-private:
-    // Reference to the diagram from which the object is removed.
-    Diagram& diagram_;
+#include "../model/diagram.h"
+#include "../model/graphics_object.h"
+#include "command.h"
 
-    // The object being deleted. Stored so it can be restored on undo.
-    std::shared_ptr<GraphicsObject> object_;
+class DeleteCommand : public Command {
+ private:
+  // Reference to the diagram from which the object is removed.
+  Diagram& diagram_;
 
-    // Original index of the object inside the diagram's vector.
-    // -1 indicates execute() has not yet been called.
-    int index_ = -1;
+  // The object being deleted. Stored so it can be restored on undo.
+  std::shared_ptr<GraphicsObject> object_;
 
-public:
-    // Initializes the command with the target `diagram` and `obj`.
-    // The object is not removed until execute() is called.
-    DeleteCommand(Diagram& diagram, std::shared_ptr<GraphicsObject> obj);
+  // Original index of the object inside the diagram's vector.
+  // -1 indicates execute() has not yet been called.
+  int index_ = -1;
 
-    // Removes the object from the diagram and stores its index.
-    void execute() override;
+ public:
+  // Initializes the command with the target `diagram` and `obj`.
+  // The object is not removed until execute() is called.
+  DeleteCommand(Diagram& diagram, std::shared_ptr<GraphicsObject> obj);
 
-    // Reinserts the object at its original index.
-    void undo() override;
+  // Removes the object from the diagram and stores its index.
+  void execute() override;
+
+  // Reinserts the object at its original index.
+  void undo() override;
 };

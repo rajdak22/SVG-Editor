@@ -6,29 +6,28 @@
 
 #pragma once
 
-#include "command.h"
-#include "../model/diagram.h"
-#include "../model/graphics_object.h"
 #include <memory>
 
-class AddCommand : public Command
-{
-private:
-    // Reference to the target diagram. Must outlive this command.
-    Diagram& diagram_;
+#include "../model/diagram.h"
+#include "../model/graphics_object.h"
+#include "command.h"
 
-    // The object being added. Shared ownership allows safe undo/redo.
-    std::shared_ptr<GraphicsObject> object_;
+class AddCommand : public Command {
+ private:
+  // Reference to the target diagram. Must outlive this command.
+  Diagram& diagram_;
 
-public:
+  // The object being added. Shared ownership allows safe undo/redo.
+  std::shared_ptr<GraphicsObject> object_;
 
-    // Initializes the command with the target `diagram` and `obj`.
-    // The object is not inserted until execute() is called.
-    AddCommand(Diagram& diagram, std::shared_ptr<GraphicsObject> obj);
+ public:
+  // Initializes the command with the target `diagram` and `obj`.
+  // The object is not inserted until execute() is called.
+  AddCommand(Diagram& diagram, std::shared_ptr<GraphicsObject> obj);
 
-    // Appends the stored object to the diagram.
-    void execute() override;
+  // Appends the stored object to the diagram.
+  void execute() override;
 
-    // Removes the same object instance from the diagram.
-    void undo() override;
+  // Removes the same object instance from the diagram.
+  void undo() override;
 };

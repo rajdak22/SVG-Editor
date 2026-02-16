@@ -5,21 +5,15 @@
 #include "set_stroke_width_command.h"
 
 // Construct command storing old stroke width and desired new width.
-SetStrokeWidthCommand::SetStrokeWidthCommand(std::shared_ptr<GraphicsObject> obj, int newWidth)
-{
-    object_ = obj;
-    oldWidth_ = obj -> getStrokeWidth();
-    newWidth_ = newWidth;
+SetStrokeWidthCommand::SetStrokeWidthCommand(
+    std::shared_ptr<GraphicsObject> obj, int newWidth) {
+  object_ = obj;
+  oldWidth_ = obj->getStrokeWidth();
+  newWidth_ = newWidth;
 }
 
 // Apply the new stroke width to the object.
-void SetStrokeWidthCommand::execute()
-{
-    object_->setStrokeWidth(newWidth_);
-}
+void SetStrokeWidthCommand::execute() { object_->setStrokeWidth(newWidth_); }
 
 // Restore the previous stroke width.
-void SetStrokeWidthCommand::undo()
-{
-    object_->setStrokeWidth(oldWidth_);
-}
+void SetStrokeWidthCommand::undo() { object_->setStrokeWidth(oldWidth_); }

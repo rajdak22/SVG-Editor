@@ -1,121 +1,116 @@
 // Whiteboard is the central widget widget that owns the Diagram model,
 // routes mouse input to the active Tool, and manages undo/redo state.
 #pragma once
+#include <QRectF>
 #include <QWidget>
 #include <memory>
 #include <vector>
-#include <QRectF>
+
+#include "../../command/command.h"
 #include "../../model/diagram.h"
 #include "../../model/graphics_object.h"
 #include "../tools/tool.h"
-#include "../../command/command.h"
 
-class Whiteboard : public QWidget
-{
+class Whiteboard : public QWidget {
+ private:
+  // Current document model containing all drawable objects.
+  Diagram diagram;
 
-private:
+  // Currently selected object. nullptr means no selection.
+  std::shared_ptr<GraphicsObject> selected_ = nullptr;
 
-    // Current document model containing all drawable objects.
-    Diagram diagram;
+  // Temporary preview object used while drawing shapes.
+  // Not committed to the Diagram until a command is executed.
+  std::shared_ptr<GraphicsObject> temp_object_ = nullptr;
 
-    // Currently selected object. nullptr means no selection.
-    std::shared_ptr<GraphicsObject> selected_ = nullptr;
+  // Active interaction tool (SelectTool, CircleTool, etc).
+  // Owned exclusively by Whiteboard.
+  std::unique_ptr<Tool> current_tool_ = nullptr;
 
-    // Temporary preview object used while drawing shapes.
-    // Not committed to the Diagram until a command is executed.
-    std::shared_ptr<GraphicsObject> temp_object_ = nullptr;
+  // Undo stack storing executed commands in order.
+  std::vector<std::unique_ptr<Command>> undo_stack_;
 
-    // Active interaction tool (SelectTool, CircleTool, etc).
-    // Owned exclusively by Whiteboard.
-    std::unique_ptr<Tool> current_tool_ = nullptr;
+  // Redo stack storing commands undone but not yet overwritten.
+  std::vector<std::unique_ptr<Command>> redo_stack_;
 
-    // Undo stack storing executed commands in order.
-    std::vector<std::unique_ptr<Command>> undo_stack_;
+  // Internal clipboard storing a cloned object for copy/paste.
+  // Remains valid even if the original is deleted.
+  std::shared_ptr<GraphicsObject> clipboard_ = nullptr;
 
-    // Redo stack storing commands undone but not yet overwritten.
-    std::vector<std::unique_ptr<Command>> redo_stack_;
+ public:
+  // Constructs the whiteboard widget.
+  // `parent` is forwarded to QWidget.
+  Whiteboard(QWidget* parent = nullptr);
 
-    // Internal clipboard storing a cloned object for copy/paste.
-    // Remains valid even if the original is deleted.
-    std::shared_ptr<GraphicsObject> clipboard_ = nullptr;
+  // Replaces the current Diagram with `d`.
+  // Used when opening files or creating a new document.
+  void setDiagram(const Diagram& d);
 
-public:
+  // Sets the active Tool. Takes ownership via unique_ptr.
+  void setTool(std::unique_ptr<Tool> tool);
 
-    // Constructs the whiteboard widget.
-    // `parent` is forwarded to QWidget.
-    Whiteboard(QWidget *parent = nullptr);
+  // Returns a mutable reference to the Diagram model.
+  Diagram& getDiagram();
 
-    // Replaces the current Diagram with `d`.
-    // Used when opening files or creating a new document.
-    void setDiagram(const Diagram& d);
+  // Returns the currently selected object, or nullptr if none.
+  std::shared_ptr<GraphicsObject> getSelected() const;
 
-    // Sets the active Tool. Takes ownership via unique_ptr.
-    void setTool(std::unique_ptr<Tool> tool);
+  // Returns the temporary preview object used during drawing.
+  std::shared_ptr<GraphicsObject> getTempObject() const;
 
-    // Returns a mutable reference to the Diagram model.
-    Diagram& getDiagram();
+  // Updates the selected object.
+  void setSelected(std::shared_ptr<GraphicsObject> obj);
 
-    // Returns the currently selected object, or nullptr if none.
-    std::shared_ptr<GraphicsObject> getSelected() const;
+  // Sets the temporary preview object.
+  void setTempObject(std::shared_ptr<GraphicsObject> obj);
 
-    // Returns the temporary preview object used during drawing.
-    std::shared_ptr<GraphicsObject> getTempObject() const;
+  // Clears the temporary preview object and triggers repaint.
+  void clearTempObject();
 
-    // Updates the selected object.
-    void setSelected(std::shared_ptr<GraphicsObject> obj);
+  // Executes a command, pushes it onto the undo stack,
+  // and clears the redo stack.
+  void executeCommand(std::unique_ptr<Command> cmd);
 
-    // Sets the temporary preview object.
-    void setTempObject(std::shared_ptr<GraphicsObject> obj);
+  // Undoes the most recent command if available.
+  void undo();
 
-    // Clears the temporary preview object and triggers repaint.
-    void clearTempObject();
+  // Redoes the most recently undone command if available.
+  void redo();
 
-    // Executes a command, pushes it onto the undo stack,
-    // and clears the redo stack.
-    void executeCommand(std::unique_ptr<Command> cmd);
+  // Copies the selected object to the internal clipboard.
+  void copy();
 
-    // Undoes the most recent command if available.
-    void undo();
+  // Copies and removes the selected object using a DeleteCommand.
+  void cut();
 
-    // Redoes the most recently undone command if available.
-    void redo();
+  // Clones the clipboard object and inserts it using AddCommand.
+  void paste();
 
-    // Copies the selected object to the internal clipboard.
-    void copy();
+  // Opens a dialog and applies a fill color change via command.
+  void changeFillColor();
 
-    // Copies and removes the selected object using a DeleteCommand.
-    void cut();
+  // Opens a dialog and applies a stroke color change via command.
+  void changeStrokeColor();
 
-    // Clones the clipboard object and inserts it using AddCommand.
-    void paste();
+  // Opens a dialog and applies a stroke width change via command.
+  void changeStrokeWidth();
 
-    // Opens a dialog and applies a fill color change via command.
-    void changeFillColor();
+  // Clears the current selection.
+  void clearSelection();
 
-    // Opens a dialog and applies a stroke color change via command.
-    void changeStrokeColor();
+  // Clears undo and redo history stacks.
+  void clearHistory();
 
-    // Opens a dialog and applies a stroke width change via command.
-    void changeStrokeWidth();
+ protected:
+  // Repaints all objects, selection box, and preview object.
+  void paintEvent(QPaintEvent* event) override;
 
-    // Clears the current selection.
-    void clearSelection();
+  // Forwards mouse press events to the active Tool.
+  void mousePressEvent(QMouseEvent* event) override;
 
-    // Clears undo and redo history stacks.
-    void clearHistory();
+  // Forwards mouse move events to the active Tool.
+  void mouseMoveEvent(QMouseEvent* event) override;
 
-protected:
-
-    // Repaints all objects, selection box, and preview object.
-    void paintEvent(QPaintEvent *event) override;
-
-    // Forwards mouse press events to the active Tool.
-    void mousePressEvent(QMouseEvent* event) override;
-
-    // Forwards mouse move events to the active Tool.
-    void mouseMoveEvent(QMouseEvent* event) override;
-
-    // Forwards mouse release events to the active Tool.
-    void mouseReleaseEvent(QMouseEvent* event) override;
-
+  // Forwards mouse release events to the active Tool.
+  void mouseReleaseEvent(QMouseEvent* event) override;
 };

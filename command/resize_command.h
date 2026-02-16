@@ -4,33 +4,33 @@
 // operation can be cleanly reversed.
 #pragma once
 
-#include "command.h"
-#include "../model/graphics_object.h"
-#include <memory>
 #include <QRectF>
+#include <memory>
+
+#include "../model/graphics_object.h"
+#include "command.h"
 
 class ResizeCommand : public Command {
-private:
+ private:
+  // Target object whose geometry will be modified.
+  // Stored as shared_ptr to keep it alive while in the undo stack.
+  std::shared_ptr<GraphicsObject> object_;
 
-    // Target object whose geometry will be modified.
-    // Stored as shared_ptr to keep it alive while in the undo stack.
-    std::shared_ptr<GraphicsObject> object_;
+  // Bounding box before resize. Used by undo().
+  QRectF old_;
 
-    // Bounding box before resize. Used by undo().
-    QRectF old_;
+  // Bounding box after resize. Applied in execute().
+  QRectF new_;
 
-    // Bounding box after resize. Applied in execute().
-    QRectF new_;
+ public:
+  // Initializes the command with the target object and its
+  // previous and desired bounding rectangles.
+  ResizeCommand(std::shared_ptr<GraphicsObject> obj, const QRectF& oldRect,
+                const QRectF& newRect);
 
-public:
+  // Applies the new bounding rectangle to the object.
+  void execute() override;
 
-    // Initializes the command with the target object and its
-    // previous and desired bounding rectangles.
-    ResizeCommand(std::shared_ptr<GraphicsObject> obj, const QRectF& oldRect, const QRectF& newRect);
-
-    // Applies the new bounding rectangle to the object.
-    void execute() override;
-
-    // Restores the original bounding rectangle.
-    void undo() override;
+  // Restores the original bounding rectangle.
+  void undo() override;
 };

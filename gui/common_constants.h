@@ -4,7 +4,6 @@
 // numeric defaults that are referenced by tools and widgets.
 #pragma once
 
-namespace ComConstants
-{
+namespace ComConstants {
 inline constexpr double HANDLE_SIZE = 6.0;
 }
