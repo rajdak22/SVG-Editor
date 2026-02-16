@@ -1,3 +1,8 @@
+// rectangle.cpp
+//
+// Implementation of Rectangle behavior: SVG serialization, rendering,
+// hit testing, movement, resizing and cloning.
+
 #include "rectangle.h"
 #include <sstream>
 #include <QColor>
@@ -43,8 +48,8 @@ void Rectangle::draw(QPainter& painter) const
 
 bool Rectangle::contains(double x, double y) const
 {
-    QRectF box = Rectangle::boundingBox();
-    return box.contains(x, y);
+    // Containment reduces to bounding box check
+    return boundingBox().contains(x, y);
 }
 
 void Rectangle::move(double dx, double dy)
@@ -60,6 +65,7 @@ QRectF Rectangle::boundingBox() const
 
 void Rectangle::resize(const QRectF& rect)
 {
+    // Directly adopt the new rectangle geometry
     x_ = rect.x();
     y_ = rect.y();
     width_ = rect.width();

@@ -1,8 +1,14 @@
+// polyline.cpp
+//
+// Implementation of Polyline behavior: SVG serialization, rendering,
+// bounding-box based hit testing, movement, resizing and cloning.
+
 #include "polyline.h"
 #include <sstream>
 #include <QColor>
 #include <QPen>
 #include <QBrush>
+#include <algorithm>
 
 Polyline::Polyline(const std::vector<QPointF>& points)
 {
@@ -34,11 +40,16 @@ void Polyline::draw(QPainter& painter) const
     auto stroke_color_qt = QColor(QString::fromStdString(stroke_color_));
     auto pen_attributes = QPen(stroke_color_qt, stroke_width_);
     painter.setPen(pen_attributes);
-    painter.drawPolyline(points_.data(), points_.size());       // points_.data() returns pointer to first element; nullptr if empty
+
+    // drawPolyline expects a raw pointer to contiguous QPointF data
+    // std::vector guarantees contiguous storage
+    painter.drawPolyline(points_.data(), points_.size());
 }
 
 bool Polyline::contains(double x, double y) const
 {
+    // Conservative hit-test using bounding box
+    // Does not check distance to individual segments
     QRectF box = boundingBox();
     return box.contains(x, y);
 }
@@ -53,6 +64,7 @@ void Polyline::move(double dx, double dy)
 
 QRectF Polyline::boundingBox() const
 {
+    // Assumes polyline has at least one point
     double minX = points_[0].x();
     double maxX = points_[0].x();
     double minY = points_[0].y();
@@ -71,10 +83,13 @@ QRectF Polyline::boundingBox() const
 
 void Polyline::resize(const QRectF& rect)
 {
-    QRectF box = boundingBox();                             // rect is new bounding box, box is old
-    if (box.width() == 0 || box.height() == 0) return;      // division by 0 avoided
+    // Scale vertices relative to old bounding box into new bounding box
+    QRectF box = boundingBox();
 
-    double sx = rect.width() / box.width();
+    // Avoid division by zero for degenerate shapes
+    if (box.width() == 0 || box.height() == 0) return;
+
+    double sx = rect.width()  / box.width();
     double sy = rect.height() / box.height();
 
     for (auto& p : points_)

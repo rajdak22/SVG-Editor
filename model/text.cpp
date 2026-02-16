@@ -1,3 +1,8 @@
+// text.cpp
+//
+// Implementation of Text behavior: SVG serialization, rendering,
+// hit testing, movement, resizing and cloning.
+
 #include "text.h"
 #include <sstream>
 #include <QColor>
@@ -13,6 +18,7 @@ Text::Text(double x, double y, const std::string& content, int fontSize)
     content_ = content;
     font_size_ = fontSize;
 }
+
 
 std::string Text::toSVG() const
 {
@@ -30,6 +36,7 @@ std::string Text::toSVG() const
     return oss.str();
 }
 
+// Draw text at its baseline position using a `QFont` based on `font_size_`.
 void Text::draw(QPainter& painter) const
 {
     QFont font;
@@ -45,6 +52,7 @@ void Text::draw(QPainter& painter) const
     painter.drawText(coordinates, content_qt);
 }
 
+// Hit test using the text bounding box computed from `QFontMetrics`.
 bool Text::contains(double x, double y) const
 {
     QRectF box = boundingBox();
@@ -57,6 +65,7 @@ void Text::move(double dx, double dy)
     y_ += dy;
 }
 
+// Compute bounding rectangle of the rendered text using font metrics.
 QRectF Text::boundingBox() const
 {
     QFont font;
@@ -67,11 +76,13 @@ QRectF Text::boundingBox() const
     QString q_text = QString::fromStdString(content_);
     QRect rect = metrics.boundingRect(q_text);
 
-    double y_actual = y_ - rect.height();                                   // y_ is baseline, Qt draws text from baseline
+    // y_ is baseline, Qt draws text from baseline
+    double y_actual = y_ - rect.height();
 
     return QRectF(x_, y_actual, rect.width(), rect.height());
 }
 
+// Resize by adjusting font size to approximately match `rect` height.
 void Text::resize(const QRectF& rect)
 {
     QFont font;
@@ -88,6 +99,7 @@ void Text::resize(const QRectF& rect)
     }
 }
 
+// Return a deep-copied shared_ptr to a new Text object.
 std::shared_ptr<GraphicsObject> Text::clone() const
 {
     return std::make_shared<Text>(*this);

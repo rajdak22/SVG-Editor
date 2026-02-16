@@ -1,8 +1,14 @@
+// line.cpp
+//
+// Implementation of Line behavior: SVG serialization, rendering,
+// segment-based hit testing, movement, resizing and cloning.
+
 #include "line.h"
 #include <sstream>
 #include <QColor>
 #include <QPen>
 #include <QBrush>
+#include <cmath>
 
 Line::Line(double x1, double y1, double x2, double y2)
 {
@@ -39,21 +45,27 @@ void Line::draw(QPainter& painter) const
 
 bool Line::contains(double x, double y) const
 {
+    // Line equation in ax + by + c = 0 form
     double a = y1_ - y2_;
     double b = x2_ - x1_;
     double c = x1_ * y2_ - x2_ * y1_;
 
+    // Guard against degenerate line (both endpoints identical)
+    if (a == 0.0 && b == 0.0) return false;
+
+    // Perpendicular distance from point to infinite line
     double numerator = std::abs(a * x + b * y + c);
     double denominator = std::sqrt(a * a + b * b);
-
-    if(a == 0.0 && b == 0.0) return false;
-
     double perp_dist = numerator / denominator;
-    const double tolerance = 3.0;
+
+    // Allow some tolerance so thin lines remain selectable
+    const double tolerance = (stroke_width_ / 2.0) + 3.0;
+
+    // Check projection lies within segment bounds using dot products
     double dot1 = (x - x1_) * (x2_ - x1_) + (y - y1_) * (y2_ - y1_);
     double dot2 = (x - x2_) * (x1_ - x2_) + (y - y2_) * (y1_ - y2_);
 
-    if(perp_dist > tolerance || dot1 < 0 || dot2 < 0) return false;
+    if (perp_dist > tolerance || dot1 < 0 || dot2 < 0) return false;
 
     return true;
 }
@@ -68,9 +80,9 @@ void Line::move(double dx, double dy)
 
 QRectF Line::boundingBox() const
 {
-    double left = std::min(x1_, x2_);
-    double top = std::min(y1_, y2_);
-    double width = std::abs(x2_ - x1_);
+    double left   = std::min(x1_, x2_);
+    double top    = std::min(y1_, y2_);
+    double width  = std::abs(x2_ - x1_);
     double height = std::abs(y2_ - y1_);
 
     return QRectF(left, top, width, height);
@@ -78,12 +90,15 @@ QRectF Line::boundingBox() const
 
 void Line::resize(const QRectF& rect)
 {
+    // Preserve original orientation of the segment while mapping
+    // endpoints to opposite corners of the new rectangle
     bool flag_x = x1_ <= x2_;
     bool flag_y = y1_ <= y2_;
-    x1_ = (flag_x) ? rect.left() : rect.right();
-    x2_ = (!flag_x) ? rect.left() : rect.right();
-    y1_ = (flag_y) ? rect.top() : rect.bottom();
-    y2_ = (!flag_y) ? rect.top() : rect.bottom();
+
+    x1_ = flag_x  ? rect.left()   : rect.right();
+    x2_ = flag_x  ? rect.right()  : rect.left();
+    y1_ = flag_y  ? rect.top()    : rect.bottom();
+    y2_ = flag_y  ? rect.bottom() : rect.top();
 }
 
 std::shared_ptr<GraphicsObject> Line::clone() const

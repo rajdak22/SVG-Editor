@@ -1,3 +1,8 @@
+// circle.cpp
+//
+// Implementation of Circle behavior: SVG serialization, rendering,
+// hit-testing, movement, resizing and cloning.
+
 #include "circle.h"
 #include <sstream>
 #include <QColor>
@@ -13,7 +18,6 @@ Circle::Circle(double cx, double cy, double r)
 
 std::string Circle::toSVG() const
 {
-
     // using ostringstream to avoid usage of toString operation repeatedly
     // provides easier and more intuitive string construction
     std::ostringstream oss;
@@ -30,13 +34,15 @@ std::string Circle::toSVG() const
     return oss.str();
 }
 
+
 void Circle::draw(QPainter& painter) const
 {
-
+    // sets the stroke_color_ & stroke_width_ attribute for QPen
     auto stroke_color_qt = QColor(QString::fromStdString(stroke_color_));
     auto pen_attributes = QPen(stroke_color_qt, stroke_width_);
     painter.setPen(pen_attributes);
 
+    // sets the fill_color_ attribute
     auto fill_color_qt = QColor(QString::fromStdString(fill_color_));
     painter.setBrush(fill_color_qt);
 
@@ -46,10 +52,10 @@ void Circle::draw(QPainter& painter) const
 
 bool Circle::contains(double x, double y) const
 {
-
     double dx = x - cx_;
     double dy = y - cy_;
 
+    // dist^2 <= radius^2
     return (dx * dx + dy * dy) <= (r_ * r_);
 }
 
@@ -61,9 +67,11 @@ void Circle::move(double dx, double dy)
 
 QRectF Circle::boundingBox() const
 {
+    // coordinates of rect and its width/height represented
     return QRectF(cx_ - r_, cy_ - r_, 2*r_, 2*r_);
 }
 
+// Resize the circle to fit inside `rect` by updating center and radius.
 void Circle::resize(const QRectF& rect)
 {
     // Calculate the center first

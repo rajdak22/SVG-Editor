@@ -1,9 +1,14 @@
+// hexagon.cpp
+//
+// Implementation of Hexagon behavior: SVG serialization, rendering,
+// movement, resizing and cloning.
+
 #include "hexagon.h"
 #include <sstream>
 #include <QColor>
 #include <QPen>
 #include <QBrush>
-#include <cmath> // for cos and sin
+#include <cmath>
 
 Hexagon::Hexagon(double cx, double cy, double r)
 {
@@ -30,20 +35,21 @@ std::string Hexagon::toSVG() const
 
 void Hexagon::draw(QPainter& painter) const
 {
+    // sets the stroke_color_ & stroke_width_ attribute for QPen
     auto stroke_color_qt = QColor(QString::fromStdString(stroke_color_));
     auto pen_attributes = QPen(stroke_color_qt, stroke_width_);
     painter.setPen(pen_attributes);
 
+     // sets the fill_color_ attribute
     auto fill_color_qt = QColor(QString::fromStdString(fill_color_));
     painter.setBrush(fill_color_qt);
 
     QPolygonF polygon;
 
-    // finding vertices of hexagon wrt centre
-    // (iterating angle from 0 to 300 degrees in steps of 60 degree)
+    // Regular hexagon: 6 vertices spaced 60 degrees apart on circle of radius r_
     for (int i = 0; i < 6; i++)
     {
-        double angle = M_PI / 3.0 * i;          // M_PI is a macro in cmath, denoting pi
+        double angle = M_PI / 3.0 * i;
         double x = cx_ + r_ * std::cos(angle);
         double y = cy_ + r_ * std::sin(angle);
         polygon << QPointF(x, y);
@@ -52,11 +58,10 @@ void Hexagon::draw(QPainter& painter) const
     painter.drawPolygon(polygon);
 }
 
-// writing exact constraints would be too calculative
-// using bounding box is practical and efficient
 bool Hexagon::contains(double x, double y) const
 {
-    QRectF box = Hexagon::boundingBox();
+    // Conservative hit-test using bounding box
+    QRectF box = boundingBox();
     return box.contains(x, y);
 }
 
@@ -68,11 +73,13 @@ void Hexagon::move(double dx, double dy)
 
 QRectF Hexagon::boundingBox() const
 {
+    // Width = 2r, height = sqrt(3)r for flat-top hexagon
     double width  = 2.0 * r_;
-    double height = std::sqrt(3.0) * r_;        // 2*r*cos(30)
+    double height = std::sqrt(3.0) * r_;
 
     double x_box = cx_ - r_;
     double y_box = cy_ - height / 2.0;
+
     return QRectF(x_box, y_box, width, height);
 }
 
@@ -81,8 +88,8 @@ void Hexagon::resize(const QRectF& rect)
     cx_ = rect.center().x();
     cy_ = rect.center().y();
 
-    double newRadius = rect.width() / 2.0;
-    r_ = newRadius;
+    // Radius derived from horizontal span
+    r_ = rect.width() / 2.0;
 }
 
 std::shared_ptr<GraphicsObject> Hexagon::clone() const

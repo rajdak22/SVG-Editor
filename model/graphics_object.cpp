@@ -1,3 +1,10 @@
+// implementation of functions in
+// graphics_object.h
+
+// for non-repetitive commenting purposes, most design decisions
+// have been specified in circle.cpp and identical descriptions
+// have been skipped for other shapes to avoid redundance
+
 #include "graphics_object.h"
 
 void GraphicsObject::setStrokeColor(const std::string& color) {

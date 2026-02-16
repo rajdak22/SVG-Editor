@@ -1,3 +1,8 @@
+// rounded_rectangle.cpp
+//
+// Implementation of RoundedRectangle behavior: SVG serialization,
+// rendering with rounded corners, hit testing, movement, resizing and cloning.
+
 #include "rounded_rectangle.h"
 #include <sstream>
 #include <QColor>
@@ -47,8 +52,8 @@ void RoundedRectangle::draw(QPainter& painter) const
 
 bool RoundedRectangle::contains(double x, double y) const
 {
-    QRectF box = RoundedRectangle::boundingBox();
-    return box.contains(x, y);
+    // Conservative hit test using bounding box
+    return boundingBox().contains(x, y);
 }
 
 void RoundedRectangle::move(double dx, double dy)
@@ -64,6 +69,7 @@ QRectF RoundedRectangle::boundingBox() const
 
 void RoundedRectangle::resize(const QRectF& rect)
 {
+    // Directly adopt new rectangle geometry
     x_ = rect.x();
     y_ = rect.y();
     width_ = rect.width();

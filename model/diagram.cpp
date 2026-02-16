@@ -12,8 +12,9 @@ void Diagram::unAddObject() {
 
 void Diagram::removeObject(std::shared_ptr<GraphicsObject> obj)
 {
+    // Compare shared_ptr instances (identity comparison of underlying object).
     auto it = std::find(objects_.begin(), objects_.end(), obj);
-    if(it != objects_.end()) {
+    if (it != objects_.end()) {
         objects_.erase(it);
     }
 }
@@ -23,7 +24,8 @@ void Diagram::insertObject(int index, std::shared_ptr<GraphicsObject> obj)
     objects_.insert(objects_.begin() + index, obj);
 }
 
-const std::vector<std::shared_ptr<GraphicsObject>>& Diagram::getObjects() const {
+const std::vector<std::shared_ptr<GraphicsObject>>&
+Diagram::getObjects() const {
     return objects_;
 }
 

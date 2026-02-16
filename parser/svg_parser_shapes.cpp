@@ -1,3 +1,9 @@
+// svg_parser_shapes.cpp
+//
+// Shape-specific parsing helpers used by SVGParser. Each function extracts
+// required geometric attributes from a single SVG element line, constructs
+// the corresponding GraphicsObject, then applies common paint attributes.
+
 #include "svg_parser.h"
 
 #include <sstream>
@@ -21,7 +27,6 @@ std::shared_ptr<GraphicsObject> SVGParser::parseCircle(const std::string& line)
     auto circleObj = std::make_shared<Circle>(cx, cy, r);
 
     setPaintAttributes(line, circleObj);
-
     return circleObj;
 }
 
@@ -37,6 +42,7 @@ std::shared_ptr<GraphicsObject> SVGParser::parseRectangle(const std::string& lin
 
     std::shared_ptr<GraphicsObject> rectObj;
 
+    // If either rx or ry is present, treat as rounded rectangle.
     if (!rxString.empty() || !ryString.empty())
     {
         double rx = rxString.empty() ? 0 : std::stod(rxString);
@@ -49,7 +55,6 @@ std::shared_ptr<GraphicsObject> SVGParser::parseRectangle(const std::string& lin
     }
 
     setPaintAttributes(line, rectObj);
-
     return rectObj;
 }
 
@@ -63,7 +68,6 @@ std::shared_ptr<GraphicsObject> SVGParser::parseLine(const std::string& line)
     auto lineObj = std::make_shared<Line>(x1, y1, x2, y2);
 
     setPaintAttributes(line, lineObj);
-
     return lineObj;
 }
 
@@ -76,7 +80,6 @@ std::shared_ptr<GraphicsObject> SVGParser::parseHexagon(const std::string& line)
     auto hexObj = std::make_shared<Hexagon>(cx, cy, r);
 
     setPaintAttributes(line, hexObj);
-
     return hexObj;
 }
 
@@ -88,7 +91,9 @@ std::shared_ptr<GraphicsObject> SVGParser::parsePolyline(const std::string& line
     std::stringstream ss(pointsList);
     std::string coordinate;
 
-    while (ss >> coordinate) {
+    // Each token is expected in the form "x,y".
+    while (ss >> coordinate)
+    {
         size_t comma = coordinate.find(",");
         double x = std::stod(coordinate.substr(0, comma));
         double y = std::stod(coordinate.substr(comma + 1));
@@ -98,7 +103,6 @@ std::shared_ptr<GraphicsObject> SVGParser::parsePolyline(const std::string& line
     auto polyObj = std::make_shared<Polyline>(points);
 
     setPaintAttributes(line, polyObj);
-
     return polyObj;
 }
 
@@ -106,13 +110,14 @@ std::shared_ptr<GraphicsObject> SVGParser::parseText(const std::string& line)
 {
     double x = std::stod(getAttribute(line, "x"));
     double y = std::stod(getAttribute(line, "y"));
+
     std::string fontSizeString = getAttribute(line, "font-size");
     int fontSize = fontSizeString.empty() ? 14 : std::stoi(fontSizeString);
 
-    // example: <text x="2" y="1">Hello</text>
-    // getAttribute not used since content isn't between ""
+    // Extract inner text between '>' and '</text>'.
     size_t start = line.find(">");
     if (start == std::string::npos) return nullptr;
+
     size_t end = line.find("</text>");
     if (end == std::string::npos) return nullptr;
 
@@ -121,6 +126,5 @@ std::shared_ptr<GraphicsObject> SVGParser::parseText(const std::string& line)
     auto textObj = std::make_shared<Text>(x, y, content, fontSize);
 
     setPaintAttributes(line, textObj);
-
     return textObj;
 }

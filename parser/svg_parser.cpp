@@ -1,11 +1,15 @@
+// svg_parser.cpp
+//
+// Minimal line-oriented SVG parsing. Each supported SVG element is
+// expected to appear entirely on a single line. The parser performs
+// simple string matching and attribute extraction rather than full XML parsing.
+
 #include "svg_parser.h"
 
 #include <fstream>
 
-
-// assumption is that each line of the svg contains description
-// of one shape only
-
+// Parse the file line-by-line and construct a Diagram.
+// Dispatches to shape-specific parsers based on the element tag.
 Diagram SVGParser::parseFile(const std::string& filename)
 {
     Diagram diagram;
@@ -14,10 +18,9 @@ Diagram SVGParser::parseFile(const std::string& filename)
 
     while (std::getline(file, line))
     {
-        // intialising to nullptr in case we see a shape we don't recognise
         std::shared_ptr<GraphicsObject> obj = nullptr;
 
-        // each shape starts with <
+        // Identify element type via substring match on opening tag.
         if (line.find("<circle ") != std::string::npos) obj = parseCircle(line);
         else if (line.find("<rect ") != std::string::npos) obj = parseRectangle(line);
         else if (line.find("<line ") != std::string::npos) obj = parseLine(line);
@@ -25,7 +28,7 @@ Diagram SVGParser::parseFile(const std::string& filename)
         else if (line.find("<polyline ") != std::string::npos) obj = parsePolyline(line);
         else if (line.find("<text ") != std::string::npos) obj = parseText(line);
 
-        // if a shape has been recognised, then add it to objects_ in diagram
+        // Only add recognized shapes to the diagram.
         if (obj != nullptr)
             diagram.addObject(obj);
     }
@@ -33,28 +36,37 @@ Diagram SVGParser::parseFile(const std::string& filename)
     return diagram;
 }
 
+// Extract the value of attribute `key` from `line`.
+// Assumes attributes follow the pattern: key="value".
 std::string SVGParser::getAttribute(const std::string& line, const std::string& key)
 {
-    std::string attribute  = " " + key;             // each token must start with a new space
-    size_t key_pos = line.find(attribute);          // finding position of the token
-    if(key_pos == std::string::npos) return "";
+    std::string attribute = " " + key;  // ensure we match full attribute names
+    size_t key_pos = line.find(attribute);
+    if (key_pos == std::string::npos) return "";
 
     size_t start_quote = line.find('"', key_pos);
-    if((start_quote) == std::string::npos) return "";   // quote before value
+    if (start_quote == std::string::npos) return "";
 
-    size_t end_quote = line.find('"', start_quote + 1); // quote after value
-    if(end_quote == std::string::npos) return "";
+    size_t end_quote = line.find('"', start_quote + 1);
+    if (end_quote == std::string::npos) return "";
 
-    return line.substr(start_quote + 1, end_quote - start_quote - 1);   // final value of token
+    return line.substr(start_quote + 1, end_quote - start_quote - 1);
 }
 
+// Apply common paint attributes (fill, stroke, stroke-width) if present.
+// Missing attributes leave the object's default styling unchanged.
 void SVGParser::setPaintAttributes(const std::string& line, const std::shared_ptr<GraphicsObject>& obj)
 {
     std::string fill = getAttribute(line, "fill");
     std::string stroke = getAttribute(line, "stroke");
     std::string strokeWidth = getAttribute(line, "stroke-width");
 
-    if (!fill.empty()) obj->setFillColor(fill);                                 // checking if empty, to apply default value
-    if (!stroke.empty()) obj->setStrokeColor(stroke);                           // checking if empty, to apply default value
-    if (!strokeWidth.empty()) obj->setStrokeWidth(std::stoi(strokeWidth));      // checking if empty, to apply default value
+    if (!fill.empty())
+        obj->setFillColor(fill);
+
+    if (!stroke.empty())
+        obj->setStrokeColor(stroke);
+
+    if (!strokeWidth.empty())
+        obj->setStrokeWidth(std::stoi(strokeWidth));
 }

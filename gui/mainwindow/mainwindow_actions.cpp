@@ -1,9 +1,15 @@
+// mainwindow_actions.cpp — create QAction instances for UI commands.
+//
+// Instantiates all QAction objects used by the main window, including
+// drawing tools, file operations, edit operations and style controls.
+// Tool actions are marked checkable so only one can remain active at a time.
 #include "mainwindow.h"
 #include <QKeySequence>
 
+// Create and configure all QAction objects owned by MainWindow.
 void MainWindow::createActions()
 {
-    // Drawing actions
+    // Drawing tool actions
     selectAction     = new QAction("Select", this);
     rectAction       = new QAction("Rectangle", this);
     circleAction     = new QAction("Circle", this);
@@ -18,7 +24,7 @@ void MainWindow::createActions()
     openAction   = new QAction("Open", this);
     saveAction   = new QAction("Save", this);
     saveAsAction = new QAction("Save As", this);
-    closeAction = new QAction("Close", this);
+    closeAction  = new QAction("Close", this);
 
     // Edit actions
     undoAction  = new QAction("Undo", this);
@@ -32,13 +38,13 @@ void MainWindow::createActions()
     strokeAction = new QAction("Stroke", this);
     widthAction  = new QAction("Stroke Width", this);
 
-    // ----- Checkable tools -----
-    selectAction -> setCheckable(true);
-    rectAction -> setCheckable(true);
-    circleAction -> setCheckable(true);
-    lineAction -> setCheckable(true);
-    hexAction -> setCheckable(true);
-    roundRectAction -> setCheckable(true);
-    polylineAction -> setCheckable(true);
-    textAction -> setCheckable(true);
+    // Mark tool actions as checkable so they behave like toggle buttons
+    selectAction     -> setCheckable(true);
+    rectAction       -> setCheckable(true);
+    circleAction     -> setCheckable(true);
+    lineAction       -> setCheckable(true);
+    hexAction        -> setCheckable(true);
+    roundRectAction  -> setCheckable(true);
+    polylineAction   -> setCheckable(true);
+    textAction       -> setCheckable(true);
 }
